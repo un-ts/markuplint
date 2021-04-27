@@ -1,0 +1,3 @@
+[submodule "markuplint"]
+	path = markuplint
+	url = https://github.com/JounQin/markuplint.git

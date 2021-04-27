@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic usage should just work 1`] = `
+Array [
+  Object {
+    "col": 1,
+    "line": 1,
+    "message": "Required doctype",
+    "raw": "",
+    "ruleId": "doctype",
+    "severity": "error",
+  },
+]
+`;

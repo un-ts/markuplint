@@ -1,14 +1,10 @@
-import { MLRuleSync } from './patch-ml-rule'
-
 import { ExtendedSpec, MLMLSpec } from '@markuplint/ml-spec'
 import { MLMarkupLanguageParser } from '@markuplint/ml-ast'
-import {
-  ParserOptions,
-  RuleConfigValue,
-  VerifiedResult,
-} from '@markuplint/ml-config'
-import { MLCore, MLRule, Ruleset } from '@markuplint/ml-core'
+import { ParserOptions, VerifiedResult } from '@markuplint/ml-config'
+import { MLCore, MLRule, RuleConfigValue, Ruleset } from '@markuplint/ml-core'
 import { I18n } from '@markuplint/i18n'
+
+import { MLRuleSync } from './patch-ml-rule'
 
 export class MLCoreSync extends MLCore {
   #ruleset: Ruleset

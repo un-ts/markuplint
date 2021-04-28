@@ -1,6 +1,6 @@
-import { recursiveLoad, search } from './helper'
-
 import { ConfigSet } from '@markuplint/file-resolver'
+
+import { recursiveLoad, search } from './helper'
 
 /**
  * Asynchronously search configuration file from linting target file.

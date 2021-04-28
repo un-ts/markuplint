@@ -1,18 +1,6 @@
-import { RuleConfigValue } from '@markuplint/ml-config'
-import { MLRule } from '@markuplint/ml-core'
+import { tryRequirePkg } from './helper'
+import { MLRules } from './types'
 
-export function resolveRules(options: {
-  rules?: Array<MLRule<RuleConfigValue, unknown>>
-}) {
-  let rules: Array<MLRule<RuleConfigValue, unknown>>
-  if (options.rules) {
-    rules = options.rules
-  } else {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires, node/no-missing-require
-    const r = require('@markuplint/rules')
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    rules = r.default
-  }
-
-  return rules
+export function resolveRules(options: { rules?: MLRules }) {
+  return options.rules || tryRequirePkg<MLRules>('../rules')!
 }

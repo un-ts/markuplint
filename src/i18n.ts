@@ -1,6 +1,7 @@
 import osLocale from 'os-locale'
-
 import { I18n, LocaleSet } from '@markuplint/i18n'
+
+import { tryRequirePkg } from './helper'
 
 let cachedLocale: string | null = null
 
@@ -16,12 +17,9 @@ export function i18n(locale?: string) {
   const langCode = locale.split('-')[0]
   let localeSet: LocaleSet | null = null
   if (langCode) {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-      localeSet = require(`@markuplint/i18n/locales/${langCode}`) as LocaleSet
-    } catch {
-      // ignore
-    }
+    localeSet = tryRequirePkg<LocaleSet>(
+      `@markuplint/i18n/locales/${langCode}`,
+    )!
   }
   return I18n.create(localeSet)
 }

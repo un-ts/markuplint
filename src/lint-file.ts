@@ -1,12 +1,4 @@
-/* eslint-disable node/no-missing-require */
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import path from 'path'
-
-import { i18n } from './i18n'
-import { moduleAutoLoader } from './module-auto-loader'
-import { MLFile } from './file-resolver'
-import { MLCoreSync } from './ml-core'
 
 import { ExtendedSpec, MLMLSpec } from '@markuplint/ml-spec'
 import { MLMarkupLanguageParser } from '@markuplint/ml-ast'
@@ -20,6 +12,12 @@ import {
 import { ConfigSet } from '@markuplint/file-resolver'
 import { MLResultInfo } from 'markuplint/lib/types'
 import { toRegxp } from 'markuplint/lib/util'
+
+import { MLCoreSync } from './ml-core'
+import { MLFile } from './file-resolver'
+import { moduleAutoLoader } from './module-auto-loader'
+import { i18n } from './i18n'
+import { tryRequirePkg } from './helper'
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function lintFile(
@@ -45,7 +43,7 @@ export function lintFile(
       }
     }
   }
-  const parser = require(parserModName) as MLMarkupLanguageParser
+  const parser = tryRequirePkg<MLMarkupLanguageParser>(parserModName)!
   const parserOptions = configSet.config.parserOptions || {}
 
   // Resolve ruleset
@@ -57,9 +55,8 @@ export function lintFile(
       ? configSet.config.specs
       : [configSet.config.specs]
     : []
-  const htmlSpec = require('@markuplint/html-spec') as MLMLSpec
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  const extendedSpecs = specs.map(spec => require(spec).default as ExtendedSpec)
+  const htmlSpec = tryRequirePkg<MLMLSpec>('@markuplint/html-spec')!
+  const extendedSpecs = specs.map(spec => tryRequirePkg<ExtendedSpec>(spec)!)
   const schemas = [htmlSpec, ...extendedSpecs] as const
 
   // Addition rules
@@ -119,7 +116,8 @@ export function lintFile(
     ruleset,
     configSet: {
       config: configSet.config,
-      files: [...configSet.files],
+      // eslint-disable-next-line unicorn/prefer-spread
+      files: Array.from(configSet.files),
       error: configSet.errs.map(e => `${String(e)}`),
     },
   }

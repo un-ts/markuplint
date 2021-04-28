@@ -1,12 +1,12 @@
+import { ConfigSet } from '@markuplint/file-resolver'
+import { Config } from '@markuplint/ml-config'
+
 import {
   loadConfigFile,
   MLFile,
   recursiveLoad,
   searchConfigFile,
 } from './file-resolver'
-
-import { ConfigSet } from '@markuplint/file-resolver'
-import { Config } from '@markuplint/ml-config'
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function resolveConfigs(

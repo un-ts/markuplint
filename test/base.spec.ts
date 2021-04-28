@@ -1,5 +1,7 @@
 import textlint from '@markuplint/rule-textlint'
-import doctype from '@markuplint/rules/lib/doctype'
+
+import { loadRule } from './helper'
+
 import { exec } from 'markuplint-sync'
 
 describe('basic usage', () => {
@@ -20,7 +22,7 @@ describe('basic usage', () => {
             doctype: true,
           },
         },
-        rules: [doctype],
+        rules: [loadRule('doctype')!],
       })[0].results,
     ).toMatchSnapshot()
 

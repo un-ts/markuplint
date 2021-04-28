@@ -1,8 +1,8 @@
 import path from 'path'
 
-import { load, recursiveLoad } from './helper'
-
 import { ConfigSet } from '@markuplint/file-resolver'
+
+import { load, recursiveLoad } from './helper'
 
 /**
  * Asynchronously get configuration file.

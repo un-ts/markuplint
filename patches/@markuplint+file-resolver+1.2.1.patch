@@ -1,0 +1,56 @@
+diff --git a/node_modules/@markuplint/file-resolver/lib/helper.d.ts b/node_modules/@markuplint/file-resolver/lib/helper.d.ts
+index 63cb3a6..fff40c0 100644
+--- a/node_modules/@markuplint/file-resolver/lib/helper.d.ts
++++ b/node_modules/@markuplint/file-resolver/lib/helper.d.ts
+@@ -10,4 +10,5 @@ export declare function load<T = CosmiConfig>(filePath: string, cacheClear: bool
+     config: T;
+ } | null>;
+ export declare function recursiveLoad(config: Config, filePath: string, files: Set<string>, cacheClear: boolean): Promise<ConfigSet>;
++export declare function margeConfig(a: Config, b: Config): Config;
+ export {};
+diff --git a/node_modules/@markuplint/file-resolver/lib/helper.js b/node_modules/@markuplint/file-resolver/lib/helper.js
+index 6f8e576..26c902e 100644
+--- a/node_modules/@markuplint/file-resolver/lib/helper.js
++++ b/node_modules/@markuplint/file-resolver/lib/helper.js
+@@ -99,3 +99,4 @@ exports.recursiveLoad = recursiveLoad;
+ function margeConfig(a, b) {
+     return Object.assign(Object.assign(Object.assign({}, a), b), { rules: Object.assign(Object.assign({}, a.rules), b.rules), nodeRules: [...(a.nodeRules || []), ...(b.nodeRules || [])], childNodeRules: [...(a.childNodeRules || []), ...(b.childNodeRules || [])] });
+ }
++exports.margeConfig = margeConfig;
+diff --git a/node_modules/@markuplint/file-resolver/lib/index.d.ts b/node_modules/@markuplint/file-resolver/lib/index.d.ts
+index 41f4bda..ceb6256 100644
+--- a/node_modules/@markuplint/file-resolver/lib/index.d.ts
++++ b/node_modules/@markuplint/file-resolver/lib/index.d.ts
+@@ -1,7 +1,7 @@
+ export { getAnonymousFile } from './get-anonymous-file';
+ export { getFiles } from './get-files';
+ export { getFile } from './get-file';
+-export { recursiveLoad } from './helper';
++export { recursiveLoad, margeConfig } from './helper';
+ export { loadConfigFile } from './load-config-file';
+ export { MLFile } from './ml-file';
+ export { searchConfigFile } from './search-config-file';
+diff --git a/node_modules/@markuplint/file-resolver/lib/index.js b/node_modules/@markuplint/file-resolver/lib/index.js
+index ef9b20b..6eb3adf 100644
+--- a/node_modules/@markuplint/file-resolver/lib/index.js
++++ b/node_modules/@markuplint/file-resolver/lib/index.js
+@@ -9,6 +9,7 @@ var get_file_1 = require("./get-file");
+ Object.defineProperty(exports, "getFile", { enumerable: true, get: function () { return get_file_1.getFile; } });
+ var helper_1 = require("./helper");
+ Object.defineProperty(exports, "recursiveLoad", { enumerable: true, get: function () { return helper_1.recursiveLoad; } });
++Object.defineProperty(exports, "margeConfig", { enumerable: true, get: function () { return helper_1.margeConfig; } });
+ var load_config_file_1 = require("./load-config-file");
+ Object.defineProperty(exports, "loadConfigFile", { enumerable: true, get: function () { return load_config_file_1.loadConfigFile; } });
+ var ml_file_1 = require("./ml-file");
+diff --git a/node_modules/@markuplint/file-resolver/lib/types.d.ts b/node_modules/@markuplint/file-resolver/lib/types.d.ts
+index 1203b14..215292d 100644
+--- a/node_modules/@markuplint/file-resolver/lib/types.d.ts
++++ b/node_modules/@markuplint/file-resolver/lib/types.d.ts
+@@ -1,5 +1,5 @@
+-import { Config } from '@markuplint/ml-config/';
+-export { Config } from '@markuplint/ml-config/';
++import { Config } from '@markuplint/ml-config';
++export { Config } from '@markuplint/ml-config';
+ export interface ConfigSet {
+     config: Config;
+     files: Set<string>;

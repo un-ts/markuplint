@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { MLRule, Ruleset } from '@markuplint/ml-core'
 import { RuleConfigValue } from '@markuplint/ml-config'
+
+import { tryRequirePkg } from './helper'
 
 export function moduleAutoLoader<T extends RuleConfigValue, O = unknown>(
   ruleset: Ruleset,
@@ -15,8 +13,7 @@ export function moduleAutoLoader<T extends RuleConfigValue, O = unknown>(
     let rule: MLRule<T, O> | null = null
 
     try {
-      const _module = require(`@markuplint/rule-${ruleName}`)
-      rule = _module.default
+      rule = tryRequirePkg<MLRule<T, O>>(`@markuplint/rule-${ruleName}`, true)
     } catch (e) {
       errors.push(e)
     }
@@ -26,12 +23,13 @@ export function moduleAutoLoader<T extends RuleConfigValue, O = unknown>(
     }
 
     try {
-      const _module = require(`markuplint-rule-${ruleName}`)
-      rule = _module.default
+      rule = tryRequirePkg<MLRule<T, O>>(`markuplint-rule-${ruleName}`, true)
     } catch (e) {
       errors.push(e)
     }
 
+    // https://github.com/typescript-eslint/typescript-eslint/issues/3322
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!rule) {
       continue
     }

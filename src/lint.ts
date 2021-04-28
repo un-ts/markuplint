@@ -1,10 +1,10 @@
+import { MLResultInfo } from 'markuplint/lib/types'
+
 import { lintFile } from './lint-file'
 import { resolveConfigs } from './resolve-configs'
 import { resolveLintTargetFiles } from './resolve-lint-target-files'
 import { resolveRules } from './resolve-rules'
 import { MarkupLintOptions } from './types'
-
-import { MLResultInfo } from 'markuplint/lib/types'
 
 export function lint(options: MarkupLintOptions) {
   const rulesAutoResolve = options.rulesAutoResolve ?? true

@@ -1,0 +1,129 @@
+diff --git a/node_modules/@markuplint/ml-core/lib/ml-dom/document.js b/node_modules/@markuplint/ml-core/lib/ml-dom/document.js
+index 14ea219..635e699 100644
+--- a/node_modules/@markuplint/ml-core/lib/ml-dom/document.js
++++ b/node_modules/@markuplint/ml-core/lib/ml-dom/document.js
+@@ -50,22 +50,45 @@ class MLDOMDocument {
+         }
+         return treeRoots;
+     }
+-    async walk(walker) {
+-        for (const node of this.nodeList) {
+-            await walker(node);
+-        }
++    walk(walker) {
++        /**
++         * The following pattern is used to ensure that all rules run sequentially,
++         * no matter it runs asynchronously or synchronously.
++         */
++        let _resolve;
++        let _reject;
++        const promise = new Promise((resolve, reject) => {
++            _resolve = resolve;
++            _reject = reject;
++        });
++        const loop = (index = 0) => {
++            if (index >= this.nodeList.length) {
++                _resolve();
++                return;
++            }
++            const node = this.nodeList[index];
++            const result = walker(node);
++            if (result instanceof Promise) {
++                result.then(() => loop(index + 1)).catch(_reject);
++            }
++            else {
++                loop(index + 1);
++            }
++        };
++        loop();
++        return promise;
+     }
+-    async walkOn(type, walker, skipWhenRuleIsDisabled = true) {
+-        for (const node of this.nodeList) {
++    walkOn(type, walker, skipWhenRuleIsDisabled = true) {
++        return this.walk(node => {
+             if (node instanceof tokens_1.MLDOMNode) {
+                 if (skipWhenRuleIsDisabled && node.rule.disabled) {
+-                    continue;
++                    return;
+                 }
+                 if (node.is(type)) {
+-                    await walker(node);
++                    return walker(node);
+                 }
+             }
+-        }
++        });
+     }
+     setRule(rule) {
+         this.currentRule = rule;
+diff --git a/node_modules/@markuplint/ml-core/lib/ml-dom/helper/walkers.d.ts b/node_modules/@markuplint/ml-core/lib/ml-dom/helper/walkers.d.ts
+index 1972a2a..d87476b 100644
+--- a/node_modules/@markuplint/ml-core/lib/ml-dom/helper/walkers.d.ts
++++ b/node_modules/@markuplint/ml-core/lib/ml-dom/helper/walkers.d.ts
+@@ -1,5 +1,5 @@
+ import { AnonymousNode } from '../types';
+ import { RuleConfigValue } from '@markuplint/ml-config';
+-export declare type Walker<T extends RuleConfigValue, O = null, N = AnonymousNode<T, O>> = (node: N) => Promise<void>;
++export declare type Walker<T extends RuleConfigValue, O = null, N = AnonymousNode<T, O>> = (node: N) => void | Promise<void>;
+ export declare type SyncWalker<T extends RuleConfigValue, O = null, N = AnonymousNode<T, O>> = (node: N) => void;
+ export declare function syncWalk<T extends RuleConfigValue, O = null>(nodeList: AnonymousNode<T, O>[], walker: SyncWalker<T, O>): void;
+diff --git a/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts b/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts
+index e9f8442..dd4a74b 100644
+--- a/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts
++++ b/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts
+@@ -9,6 +9,16 @@ export declare class MLRule<T extends RuleConfigValue, O = null> {
+     readonly defaultServerity: Severity;
+     readonly defaultValue: T;
+     readonly defaultOptions: O;
++    /**
++     * The following getter is unused internally,
++     * only for extending from 3rd party library
++     */
++    private get v();
++    /**
++     * The following getter is unused internally,
++     * only for extending from 3rd party library
++     */
++    private get f();
+     private constructor();
+     verify(document: Document<T, O>, i18n: I18n, rule: RuleInfo<T, O>): Promise<VerifiedResult[]>;
+     fix(document: Document<T, O>, rule: RuleInfo<T, O>): Promise<void>;
+diff --git a/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.js b/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.js
+index 74086ec..7393b32 100644
+--- a/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.js
++++ b/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.js
+@@ -29,6 +29,20 @@ class MLRule {
+     static create(options) {
+         return new MLRule(options);
+     }
++    /**
++     * The following getter is unused internally,
++     * only for extending from 3rd party library
++     */
++    get v() {
++        return __classPrivateFieldGet(this, _v);
++    }
++    /**
++     * The following getter is unused internally,
++     * only for extending from 3rd party library
++     */
++    get f() {
++        return __classPrivateFieldGet(this, _f);
++    }
+     async verify(document, i18n, rule) {
+         if (!__classPrivateFieldGet(this, _v)) {
+             return [];
+diff --git a/node_modules/@markuplint/ml-core/lib/ml-rule/types.d.ts b/node_modules/@markuplint/ml-core/lib/ml-rule/types.d.ts
+index 6202d55..1488927 100644
+--- a/node_modules/@markuplint/ml-core/lib/ml-rule/types.d.ts
++++ b/node_modules/@markuplint/ml-core/lib/ml-rule/types.d.ts
+@@ -6,6 +6,6 @@ export interface MLRuleOptions<T extends RuleConfigValue, O = null> {
+     defaultLevel?: Severity;
+     defaultValue: T;
+     defaultOptions: O;
+-    verify(document: Document<T, O>, translate: Translator, globalRule: RuleInfo<T, O>): Promise<Result[]>;
+-    fix?(document: Document<T, O>, globalRule: RuleInfo<T, O>): Promise<void>;
++    verify(document: Document<T, O>, translate: Translator, globalRule: RuleInfo<T, O>): Result[] | Promise<Result[]>;
++    fix?(document: Document<T, O>, globalRule: RuleInfo<T, O>): void | Promise<void>;
+ }

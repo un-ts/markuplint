@@ -1,0 +1,26 @@
+diff --git a/node_modules/@markuplint/i18n/lib/index.d.ts b/node_modules/@markuplint/i18n/lib/index.d.ts
+index f0be080..c7a3c89 100644
+--- a/node_modules/@markuplint/i18n/lib/index.d.ts
++++ b/node_modules/@markuplint/i18n/lib/index.d.ts
+@@ -9,7 +9,7 @@ export interface LocalesKeywords {
+ }
+ export declare class I18n {
+     private static _singleton;
+-    static create(localeSet: LocaleSet | null): Promise<I18n>;
++    static create(localeSet: LocaleSet | null): I18n;
+     localeSet: LocaleSet | null;
+     private constructor();
+     translator(): Translator;
+diff --git a/node_modules/@markuplint/i18n/lib/index.js b/node_modules/@markuplint/i18n/lib/index.js
+index 1836db6..33d11b2 100644
+--- a/node_modules/@markuplint/i18n/lib/index.js
++++ b/node_modules/@markuplint/i18n/lib/index.js
+@@ -5,7 +5,7 @@ class I18n {
+     constructor(localeSet) {
+         this.localeSet = localeSet;
+     }
+-    static async create(localeSet) {
++    static create(localeSet) {
+         if (!I18n._singleton) {
+             I18n._singleton = new I18n(localeSet);
+         }

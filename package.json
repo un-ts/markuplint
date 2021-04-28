@@ -107,8 +107,12 @@
     ]
   },
   "typeCoverage": {
-    "atLeast": 98.24,
+    "atLeast": 98.99,
+    "cache": true,
     "detail": true,
+    "ignoreCatch": true,
+    "ignoreAsAssertion": true,
+    "ignoreNonNullAssertion": true,
     "strict": true,
     "update": true
   }

@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "attr-duplication": true
+  }
+}

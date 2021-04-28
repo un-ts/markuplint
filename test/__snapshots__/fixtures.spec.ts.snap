@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fixtures should just work: fixtures/attr-duplication.html 1`] = `
+Array [
+  Object {
+    "col": 24,
+    "line": 1,
+    "message": "Duplicate attribute name",
+    "raw": "data-Attr",
+    "ruleId": "attr-duplication",
+    "severity": "error",
+  },
+]
+`;

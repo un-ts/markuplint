@@ -4,7 +4,7 @@ import {
   VerifiedResult,
 } from '@markuplint/ml-config'
 import { I18n } from '@markuplint/i18n'
-import { Document, MLRule, MLRuleOptions } from '@markuplint/ml-core'
+import { Document, MLRule } from '@markuplint/ml-core'
 
 export abstract class MLRuleSync<T extends RuleConfigValue, O = null>
   // @ts-expect-error - MLRule constructor is private
@@ -24,16 +24,14 @@ function verifySync<T extends RuleConfigValue, O = null>(
   i18n: I18n,
   rule: RuleInfo<T, O>,
 ): VerifiedResult[] {
-  // @ts-expect-error
-  const v = this.v as MLRuleOptions<T, O>['verify'] | undefined
-
-  if (!v) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!this.v) {
     return []
   }
 
   document.setRule(this)
 
-  const results = v(document, i18n.translator(), rule)
+  const results = this.v(document, i18n.translator(), rule)
 
   if (results instanceof Promise) {
     throw new TypeError('`verifySync` finished async. Use `verify` instead')
@@ -56,16 +54,13 @@ function fixSync<T extends RuleConfigValue, O = null>(
   document: Document<T, O>,
   rule: RuleInfo<T, O>,
 ): void {
-  // @ts-expect-error
-  const f = this.f as MLRuleOptions<T, O>['fix']
-
-  if (!f) {
+  if (!this.f) {
     return
   }
 
   document.setRule(this)
 
-  const result = f(document, rule)
+  const result = this.f(document, rule)
 
   if (result instanceof Promise) {
     throw new TypeError('`fixSync` finished async. Use `fix` instead')

@@ -69,7 +69,7 @@ index 1972a2a..d87476b 100644
  export declare type SyncWalker<T extends RuleConfigValue, O = null, N = AnonymousNode<T, O>> = (node: N) => void;
  export declare function syncWalk<T extends RuleConfigValue, O = null>(nodeList: AnonymousNode<T, O>[], walker: SyncWalker<T, O>): void;
 diff --git a/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts b/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts
-index e9f8442..dd4a74b 100644
+index e9f8442..c9c1059 100644
 --- a/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts
 +++ b/node_modules/@markuplint/ml-core/lib/ml-rule/ml-rule.d.ts
 @@ -9,6 +9,16 @@ export declare class MLRule<T extends RuleConfigValue, O = null> {
@@ -80,12 +80,12 @@ index e9f8442..dd4a74b 100644
 +     * The following getter is unused internally,
 +     * only for extending from 3rd party library
 +     */
-+    private get v();
++    protected get v(): MLRuleOptions<T, O>['verify'];
 +    /**
 +     * The following getter is unused internally,
 +     * only for extending from 3rd party library
 +     */
-+    private get f();
++    protected get f(): MLRuleOptions<T, O>['fix'];
      private constructor();
      verify(document: Document<T, O>, i18n: I18n, rule: RuleInfo<T, O>): Promise<VerifiedResult[]>;
      fix(document: Document<T, O>, rule: RuleInfo<T, O>): Promise<void>;

@@ -49,9 +49,8 @@ Detailed changes for each release are documented in [CHANGELOG.md](./CHANGELOG.m
 
 [MIT][] © [JounQin][]@[1stG.me][]
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync?ref=badge_large)
+
 [1stg.me]: https://www.1stg.me
 [jounqin]: https://GitHub.com/JounQin
 [mit]: http://opensource.org/licenses/MIT
-
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync?ref=badge_large)

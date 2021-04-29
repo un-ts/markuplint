@@ -1,6 +1,6 @@
 {
   "name": "markuplint-sync",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Same as markuplint but extends with sync API.",
   "repository": "git+https://github.com/rx-ts/markuplint-sync.git",
   "author": "JounQin <admin@1stg.me>",

@@ -6,6 +6,7 @@
 [![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Frx-ts%2Fmarkuplint-sync%2Fmain%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
 [![npm](https://img.shields.io/npm/v/markuplint-sync.svg)](https://www.npmjs.com/package/markuplint-sync)
 [![GitHub Release](https://img.shields.io/github/release/rx-ts/markuplint-sync)](https://github.com/rx-ts/markuplint-sync/releases)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync?ref=badge_shield)
 
 [![David Peer](https://img.shields.io/david/peer/rx-ts/markuplint-sync.svg)](https://david-dm.org/rx-ts/markuplint-sync?type=peer)
 [![David](https://img.shields.io/david/rx-ts/markuplint-sync.svg)](https://david-dm.org/rx-ts/markuplint-sync)
@@ -47,6 +48,8 @@ Detailed changes for each release are documented in [CHANGELOG.md](./CHANGELOG.m
 ## License
 
 [MIT][] © [JounQin][]@[1stG.me][]
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint-sync?ref=badge_large)
 
 [1stg.me]: https://www.1stg.me
 [jounqin]: https://GitHub.com/JounQin

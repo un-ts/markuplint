@@ -3,4 +3,4 @@ coverage
 lib
 node_modules
 tmp*
-/rules
+/packages/sync/rules

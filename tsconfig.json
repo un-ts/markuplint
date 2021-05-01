@@ -1,13 +1,14 @@
 {
-  "extends": "./node_modules/@1stg/tsconfig/node",
+  "extends": "./tsconfig.base",
+  "references": [
+    {
+      "path": "packages/angular-parser"
+    },
+    {
+      "path": "packages/sync"
+    }
+  ],
   "ts-node": {
     "transpileOnly": true
-  },
-  "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es2017",
-    "paths": {
-      "markuplint-sync": ["./src"]
-    }
   }
 }

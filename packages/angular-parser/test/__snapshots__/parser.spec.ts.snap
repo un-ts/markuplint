@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parser empty 1`] = `
+Object {
+  "isFragment": true,
+  "nodeList": Array [],
+  "parseError": undefined,
+}
+`;

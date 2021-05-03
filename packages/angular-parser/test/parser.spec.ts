@@ -14,6 +14,8 @@ describe('parser', () => {
           <body>
             <!-- body comment -->
             <input [type]="'text'" />
+            <input type="radio" [checked]="true" />
+            <input type="number" [value]="123" />
             <div>
               Text1
               <span>Text</span>

@@ -172,12 +172,12 @@ const visitor = {
     let node: MLASTAttr
 
     if (
+      // template reference or structural directive
+      /^[#*]/.test(name) ||
       // dynamic attribute or Angular Input
       /^\[[^.[\]]+]$/.test(name) ||
       // event binding
-      /^\([^().]+\)$/.test(name) ||
-      // template reference or structural directive
-      /^[#*]/.test(name)
+      /^\([^().]+\)$/.test(name)
     ) {
       const matched = /^\s*(["'`])([^\1]*)(\1)\s*$/.exec(value)
       const preNode: MLASTPreprocessorSpecificAttr = {

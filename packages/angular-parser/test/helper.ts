@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
+import { MLASTDocument } from '@markuplint/ml-ast'
+
 import { parse } from 'markuplint-angular-parser'
 
 const map = new WeakMap<object, true>()
@@ -38,4 +40,7 @@ export const _cleanParse = <T extends object>(nodes: T) => {
   return nodes
 }
 
-export const cleanParse = (text: string) => _cleanParse(parse(text))
+export const cleanParse = (textOrDocument: string | MLASTDocument) =>
+  _cleanParse(
+    typeof textOrDocument === 'string' ? parse(textOrDocument) : textOrDocument,
+  )

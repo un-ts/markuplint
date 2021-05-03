@@ -79,6 +79,8 @@ const nodeMapper = (
   }
 }
 
+const DOCTYPE_REGEXP = /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
+
 const visitor = {
   visitElement(
     element: Element,
@@ -237,15 +239,15 @@ const visitor = {
     nodeList.push(node)
   },
   visitDocType(docType: DocType, { nodeList, ...options }: VisitorContext) {
+    const partialDocType = nodeMapper(docType, options)
+    const matched = DOCTYPE_REGEXP.exec(partialDocType.raw)
     const node: MLASTDoctype = {
-      ...nodeMapper(docType, options),
+      ...partialDocType,
       type: MLASTNodeType.Doctype,
-      name: docType.value!,
+      name: docType.value!.split(/\s/)[0],
       nodeName: '#doctype',
-      // TODO
-      publicId: '',
-      // TODO
-      systemId: '',
+      publicId: matched?.[2] ?? '',
+      systemId: matched?.[5] ?? '',
     }
     nodeList.push(node)
   },

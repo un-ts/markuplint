@@ -99,7 +99,7 @@
     ]
   },
   "typeCoverage": {
-    "atLeast": 99.17,
+    "atLeast": 99.32,
     "cache": true,
     "detail": true,
     "ignoreCatch": true,

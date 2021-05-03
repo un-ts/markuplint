@@ -43,4 +43,16 @@ describe('parser', () => {
       snapshotDiff(cleanParse(parse(html)), cleanParse(html)),
     ).toMatchSnapshot()
   })
+
+  test('doctype', () => {
+    const html = /* HTML */ `<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">`
+    const doc = cleanParse(html)
+    expect(doc).toMatchSnapshot()
+    expect(
+      cleanParse(
+        /* HTML */ `<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN">`,
+      ),
+    ).toMatchSnapshot()
+    expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+  })
 })

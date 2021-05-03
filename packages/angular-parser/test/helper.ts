@@ -7,8 +7,10 @@ import { parse } from 'markuplint-angular-parser'
 const map = new WeakMap<object, true>()
 
 const deleteKeys = <T extends object>(node: T, keys: string[]) => {
-  for (const key of keys) {
-    delete node[key as keyof T]
+  for (const key of Object.keys(node)) {
+    if (keys.includes(key) || key.startsWith('_')) {
+      delete node[key as keyof T]
+    }
   }
   return node
 }

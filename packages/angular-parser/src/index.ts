@@ -13,8 +13,12 @@ import {
   MLToken,
   Parse,
 } from '@markuplint/ml-ast'
-import { attrTokenizer, flattenNodes } from '@markuplint/html-parser'
-import { tokenizer, uuid } from '@markuplint/parser-utils'
+import {
+  attrTokenizer,
+  flattenNodes,
+  parseRawTag,
+} from '@markuplint/html-parser'
+import { uuid } from '@markuplint/parser-utils'
 import * as ngHtmlParser from 'angular-html-parser'
 import {
   Attribute,
@@ -65,8 +69,8 @@ const nodeMapper = (
     endOffset,
     startLine: start.line + 1,
     endLine: end.line + 1,
-    startCol: start.col,
-    endCol: end.col,
+    startCol: start.col + 1,
+    endCol: end.col + 1,
     parentNode,
     prevNode: null,
     nextNode: null,
@@ -74,8 +78,6 @@ const nodeMapper = (
     isGhost: false,
   }
 }
-
-const reEndTokens = /(\s*\/)?(\s*)>$/
 
 const visitor = {
   visitElement(
@@ -94,11 +96,16 @@ const visitor = {
     namespace =
       element.attrs.find(attr => attr.name === 'xmlns')?.value ||
       namespace ||
-      element.name === 'svg'
+      (element.name === 'svg'
         ? 'http://www.w3.org/2000/svg'
-        : 'http://www.w3.org/1999/xhtml'
+        : 'http://www.w3.org/1999/xhtml')
 
-    const endTokens = reEndTokens.exec(startTagText)
+    const { endSpace, selfClosingSolidus } = parseRawTag(
+      startTagText,
+      partialStartTag.startLine,
+      partialStartTag.startCol,
+      partialStartTag.startOffset,
+    )
 
     const startTag: MLASTElement = {
       ...partialStartTag,
@@ -108,18 +115,8 @@ const visitor = {
       attributes,
       childNodes,
       pearNode: null,
-      selfClosingSolidus: tokenizer(
-        endTokens?.[1] || '',
-        partialStartTag.startLine,
-        partialStartTag.startCol,
-        partialStartTag.startOffset,
-      ),
-      endSpace: tokenizer(
-        endTokens?.[2] || '',
-        partialStartTag.startLine,
-        partialStartTag.startCol,
-        partialStartTag.startOffset,
-      ),
+      selfClosingSolidus,
+      endSpace,
       tagOpenChar: '<',
       tagCloseChar: '>',
     }

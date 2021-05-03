@@ -14,7 +14,7 @@
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![changesets](https://img.shields.io/badge/maintained%20with-changesets-176de3.svg)](https://github.com/atlassian/changesets)
 
-> Incredible ESLint plugins, make ESLint greater.
+> Incredible [markuplint][] plugins, make markuplint greater.
 
 ## Packages
 
@@ -34,4 +34,5 @@ This repository is a monorepo managed by [changesets][] what means we actually p
 [1stg.me]: https://www.1stg.me
 [changesets]: https://GitHub.com/atlassian/changesets
 [jounqin]: https://GitHub.com/JounQin
+[markuplint]: https://GitHub.com/markuplint/markuplint
 [mit]: http://opensource.org/licenses/MIT

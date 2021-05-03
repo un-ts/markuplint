@@ -1,3 +1,6 @@
+import { parse } from '@markuplint/html-parser'
+import snapshotDiff from 'snapshot-diff'
+
 import { cleanParse } from './helper'
 
 describe('parser', () => {
@@ -28,5 +31,16 @@ describe('parser', () => {
 
   test('invalid tag', () => {
     expect(cleanParse('<a/></>')).toMatchSnapshot()
+  })
+
+  test('html parser difference', () => {
+    const html = /* HTML */ `<div>
+      Text1
+      <span>Text</span>
+      Text2
+    </div>`
+    expect(
+      snapshotDiff(cleanParse(parse(html)), cleanParse(html)),
+    ).toMatchSnapshot()
   })
 })

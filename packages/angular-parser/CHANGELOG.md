@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 0.1.2
+
+### Patch Changes
+
+- [#11](https://github.com/rx-ts/markuplint/pull/11) [`4aa725f`](https://github.com/rx-ts/markuplint/commit/4aa725ff49b50ff9e31e3e982b8a6a15a87820bc) Thanks [@JounQin](https://github.com/JounQin)! - fix: support doctype publicId and systemId
+
 ## 0.1.1
 
 ### Patch Changes

@@ -27,7 +27,7 @@ export const _cleanParse = <T extends object>(nodes: T) => {
 
     map.set(node, true)
 
-    _cleanParse(
+    if (!Array.isArray(node)) {
       deleteKeys(node, [
         'uuid',
         'childNodes',
@@ -35,7 +35,19 @@ export const _cleanParse = <T extends object>(nodes: T) => {
         'prevNode',
         'nextNode',
         'pearNode',
-      ]),
+      ])
+    }
+
+    _cleanParse(node)
+  }
+
+  if (Array.isArray(nodes)) {
+    nodes.splice(
+      0,
+      nodes.length,
+      ...nodes.filter(
+        node => (node as { type?: string } | null)?.type !== 'omittedtag',
+      ),
     )
   }
 

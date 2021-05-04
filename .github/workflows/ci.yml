@@ -39,6 +39,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - if: matrix.node == 10
+        name: install compatible `fs-extra`
+        run: yarn upgrade fs-extra@9
+
       - name: Install Dependencies
         run: yarn --frozen-lockfile
 

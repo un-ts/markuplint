@@ -1,0 +1,8 @@
+{
+  "parser": {
+    ".html$": "markuplint-angular-parser"
+  },
+  "rules": {
+    "deprecated-element": true
+  }
+}

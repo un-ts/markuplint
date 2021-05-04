@@ -189,7 +189,6 @@ const visitor = {
           .replace(/(^\[)|(]$)/g, '')
           // remove `()` wrapper
           .replace(/(^\()|(\)$)/g, ''),
-
         potentialValue: matched ? matched[2] : value,
         valueType: matched
           ? 'string'

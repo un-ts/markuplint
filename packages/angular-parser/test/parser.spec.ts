@@ -19,6 +19,9 @@ describe('parser', () => {
             <input [type]="'text'" />
             <input type="radio" [checked]="true" />
             <input type="number" [value]="123" />
+            <select>
+              <option selected="{{ true }}"></option>
+            </select>
             <div>
               Text1
               <span>Text</span>
@@ -30,7 +33,11 @@ describe('parser', () => {
   })
 
   test('invalid tag', () => {
-    expect(cleanParse('<a/></>')).toMatchSnapshot()
+    expect(
+      cleanParse(
+        '<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" /></>',
+      ),
+    ).toMatchSnapshot()
   })
 
   test('html parser difference', () => {

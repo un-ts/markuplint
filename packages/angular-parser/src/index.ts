@@ -1,4 +1,5 @@
 import {
+  MLASTAbstructNode,
   MLASTAttr,
   MLASTComment,
   MLASTDoctype,
@@ -8,7 +9,6 @@ import {
   MLASTNode,
   MLASTNodeType,
   MLASTParentNode,
-  MLASTPreprocessorSpecificAttr,
   MLASTText,
   MLToken,
   Parse,
@@ -33,10 +33,14 @@ import {
 } from 'angular-html-parser/lib/compiler/src/ml_parser/ast'
 import { ParseSourceSpan } from 'angular-html-parser/lib/compiler/src/parse_util'
 
-export interface VisitorContext<T extends MLToken = MLASTNode> {
+export interface BaseVisitorContext {
   parentNode: MLASTParentNode | null
-  nodeList: T[]
   text: string
+}
+
+export interface VisitorContext<T extends MLToken = MLASTNode>
+  extends BaseVisitorContext {
+  nodeList: T[]
   namespace?: string
 }
 
@@ -55,14 +59,28 @@ const getRaw = (
   return text.slice(start.offset, end.offset)
 }
 
-const nodeMapper = (
+export interface NodeMapperOptions<T extends boolean = boolean>
+  extends BaseVisitorContext {
+  simpleToken?: T
+}
+
+function nodeMapper(
   nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
-  { parentNode, text }: Omit<VisitorContext, 'nodeList'>,
-) => {
+  options: Required<NodeMapperOptions<true>>,
+): MLToken
+function nodeMapper(
+  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  options: NodeMapperOptions<false>,
+): Omit<MLASTAbstructNode, 'type' | 'nodeName'>
+function nodeMapper(
+  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  { parentNode, text, simpleToken }: NodeMapperOptions,
+) {
   const { start, end } = getSourceSpan(nodeOrSourceSpan)
   const startOffset = start.offset
   const endOffset = end.offset
-  return {
+
+  const token: MLToken = {
     uuid: uuid(),
     raw: getRaw(nodeOrSourceSpan, text),
     startOffset,
@@ -71,12 +89,18 @@ const nodeMapper = (
     endLine: end.line + 1,
     startCol: start.col + 1,
     endCol: end.col + 1,
-    parentNode,
-    prevNode: null,
-    nextNode: null,
-    isFragment: false,
-    isGhost: false,
   }
+
+  return simpleToken
+    ? token
+    : {
+        ...token,
+        parentNode,
+        prevNode: null,
+        nextNode: null,
+        isFragment: false,
+        isGhost: false,
+      }
 }
 
 const DOCTYPE_REGEXP = /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
@@ -166,49 +190,49 @@ const visitor = {
     attribute: Attribute,
     { nodeList, ...options }: VisitorContext<MLASTAttr>,
   ) {
-    const { name, sourceSpan, value } = attribute
+    const {
+      name,
+      sourceSpan: { start },
+      value,
+    } = attribute
 
-    let node: MLASTAttr
+    const node: MLASTAttr = attrTokenizer(
+      getRaw(attribute, options.text),
+      start.line + 1,
+      start.col,
+      start.offset,
+    )
 
-    if (
-      // template reference or structural directive
+    const _value = value.trim()
+
+    const dynamicName = // template reference or structural directive
       /^[#*]/.test(name) ||
       // dynamic attribute or Angular Input
       /^\[[^.[\]]+]$/.test(name) ||
       // event binding
       /^\([^().]+\)$/.test(name)
-    ) {
-      const matched = /^\s*(["'`])([^\1]*)(\1)\s*$/.exec(value)
-      const preNode: MLASTPreprocessorSpecificAttr = {
-        ...nodeMapper(attribute, options),
-        type: 'ps-attr',
-        potentialName: name
-          // remove leading `#*`
-          .replace(/^[#*]/, '')
-          // remove `[]` wrapper
-          .replace(/(^\[)|(]$)/g, '')
-          // remove `()` wrapper
-          .replace(/(^\()|(\)$)/g, ''),
-        potentialValue: matched ? matched[2] : value,
-        valueType: matched
-          ? 'string'
-          : /^\d+$/.test(value)
-          ? 'number'
-          : ['true', 'false'].includes(value)
-          ? 'boolean'
-          : 'code',
-        isDuplicatable: false,
-      }
-      node = preNode
-    } else {
-      const { start } = sourceSpan
-      node = attrTokenizer(
-        getRaw(attribute, options.text),
-        start.line + 1,
-        start.col,
-        start.offset,
-      )
+    const dynamicValue = /^{{.*}}$/.test(_value)
+
+    if (dynamicName || dynamicValue) {
+      node.isDynamicValue = true
     }
+
+    // remove leading `#*` or `[]` and `()` wrapper
+    const potentialName = name.replace(/[#()*[\]]/g, '')
+    const potentialValue = _value.replace(/(^{\s*{)|(}\s*}$)/g, '')
+
+    node.potentialName = potentialName
+    node.isInvalid =
+      ![
+        potentialName,
+        `#${potentialName}`,
+        `*${potentialName}`,
+        `[${potentialName}]`,
+        `(${potentialName})`,
+        `[(${potentialName})]`,
+      ].includes(name) ||
+      ![potentialValue, `{{${potentialValue}}}`].includes(_value) ||
+      (dynamicName && dynamicValue)
 
     nodeList.push(node)
   },

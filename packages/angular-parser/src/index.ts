@@ -107,22 +107,28 @@ const DOCTYPE_REGEXP = /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])(
 
 const visitor = {
   visitElement(
-    element: Element,
+    {
+      startSourceSpan,
+      endSourceSpan,
+      name: nodeName,
+      attrs,
+      children,
+    }: Element,
     { nodeList, namespace, ...options }: VisitorContext,
   ) {
-    const partialStartTag = nodeMapper(element.startSourceSpan!, options)
+    const partialStartTag = nodeMapper(startSourceSpan!, options)
 
     const { text } = options
-    const startTagText = getRaw(element.startSourceSpan!, text)
-    const endTagText = getRaw(element.endSourceSpan!, text)
+    const startTagText = getRaw(startSourceSpan!, text)
+    const endTagText = getRaw(endSourceSpan!, text)
 
     const attributes: MLASTAttr[] = []
     const childNodes: MLASTNode[] = []
 
     namespace =
-      element.attrs.find(attr => attr.name === 'xmlns')?.value ||
+      attrs.find(attr => attr.name === 'xmlns')?.value ||
       namespace ||
-      (element.name === 'svg'
+      (nodeName === 'svg'
         ? 'http://www.w3.org/2000/svg'
         : 'http://www.w3.org/1999/xhtml')
 
@@ -133,28 +139,32 @@ const visitor = {
       partialStartTag.startOffset,
     )
 
+    const isCustomElement = nodeName.includes('-')
+
     const startTag: MLASTElement = {
       ...partialStartTag,
       type: MLASTNodeType.StartTag,
-      nodeName: element.name,
+      nodeName,
       namespace,
       attributes,
       childNodes,
+      hasSpreadAttr: false,
       pearNode: null,
       selfClosingSolidus,
       endSpace,
       tagOpenChar: '<',
       tagCloseChar: '>',
+      isCustomElement,
     }
 
-    visitAll(visitor, element.attrs, {
+    visitAll(visitor, attrs, {
       parentNode: startTag,
       nodeList: attributes,
       text,
       namespace,
     })
 
-    visitAll(visitor, element.children, {
+    visitAll(visitor, children, {
       parentNode: startTag,
       nodeList: childNodes,
       text,
@@ -166,19 +176,18 @@ const visitor = {
     if (startTagText === endTagText) {
       startTag.tagCloseChar = '/>'
     } else {
-      endTag = {
-        ...nodeMapper(element.endSourceSpan!, options),
+      startTag.pearNode = endTag = {
+        ...nodeMapper(endSourceSpan!, options),
         type: MLASTNodeType.EndTag,
-        nodeName: element.name,
+        nodeName,
         namespace,
         attributes: [],
         pearNode: startTag,
         tagOpenChar: '</',
         tagCloseChar: '>',
+        isCustomElement,
       }
     }
-
-    startTag.pearNode = endTag
 
     nodeList.push(startTag)
 

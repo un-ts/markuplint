@@ -1,6 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fixtures: basic.html 1`] = `
+exports[`fixtures: attr-duplication.html 1`] = `
+Array [
+  Object {
+    "col": 19,
+    "line": 1,
+    "message": "Duplicate attribute name",
+    "raw": "[type]",
+    "ruleId": "attr-duplication",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`fixtures: deprecated-element.html 1`] = `
 Array [
   Object {
     "col": 1,

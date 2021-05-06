@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.1.2
+
+### Patch Changes
+
+- [#14](https://github.com/rx-ts/markuplint/pull/14) [`7015eee`](https://github.com/rx-ts/markuplint/commit/7015eee1d298a44eed9297a094d6513d11446749) Thanks [@JounQin](https://github.com/JounQin)! - fix: parse dynamic attributes as MLASTAttr
+
 ## 0.1.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 0.1.4
+
+### Patch Changes
+
+- [#16](https://github.com/rx-ts/markuplint/pull/16) [`3019a0a`](https://github.com/rx-ts/markuplint/commit/3019a0ac3a1b4eaef1cd11c24cc6f06aaf39112a) Thanks [@JounQin](https://github.com/JounQin)! - fix: support mapping `[attr.attrName]` to `attrName`
+
 ## 0.1.3
 
 ### Patch Changes

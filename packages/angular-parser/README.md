@@ -16,7 +16,6 @@ Add `parser` option into your `.markuplintrc.*` file.
 
 ```json
 {
-  "extends": "@markuplint/html-spec",
   "parser": {
     ".html$": "markuplint-angular-parser"
   }

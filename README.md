@@ -1,4 +1,4 @@
-# @rxts/markdownlint
+# @rxts/markuplint
 
 [![GitHub Actions](https://github.com/rx-ts/markuplint/workflows/CI/badge.svg)](https://github.com/rx-ts/markuplint/actions/workflows/ci.yml)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frx-ts%2Fmarkuplint?ref=badge_shield)

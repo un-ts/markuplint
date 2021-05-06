@@ -3,6 +3,7 @@
     ".html$": "markuplint-angular-parser"
   },
   "rules": {
+    "attr-duplication": true,
     "deprecated-element": true
   }
 }

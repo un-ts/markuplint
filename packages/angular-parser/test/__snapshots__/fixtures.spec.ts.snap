@@ -10,6 +10,14 @@ Array [
     "ruleId": "attr-duplication",
     "severity": "error",
   },
+  Object {
+    "col": 39,
+    "line": 1,
+    "message": "Duplicate attribute name",
+    "raw": "[attr.type]",
+    "ruleId": "attr-duplication",
+    "severity": "error",
+  },
 ]
 `;
 

@@ -226,8 +226,18 @@ const visitor = {
       node.isDynamicValue = true
     }
 
-    // remove leading `#*` or `[]` and `()` wrapper
-    const potentialName = name.replace(/[#()*[\]]/g, '')
+    const potentialName = name
+      /**
+       * remove leading `[attr.`
+       *
+       * @example `<input [attr.type]="type" />`
+       *
+       * Notice `<input attr.type="number" />` is not same as `<input type="number" />`,
+       * what means `[]` wrapper is required
+       */
+      .replace(/^\[attr\./, '')
+      // remove leading `#*` or `[]` and `()` wrapper
+      .replace(/[#()*[\]]/g, '')
     const potentialValue = _value.replace(/(^{\s*{)|(}\s*}$)/g, '')
 
     node.potentialName = potentialName

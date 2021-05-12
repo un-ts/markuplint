@@ -61,9 +61,8 @@ export function lintFile(
 
   // Addition rules
   if (rulesAutoResolve) {
-    const { rules: additionalRules } = moduleAutoLoader<RuleConfigValue>(
-      ruleset,
-    )
+    const { rules: additionalRules } =
+      moduleAutoLoader<RuleConfigValue>(ruleset)
     rules = [...rules, ...additionalRules]
   }
 

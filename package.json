@@ -12,8 +12,8 @@
   "scripts": {
     "build": "run-p build:*",
     "build:r": "r -f es2015",
-    "build:ts": "tsc -b",
     "build:rules": "yarn workspace markuplint-sync run build",
+    "build:ts": "tsc -b",
     "clean": "rimraf packages/*/{lib,rules,*.tsbuildinfo}",
     "lint": "run-p lint:*",
     "lint:es": "eslint . --cache -f friendly --max-warnings 10",
@@ -28,7 +28,7 @@
     "@1stg/lib-config": "^1.2.11",
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
-    "@markuplint/rule-textlint": "^0.1.1-alpha.0",
+    "@markuplint/rule-textlint": "^0.1.1-alpha.2",
     "@types/jest": "^26.0.22",
     "@types/node": "^15.0.2",
     "@types/uuid": "^8.3.0",
@@ -45,6 +45,7 @@
     "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {
+    "prettier": "^2.3.0",
     "tslib": "^2.2.0"
   },
   "commitlint": {

@@ -103,7 +103,8 @@ function nodeMapper(
       }
 }
 
-const DOCTYPE_REGEXP = /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
+const DOCTYPE_REGEXP =
+  /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
 
 const visitor = {
   visitElement(

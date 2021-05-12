@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "rx-ts/markuplint-sync"
+      "repo": "rx-ts/markuplint"
     }
   ],
   "commit": false,

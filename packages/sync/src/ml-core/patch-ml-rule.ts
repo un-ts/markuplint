@@ -8,7 +8,8 @@ import { Document, MLRule } from '@markuplint/ml-core'
 
 export abstract class MLRuleSync<T extends RuleConfigValue, O = null>
   // @ts-expect-error - MLRule constructor is private
-  extends MLRule<T, O> {
+  extends MLRule<T, O>
+{
   abstract verifySync(
     document: Document<T, O>,
     i18n: I18n,

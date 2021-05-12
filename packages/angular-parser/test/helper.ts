@@ -19,7 +19,7 @@ export const _cleanParse = <T extends object>(nodes: T) => {
   for (const _key of Object.keys(nodes)) {
     const key = _key as keyof T
 
-    const node = (nodes[key] as unknown) as object | null
+    const node = nodes[key] as unknown as object | null
 
     if (!node || typeof node !== 'object' || map.get(node)) {
       continue

@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.1.3
+
+### Patch Changes
+
+- [#18](https://github.com/rx-ts/markuplint/pull/18) [`52ec750`](https://github.com/rx-ts/markuplint/commit/52ec7506ca1f929b8d556168657205e36a0d1f8d) Thanks [@JounQin](https://github.com/JounQin)! - fix: auto load third party rules correctly
+
 ## 0.1.2
 
 ### Patch Changes

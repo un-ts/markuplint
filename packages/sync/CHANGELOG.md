@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.2.0
+
+### Minor Changes
+
+- [`bb39d0a`](https://github.com/rx-ts/markuplint/commit/bb39d0ad3a68503141a78593aa46e49b1ba2ab06) Thanks [@JounQin](https://github.com/JounQin)! - feat!: drop node 10 support
+
 ## 0.1.3
 
 ### Patch Changes

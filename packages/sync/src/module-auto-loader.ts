@@ -18,7 +18,8 @@ export function moduleAutoLoader<T extends RuleConfigValue, O = unknown>(
       errors.push(e)
     }
 
-    if (!rule) {
+    if (rule) {
+      rules.push(rule)
       continue
     }
 
@@ -28,8 +29,6 @@ export function moduleAutoLoader<T extends RuleConfigValue, O = unknown>(
       errors.push(e)
     }
 
-    // https://github.com/typescript-eslint/typescript-eslint/issues/3322
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!rule) {
       continue
     }

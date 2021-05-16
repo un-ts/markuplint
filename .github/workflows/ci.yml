@@ -57,9 +57,9 @@ jobs:
 
       - name: Codecov
         run: |
-          yarn global add codecov codacy-coverage
+          yarn global add codecov
           codecov
-          cat ./coverage/lcov.info | codacy-coverage -u rx-ts -n markuplint
+          bash <(curl -Ls https://coverage.codacy.com/get.sh)
         env:
           CI: 'true'
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

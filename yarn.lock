@@ -1958,10 +1958,20 @@
   resolved "https://registry.yarnpkg.com/@markuplint/ml-ast/-/ml-ast-1.5.0.tgz#8102961cae9f161bd651bf4ecad86768dcd37f25"
   integrity sha512-U+bM/JZA6/RqwjwRWZecmNf5h5tIlNWc15W8M15t1slcHJP5L3v4H9ECnyNtpNcSS8fYFjMneghH8qyvfA8qiw==
 
+"@markuplint/ml-ast@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@markuplint/ml-ast/-/ml-ast-1.5.1.tgz#6ad1c21431d97de9b9c3d1a2b4e49ada0ba60ba1"
+  integrity sha512-svp12YPr0xcF79AJBF8Foe2Gc1Hzmw83DV4QXD2YJcSTI5BBHVuHW3wYZY2cbZoUJTo0ZQpXeN2KbbT6zoNtQA==
+
 "@markuplint/ml-config@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@markuplint/ml-config/-/ml-config-1.1.1.tgz#9d3a55bcfede74532765538eb527def8bc8dc978"
   integrity sha512-rc57nOn8D77yqomcne8lxc+0Eq5ueWzGKATurNKB5sMDOOdN7fA6mDZjhb95iu8VFju/g8TWLWLFqfQ+n9hMvQ==
+
+"@markuplint/ml-config@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@markuplint/ml-config/-/ml-config-1.2.0.tgz#2c87d29557d5c79c1aa1ac563eb942d695893179"
+  integrity sha512-HxKAzBzyeeSDnafo7wrfrxGiCczQKjsSmfrdzJMM0k56/zkHbDhNhEfZZyIlWwv+OCTT1y5XbbPbxsHmpCFKMQ==
 
 "@markuplint/ml-core@^1.6.0":
   version "1.6.0"
@@ -1971,6 +1981,17 @@
     "@markuplint/i18n" "^1.1.2"
     "@markuplint/ml-ast" "^1.5.0"
     "@markuplint/ml-config" "^1.1.1"
+    "@markuplint/ml-spec" "^1.5.0"
+    css-selector-parser "^1.4.1"
+
+"@markuplint/ml-core@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@markuplint/ml-core/-/ml-core-1.7.1.tgz#3977f6ff25976d1f9cd6bcfab167757ec77777b5"
+  integrity sha512-nlypc6CfccQWDhU/gsvRkmIVzBwcseTBKeKGr2jz73Kgke4dwWQcjYtATpfFZfcnhpWe8rMage6JWRV8vAMfBg==
+  dependencies:
+    "@markuplint/i18n" "^1.1.2"
+    "@markuplint/ml-ast" "^1.5.1"
+    "@markuplint/ml-config" "^1.2.0"
     "@markuplint/ml-spec" "^1.5.0"
     css-selector-parser "^1.4.1"
 
@@ -1987,12 +2008,12 @@
     "@markuplint/ml-ast" "^1.5.0"
     uuid "^8.3.2"
 
-"@markuplint/rule-textlint@^0.1.1-alpha.4":
-  version "0.1.1-alpha.4"
-  resolved "https://registry.yarnpkg.com/@markuplint/rule-textlint/-/rule-textlint-0.1.1-alpha.4.tgz#fefaf9e9896459afa21123d35b8375c24c0818bc"
-  integrity sha512-GB/NnjE9AMLtbpA8M3ui51nY1sHnipxHaU1Tsjy5QVU0wdMczT8CweYe4BVF5acq245YhQOwqgtLQUfYdJGvqA==
+"@markuplint/rule-textlint@^0.1.1-alpha.6":
+  version "0.1.1-alpha.6"
+  resolved "https://registry.yarnpkg.com/@markuplint/rule-textlint/-/rule-textlint-0.1.1-alpha.6.tgz#f359b2db1c1bdc7ba16b0a7d46d491ddecf2cd58"
+  integrity sha512-+kCH/oKmUyYXCkVWgHMlTGhgRxcYA6xBvwbkhtrIck0akZ9H7w2xbG7Ry2ZQPkJRZck3X2zbEebwUD0ycwc0oA==
   dependencies:
-    "@markuplint/ml-core" "^1.6.0"
+    "@markuplint/ml-core" "^1.7.1"
     "@textlint/kernel" "^3.4.1"
     textlint-plugin-html "^0.2.0"
 

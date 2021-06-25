@@ -86,6 +86,7 @@ Object {
             "startLine": 1,
             "startOffset": 10,
           },
+          "isDuplicatable": false,
           "isDynamicValue": true,
           "isInvalid": true,
           "name": Object {
@@ -171,6 +172,7 @@ Object {
             "startLine": 1,
             "startOffset": 28,
           },
+          "isDuplicatable": false,
           "isInvalid": true,
           "name": Object {
             "endCol": 28,
@@ -255,6 +257,7 @@ Object {
             "startLine": 1,
             "startOffset": 43,
           },
+          "isDuplicatable": false,
           "isInvalid": true,
           "name": Object {
             "endCol": 43,
@@ -339,6 +342,7 @@ Object {
             "startLine": 1,
             "startOffset": 57,
           },
+          "isDuplicatable": false,
           "isInvalid": true,
           "name": Object {
             "endCol": 57,
@@ -572,6 +576,7 @@ Object {
             "startLine": 8,
             "startOffset": 457,
           },
+          "isDuplicatable": false,
           "isInvalid": false,
           "name": Object {
             "endCol": 18,
@@ -786,6 +791,7 @@ Object {
             "startLine": 11,
             "startOffset": 540,
           },
+          "isDuplicatable": false,
           "isDynamicValue": true,
           "isInvalid": false,
           "name": Object {
@@ -923,6 +929,7 @@ Object {
             "startLine": 12,
             "startOffset": 576,
           },
+          "isDuplicatable": false,
           "isInvalid": false,
           "name": Object {
             "endCol": 23,
@@ -1007,6 +1014,7 @@ Object {
             "startLine": 12,
             "startOffset": 594,
           },
+          "isDuplicatable": false,
           "isDynamicValue": true,
           "isInvalid": false,
           "name": Object {
@@ -1144,6 +1152,7 @@ Object {
             "startLine": 13,
             "startOffset": 628,
           },
+          "isDuplicatable": false,
           "isInvalid": false,
           "name": Object {
             "endCol": 23,
@@ -1228,6 +1237,7 @@ Object {
             "startLine": 13,
             "startOffset": 645,
           },
+          "isDuplicatable": false,
           "isDynamicValue": true,
           "isInvalid": false,
           "name": Object {
@@ -1416,6 +1426,7 @@ Object {
             "startLine": 15,
             "startOffset": 706,
           },
+          "isDuplicatable": false,
           "isDynamicValue": true,
           "isInvalid": false,
           "name": Object {

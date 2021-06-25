@@ -45,14 +45,14 @@ export interface VisitorContext<T extends MLToken = MLASTNode>
 }
 
 const getSourceSpan = (
-  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
 ) =>
   'sourceSpan' in nodeOrSourceSpan
     ? nodeOrSourceSpan.sourceSpan
     : nodeOrSourceSpan
 
 const getRaw = (
-  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   text: string,
 ) => {
   const { start, end } = getSourceSpan(nodeOrSourceSpan)
@@ -65,15 +65,15 @@ export interface NodeMapperOptions<T extends boolean = boolean>
 }
 
 function nodeMapper(
-  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   options: Required<NodeMapperOptions<true>>,
 ): MLToken
 function nodeMapper(
-  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   options: NodeMapperOptions<false>,
-): Omit<MLASTAbstructNode, 'type' | 'nodeName'>
+): Omit<MLASTAbstructNode, 'nodeName' | 'type'>
 function nodeMapper(
-  nodeOrSourceSpan: { sourceSpan: ParseSourceSpan } | ParseSourceSpan,
+  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   { parentNode, text, simpleToken }: NodeMapperOptions,
 ) {
   const { start, end } = getSourceSpan(nodeOrSourceSpan)

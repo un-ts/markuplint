@@ -12,7 +12,7 @@ import {
 export function resolveConfigs(
   files: MLFile[],
   options: {
-    config?: string | Config
+    config?: Config | string
     workspace?: string
     defaultConfig?: Config
   },

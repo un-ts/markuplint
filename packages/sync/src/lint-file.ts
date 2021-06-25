@@ -25,26 +25,44 @@ export function lintFile(
   configs: Map<MLFile, ConfigSet>,
   rulesAutoResolve: boolean,
   rules: Array<MLRule<RuleConfigValue, unknown>>,
-  locale?: string,
-  fix?: boolean,
-): MLResultInfo {
+  locale: string | undefined,
+  fix: boolean | undefined,
+  extMatch: boolean | undefined,
+): MLResultInfo | null {
   const configSet: ConfigSet = configs.get(file) || {
     config: {},
     files: new Set(),
     errs: [],
   }
 
+  // Exclude
+  const excludeFiles = configSet.config.excludeFiles || []
+  for (const excludeFile of excludeFiles) {
+    if (file.matches(excludeFile)) {
+      return null
+    }
+  }
+
   // Get parser
   let parserModName = '@markuplint/html-parser'
+  let matched = false
   if (configSet.config.parser) {
     for (const pattern of Object.keys(configSet.config.parser)) {
-      if ((toRegxp(pattern) as RegExp).test(path.basename(file.path))) {
+      // eslint-disable-next-line unicorn/prefer-regexp-test
+      if (path.basename(file.path).match(toRegxp(pattern))) {
         parserModName = configSet.config.parser[pattern]
+        matched = true
       }
     }
   }
+
   const parser = tryRequirePkg<MLMarkupLanguageParser>(parserModName)!
   const parserOptions = configSet.config.parserOptions || {}
+
+  // Ext Matching
+  if (extMatch && !matched && !/\.html?$/i.test(path.basename(file.path))) {
+    return null
+  }
 
   // Resolve ruleset
   const ruleset = convertRuleset(configSet.config)
@@ -115,9 +133,8 @@ export function lintFile(
     ruleset,
     configSet: {
       config: configSet.config,
-      // eslint-disable-next-line unicorn/prefer-spread
-      files: Array.from(configSet.files),
-      error: configSet.errs.map(e => `${String(e)}`),
+      files: [...configSet.files],
+      error: configSet.errs.map(String),
     },
   }
 }

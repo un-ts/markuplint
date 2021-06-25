@@ -23,8 +23,11 @@ export function lint(options: MarkupLintOptions) {
       rules,
       options.locale,
       options.fix,
+      options.extMatch,
     )
-    totalResults.push(result)
+    if (result) {
+      totalResults.push(result)
+    }
   }
 
   return totalResults

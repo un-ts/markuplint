@@ -3,6 +3,8 @@ import path from 'path'
 import { cosmiconfigSync } from 'cosmiconfig'
 import { Config, ConfigSet, margeConfig } from '@markuplint/file-resolver'
 
+import { tryRequirePkg } from '../helper'
+
 import { loadConfigFile } from './load-config-file'
 
 const explorer = cosmiconfigSync('markuplint')
@@ -63,10 +65,7 @@ export function recursiveLoad(
         config = margeConfig(extendFileResult.config, config)
       } else {
         try {
-          // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-          const mod = require(_file) as Config
-          // @ts-expect-error
-          delete mod.default
+          const mod = tryRequirePkg<Config>(_file, true)
           files.add(_file)
           config = margeConfig(mod, config)
         } catch (err) {

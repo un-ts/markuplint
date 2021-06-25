@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
+import minimatch from 'minimatch'
+
 const fileCaches = new WeakMap<MLFile, string>()
 
 export class MLFile {
@@ -22,7 +24,7 @@ export class MLFile {
   ) {
     this.anonymous = anonymous
     if (anonymous) {
-      this.#filePath = `${workspace}/${name}`
+      this.#filePath = path.resolve(workspace, name)
       // `filePath` is context
       fileCaches.set(this, filePathOrContext)
     } else {
@@ -36,6 +38,10 @@ export class MLFile {
 
   getContext() {
     return fileCaches.get(this) || this._fetch()
+  }
+
+  matches(globPath: string) {
+    return minimatch(this.#filePath, globPath)
   }
 
   private _fetch() {

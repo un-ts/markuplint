@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 0.3.0
+
+### Minor Changes
+
+- [#27](https://github.com/rx-ts/markuplint/pull/27) [`8d0299a`](https://github.com/rx-ts/markuplint/commit/8d0299ab80e9495a2aac852a4e48d071e8594eaf) Thanks [@JounQin](https://github.com/JounQin)! - build: targeting es2017 as markuplint itself
+
 ## 0.2.0
 
 ### Minor Changes

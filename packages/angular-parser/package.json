@@ -28,8 +28,7 @@
     "@markuplint/html-parser": "^1.5.1",
     "@markuplint/ml-ast": "^1.5.1",
     "@markuplint/parser-utils": "^1.4.1",
-    "angular-html-parser": "^1.8.0",
-    "tslib": "^2.3.0"
+    "angular-html-parser": "^1.8.0"
   },
   "publishConfig": {
     "access": "public"

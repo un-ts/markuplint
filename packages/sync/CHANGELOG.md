@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.3.1
+
+### Patch Changes
+
+- [#29](https://github.com/rx-ts/markuplint/pull/29) [`201cbcb`](https://github.com/rx-ts/markuplint/commit/201cbcb71de74d85f40c1bb9b291aefd7772c747) Thanks [@JounQin](https://github.com/JounQin)! - feat: sync with upstream markuplint
+
 ## 0.3.0
 
 ### Minor Changes

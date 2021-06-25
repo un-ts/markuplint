@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 0.3.1
+
+### Patch Changes
+
+- [#31](https://github.com/rx-ts/markuplint/pull/31) [`b68f1af`](https://github.com/rx-ts/markuplint/commit/b68f1af1398e2b22b475a0a9a30448ec67c7b113) Thanks [@JounQin](https://github.com/JounQin)! - fix: potential name should not consider #
+
 ## 0.3.0
 
 ### Minor Changes

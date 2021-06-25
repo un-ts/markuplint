@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
-
 import { MLASTDocument } from '@markuplint/ml-ast'
 
 import { parse } from 'markuplint-angular-parser'
@@ -54,7 +52,7 @@ export const _cleanParse = <T extends object>(nodes: T) => {
   return nodes
 }
 
-export const cleanParse = (textOrDocument: string | MLASTDocument) =>
+export const cleanParse = (textOrDocument: MLASTDocument | string) =>
   _cleanParse(
     typeof textOrDocument === 'string' ? parse(textOrDocument) : textOrDocument,
   )

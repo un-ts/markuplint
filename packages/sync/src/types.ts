@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-type-alias */
-
 import { MLRule, RuleConfigValue } from '@markuplint/ml-core'
 import { exec } from 'markuplint'
 

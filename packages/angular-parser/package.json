@@ -10,8 +10,7 @@
     "node": ">=10"
   },
   "main": "lib",
-  "module": "lib/es2015",
-  "es2015": "lib/es2015",
+  "module": "lib/es2017",
   "types": "lib",
   "files": [
     "lib",
@@ -26,11 +25,11 @@
     "angular-linter"
   ],
   "dependencies": {
-    "@markuplint/html-parser": "^1.5.0",
-    "@markuplint/ml-ast": "^1.5.0",
-    "@markuplint/parser-utils": "^1.4.0",
+    "@markuplint/html-parser": "^1.5.1",
+    "@markuplint/ml-ast": "^1.5.1",
+    "@markuplint/parser-utils": "^1.4.1",
     "angular-html-parser": "^1.8.0",
-    "tslib": "^2.2.0"
+    "tslib": "^2.3.0"
   },
   "publishConfig": {
     "access": "public"

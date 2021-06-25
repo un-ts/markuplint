@@ -237,19 +237,21 @@ const visitor = {
        * what means `[]` wrapper is required
        */
       .replace(/^\[attr\./, '')
-      // remove leading `#*` or `[]` and `()` wrapper
-      .replace(/[#()*[\]]/g, '')
+      // remove leading `*`, `[]` and `()` wrapper
+      .replace(/[()*[\]]/g, '')
+    // remove leading `#`
+    const plainName = potentialName.replace(/#/g, '')
     const potentialValue = _value.replace(/(^{\s*{)|(}\s*}$)/g, '')
 
     node.potentialName = potentialName
     node.isInvalid =
       ![
-        potentialName,
-        `#${potentialName}`,
-        `*${potentialName}`,
-        `[${potentialName}]`,
-        `(${potentialName})`,
-        `[(${potentialName})]`,
+        plainName,
+        `#${plainName}`,
+        `*${plainName}`,
+        `[${plainName}]`,
+        `(${plainName})`,
+        `[(${plainName})]`,
       ].includes(name) ||
       ![potentialValue, `{{${potentialValue}}}`].includes(_value) ||
       (dynamicName && dynamicValue)

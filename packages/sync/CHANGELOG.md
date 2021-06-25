@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.3.2
+
+### Patch Changes
+
+- [#33](https://github.com/rx-ts/markuplint/pull/33) [`536a45b`](https://github.com/rx-ts/markuplint/commit/536a45b6ad2e7c87d811bafcdc3f4e6664fffb39) Thanks [@JounQin](https://github.com/JounQin)! - fix: disable importHelpers temporarily
+
 ## 0.3.1
 
 ### Patch Changes

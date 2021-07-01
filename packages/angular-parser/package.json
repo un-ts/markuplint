@@ -7,7 +7,7 @@
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
   "engines": {
-    "node": ">=10"
+    "node": ">=v10"
   },
   "main": "lib",
   "module": "lib/es2017",
@@ -25,9 +25,9 @@
     "angular-linter"
   ],
   "dependencies": {
-    "@markuplint/html-parser": "^1.5.1",
-    "@markuplint/ml-ast": "^1.5.1",
-    "@markuplint/parser-utils": "^1.4.1",
+    "@markuplint/html-parser": "^1.6.0",
+    "@markuplint/ml-ast": "^1.6.0",
+    "@markuplint/parser-utils": "^1.5.0",
     "angular-html-parser": "^1.8.0",
     "tslib": "^2.3.0"
   },

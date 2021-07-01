@@ -101,6 +101,7 @@ export function lintFile(
       i18nSettings,
       schemas,
       parserOptions,
+      file.path,
     )
     results = core.verifySync(fix)
     fixedCode = core.document.toString()

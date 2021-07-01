@@ -19,8 +19,18 @@ export class MLCoreSync extends MLCore {
     i18n: I18n,
     schemas: Readonly<[MLMLSpec, ...ExtendedSpec[]]>,
     parserOptions: ParserOptions,
+    filename: string,
   ) {
-    super(parser, sourceCode, ruleset, rules, i18n, schemas, parserOptions)
+    super(
+      parser,
+      sourceCode,
+      ruleset,
+      rules,
+      i18n,
+      schemas,
+      parserOptions,
+      filename,
+    )
     this.#ruleset = {
       rules: ruleset.rules || {},
       nodeRules: ruleset.nodeRules || [],

@@ -1979,6 +1979,16 @@
     "@markuplint/parser-utils" "^1.4.1"
     parse5 "^6.0.1"
 
+"@markuplint/html-parser@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@markuplint/html-parser/-/html-parser-1.6.0.tgz#89db77627edb37308c2911fd3a378c3760e5ebc2"
+  integrity sha512-R+zegvMbjFGmHMq5aux2B7M0M2U18Wd0Eo3bMe6lojsUzBHtUgWg5s7yasCcNuU/gGw0rj6ZYwFw6Scw1oxgiw==
+  dependencies:
+    "@markuplint/ml-ast" "^1.6.0"
+    "@markuplint/parser-utils" "^1.5.0"
+    parse5 "^6.0.1"
+    tslib "^2.3.0"
+
 "@markuplint/html-spec@^1.6.1":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@markuplint/html-spec/-/html-spec-1.6.1.tgz#2ee0b668d16226d71ce6bbdf747aaef0bb942fac"
@@ -1995,6 +2005,13 @@
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@markuplint/ml-ast/-/ml-ast-1.5.1.tgz#6ad1c21431d97de9b9c3d1a2b4e49ada0ba60ba1"
   integrity sha512-svp12YPr0xcF79AJBF8Foe2Gc1Hzmw83DV4QXD2YJcSTI5BBHVuHW3wYZY2cbZoUJTo0ZQpXeN2KbbT6zoNtQA==
+
+"@markuplint/ml-ast@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@markuplint/ml-ast/-/ml-ast-1.6.0.tgz#987a0b950260a6a012deb1a83617e53a9ac6f177"
+  integrity sha512-xJgfnIQZDH+BrNP4Ppx88W4G8aLyOodXSIWcYMb15Lm/jEQks3YLbsGfYohBj+TcoTtQ62ZGhMcrXVPwZLbahQ==
+  dependencies:
+    tslib "^2.3.0"
 
 "@markuplint/ml-config@^1.2.0":
   version "1.2.0"
@@ -2028,6 +2045,15 @@
   integrity sha512-od87jniT7Vp0cCzC9YiH8t0V5lIPDk4VnMFDutYp3os/bo/4FMZM+EaYTGFQaiQtxjqV5kexXV1mkd8KZffXiQ==
   dependencies:
     "@markuplint/ml-ast" "^1.5.1"
+    uuid "^8.3.2"
+
+"@markuplint/parser-utils@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@markuplint/parser-utils/-/parser-utils-1.5.0.tgz#03dde74cbc295a9426f32eb45822dfad2735235d"
+  integrity sha512-/CNYndna9xCDJmighRmghIlpTeV0zTRGN2GxtiW0I+8hXrAT+i19b79UWEJEIjqtGGj19duDqp4qWcWnFkWflg==
+  dependencies:
+    "@markuplint/ml-ast" "^1.6.0"
+    tslib "^2.3.0"
     uuid "^8.3.2"
 
 "@markuplint/rule-textlint@^0.1.1-alpha.6":

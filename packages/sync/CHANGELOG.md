@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.3.2
+
+### Patch Changes
+
+- [`c4378d5`](https://github.com/rx-ts/markuplint/commit/c4378d5a0ef9b6f4cb01e8093927646d8828080a) Thanks [@JounQin](https://github.com/JounQin)! - chore: bump upstream markuplint packages
+
 ## 0.3.1
 
 ### Patch Changes

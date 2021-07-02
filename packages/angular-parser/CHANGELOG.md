@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 0.3.3
+
+### Patch Changes
+
+- [#43](https://github.com/rx-ts/markuplint/pull/43) [`1af57ba`](https://github.com/rx-ts/markuplint/commit/1af57ba23b014a2817f275516fa9e4dd25399355) Thanks [@JounQin](https://github.com/JounQin)! - fix(angular-parser): mark `html` tag as non fragment
+
 ## 0.3.2
 
 ### Patch Changes

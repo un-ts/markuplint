@@ -52,9 +52,12 @@ const getSourceSpan = (
     : nodeOrSourceSpan
 
 const getRaw = (
-  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
+  nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan } | null,
   text: string,
 ) => {
+  if (!nodeOrSourceSpan) {
+    return ''
+  }
   const { start, end } = getSourceSpan(nodeOrSourceSpan)
   return text.slice(start.offset, end.offset)
 }
@@ -120,8 +123,8 @@ const visitor = {
     const partialStartTag = nodeMapper(startSourceSpan!, options)
 
     const { text } = options
-    const startTagText = getRaw(startSourceSpan!, text)
-    const endTagText = getRaw(endSourceSpan!, text)
+    const startTagText = getRaw(startSourceSpan, text)
+    const endTagText = getRaw(endSourceSpan, text)
 
     const attributes: MLASTAttr[] = []
     const childNodes: MLASTNode[] = []
@@ -176,7 +179,7 @@ const visitor = {
 
     if (startTagText === endTagText) {
       startTag.tagCloseChar = '/>'
-    } else {
+    } else if (endTagText) {
       startTag.pearNode = endTag = {
         ...nodeMapper(endSourceSpan!, options),
         type: MLASTNodeType.EndTag,

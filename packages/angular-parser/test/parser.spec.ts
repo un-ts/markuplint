@@ -63,4 +63,11 @@ describe('parser', () => {
     expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
     expect(cleanParse(`<html></html>`)).toMatchSnapshot()
   })
+
+  test('void element', () => {
+    const html = `<img>`
+    const doc = cleanParse(html)
+    expect(doc).toMatchSnapshot()
+    expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+  })
 })

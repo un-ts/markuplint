@@ -2,10 +2,10 @@
   "extends": "./node_modules/@1stg/tsconfig/node",
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es2017",
     "paths": {
       "markuplint-angular-parser": ["./packages/angular-parser/src"],
       "markuplint-sync": ["./packages/sync/src"]
-    }
+    },
+    "target": "es2017"
   }
 }

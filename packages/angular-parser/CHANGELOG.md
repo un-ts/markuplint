@@ -1,5 +1,15 @@
 # markuplint-angular-parser
 
+## 0.3.4
+
+### Patch Changes
+
+- [#46](https://github.com/rx-ts/markuplint/pull/46) [`47f09b2`](https://github.com/rx-ts/markuplint/commit/47f09b2a40123d04626f0bc2894b7535e3a1fa52) Thanks [@JounQin](https://github.com/JounQin)! - fix(angular-parser): parse tags with namespace correctly
+
+- [#48](https://github.com/rx-ts/markuplint/pull/48) [`be30afb`](https://github.com/rx-ts/markuplint/commit/be30afb65f5420cf8e8dbd046927716e0ec60919) Thanks [@JounQin](https://github.com/JounQin)! - fix(angular-parser): support namespaced svg tags like `svg:defs`
+
+- [#46](https://github.com/rx-ts/markuplint/pull/46) [`47f09b2`](https://github.com/rx-ts/markuplint/commit/47f09b2a40123d04626f0bc2894b7535e3a1fa52) Thanks [@JounQin](https://github.com/JounQin)! - fix(angular-parser): support parsing void element like `<img>`
+
 ## 0.3.3
 
 ### Patch Changes

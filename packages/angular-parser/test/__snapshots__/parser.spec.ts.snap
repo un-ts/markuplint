@@ -1896,7 +1896,7 @@ Object {
       "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
-      "namespace": "http://www.w3.org/1999/xhtml",
+      "namespace": "http://www.w3.org/2000/svg",
       "nodeName": "svg:defs",
       "raw": "<svg:defs>",
       "selfClosingSolidus": Object {
@@ -1947,7 +1947,7 @@ Object {
       "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
-      "namespace": "http://www.w3.org/1999/xhtml",
+      "namespace": "http://www.w3.org/2000/svg",
       "nodeName": "svg:linearGradient",
       "raw": "<svg:linearGradient>",
       "selfClosingSolidus": Object {
@@ -1974,7 +1974,7 @@ Object {
       "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
-      "namespace": "http://www.w3.org/1999/xhtml",
+      "namespace": "http://www.w3.org/2000/svg",
       "nodeName": "svg:linearGradient",
       "raw": "</svg:linearGradient>",
       "startCol": 27,
@@ -2006,7 +2006,7 @@ Object {
       "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
-      "namespace": "http://www.w3.org/1999/xhtml",
+      "namespace": "http://www.w3.org/2000/svg",
       "nodeName": "svg:defs",
       "raw": "</svg:defs>",
       "startCol": 5,
@@ -2022,7 +2022,61 @@ Object {
 
 exports[`parser tag namespace 2`] = `
 "Snapshot Diff:
-Compared values have no visual difference."
+- First value
++ Second value
+
+@@ -17,11 +17,11 @@
+        },
+        \\"hasSpreadAttr\\": false,
+        \\"isCustomElement\\": false,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:defs\\",
+        \\"raw\\": \\"<svg:defs>\\",
+        \\"selfClosingSolidus\\": Object {
+          \\"endCol\\": 10,
+          \\"endLine\\": 1,
+@@ -68,11 +68,11 @@
+        },
+        \\"hasSpreadAttr\\": false,
+        \\"isCustomElement\\": false,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:linearGradient\\",
+        \\"raw\\": \\"<svg:linearGradient>\\",
+        \\"selfClosingSolidus\\": Object {
+          \\"endCol\\": 26,
+          \\"endLine\\": 2,
+@@ -95,11 +95,11 @@
+        \\"endLine\\": 2,
+        \\"endOffset\\": 58,
+        \\"isCustomElement\\": false,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:linearGradient\\",
+        \\"raw\\": \\"</svg:linearGradient>\\",
+        \\"startCol\\": 27,
+        \\"startLine\\": 2,
+        \\"startOffset\\": 37,
+@@ -127,11 +127,11 @@
+        \\"endLine\\": 3,
+        \\"endOffset\\": 74,
+        \\"isCustomElement\\": false,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:defs\\",
+        \\"raw\\": \\"</svg:defs>\\",
+        \\"startCol\\": 5,
+        \\"startLine\\": 3,
+        \\"startOffset\\": 63,"
 `;
 
 exports[`parser void element 1`] = `

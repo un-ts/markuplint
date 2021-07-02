@@ -70,4 +70,13 @@ describe('parser', () => {
     expect(doc).toMatchSnapshot()
     expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
   })
+
+  test('tag namespace', () => {
+    const html = /* HTML */ `<svg:defs>
+      <svg:linearGradient></svg:linearGradient>
+    </svg:defs>`
+    const doc = cleanParse(html)
+    expect(doc).toMatchSnapshot()
+    expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+  })
 })

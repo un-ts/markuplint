@@ -129,6 +129,9 @@ const visitor = {
     const attributes: MLASTAttr[] = []
     const childNodes: MLASTNode[] = []
 
+    // https://github.com/ikatyang/angular-html-parser/issues/22
+    nodeName = nodeName.startsWith(':') ? nodeName.slice(1) : nodeName
+
     namespace =
       attrs.find(attr => attr.name === 'xmlns')?.value ||
       namespace ||

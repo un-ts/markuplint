@@ -53,6 +53,69 @@ exports[`parser doctype 3`] = `
 Compared values have no visual difference."
 `;
 
+exports[`parser doctype 4`] = `
+Object {
+  "isFragment": false,
+  "nodeList": Array [
+    Object {
+      "attributes": Array [],
+      "endCol": 7,
+      "endLine": 1,
+      "endOffset": 6,
+      "endSpace": Object {
+        "endCol": 6,
+        "endLine": 1,
+        "endOffset": 5,
+        "raw": "",
+        "startCol": 6,
+        "startLine": 1,
+        "startOffset": 5,
+      },
+      "hasSpreadAttr": false,
+      "isCustomElement": false,
+      "isFragment": false,
+      "isGhost": false,
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "nodeName": "html",
+      "raw": "<html>",
+      "selfClosingSolidus": Object {
+        "endCol": 6,
+        "endLine": 1,
+        "endOffset": 5,
+        "raw": "",
+        "startCol": 6,
+        "startLine": 1,
+        "startOffset": 5,
+      },
+      "startCol": 1,
+      "startLine": 1,
+      "startOffset": 0,
+      "tagCloseChar": ">",
+      "tagOpenChar": "<",
+      "type": "starttag",
+    },
+    Object {
+      "attributes": Array [],
+      "endCol": 14,
+      "endLine": 1,
+      "endOffset": 13,
+      "isCustomElement": false,
+      "isFragment": false,
+      "isGhost": false,
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "nodeName": "html",
+      "raw": "</html>",
+      "startCol": 7,
+      "startLine": 1,
+      "startOffset": 6,
+      "tagCloseChar": ">",
+      "tagOpenChar": "</",
+      "type": "endtag",
+    },
+  ],
+}
+`;
+
 exports[`parser html parser difference 1`] = `
 "Snapshot Diff:
 Compared values have no visual difference."

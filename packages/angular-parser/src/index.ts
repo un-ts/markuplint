@@ -321,7 +321,12 @@ export const parse: Parse = text => {
 
   const document: MLASTDocument = {
     nodeList: flattenNodes(nodeList, text),
-    isFragment: !nodeList.some(node => node.type === MLASTNodeType.Doctype),
+    isFragment: !nodeList.some(
+      node =>
+        node.type === MLASTNodeType.Doctype ||
+        (node.type === MLASTNodeType.StartTag &&
+          node.nodeName.toLowerCase() === 'html'),
+    ),
   }
 
   if (errors.length > 0) {

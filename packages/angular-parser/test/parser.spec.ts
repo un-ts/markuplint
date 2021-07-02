@@ -61,5 +61,6 @@ describe('parser', () => {
       ),
     ).toMatchSnapshot()
     expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+    expect(cleanParse(`<html></html>`)).toMatchSnapshot()
   })
 })

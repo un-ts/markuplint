@@ -2000,6 +2000,13 @@
   dependencies:
     "@markuplint/ml-spec" "^1.6.0"
 
+"@markuplint/html-spec@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@markuplint/html-spec/-/html-spec-1.7.1.tgz#7345270297fccf623a7b96cc697556e222620b7b"
+  integrity sha512-xSawG4TJFMrjc8jADBPY8XPcUfFMsL/fHTLeaMg4yaPrpy1UbLtj0Ne8sKyWIoy6BKPylu5E2ueSVJgR9Vbu8g==
+  dependencies:
+    "@markuplint/ml-spec" "^1.6.1"
+
 "@markuplint/i18n@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@markuplint/i18n/-/i18n-1.2.0.tgz#b92991fd164c7089819926332ed0dc4f24b7fdbe"
@@ -2033,6 +2040,13 @@
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@markuplint/ml-spec/-/ml-spec-1.6.0.tgz#76423b6940de00b29ed89b6551d2748639b3b2fc"
   integrity sha512-5H+Auta3pHustwZl8jDNTiqhTy5GRfet+2UANfQjpmcb7Kt88dE+XgjVy+S3lNCTDJWVZFNTYEBI+bxebqJHwA==
+  dependencies:
+    tslib "^2.3.0"
+
+"@markuplint/ml-spec@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@markuplint/ml-spec/-/ml-spec-1.6.1.tgz#077433713ffc27bbe0941a9fcef41fb62bc81dde"
+  integrity sha512-MxojVSQpyUdROTLcf3Gm/mjOaWxnxQEw5xlO2UwUapXWuRPKX/Do6n9BXRAOzogQ/NcAh9ik+xS2JFWT7isSHA==
   dependencies:
     tslib "^2.3.0"
 

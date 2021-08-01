@@ -30,7 +30,7 @@
     "@markuplint/rule-textlint": "^0.2.0-alpha.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^15.14.0",
-    "@types/uuid": "^8.3.0",
+    "@types/uuid": "^8.3.1",
     "fs-extra": "^10.0.0",
     "remark-validate-links": "^10.0.4",
     "rimraf": "^3.0.2",

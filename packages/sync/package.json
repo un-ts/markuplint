@@ -37,7 +37,7 @@
     "markuplint": "^1.10.0",
     "minimatch": "^3.0.4",
     "os-locale": "^5.0.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

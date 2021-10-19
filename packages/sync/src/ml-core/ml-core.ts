@@ -1,8 +1,8 @@
-import { ExtendedSpec, MLMLSpec } from '@markuplint/ml-spec'
+import { I18n } from '@markuplint/i18n'
 import { MLMarkupLanguageParser } from '@markuplint/ml-ast'
 import { ParserOptions, VerifiedResult } from '@markuplint/ml-config'
 import { MLCore, MLRule, RuleConfigValue, Ruleset } from '@markuplint/ml-core'
-import { I18n } from '@markuplint/i18n'
+import { ExtendedSpec, MLMLSpec } from '@markuplint/ml-spec'
 
 import { MLRuleSync } from './patch-ml-rule'
 

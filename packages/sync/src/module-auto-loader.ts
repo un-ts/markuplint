@@ -1,5 +1,5 @@
-import { MLRule, Ruleset } from '@markuplint/ml-core'
 import { RuleConfigValue } from '@markuplint/ml-config'
+import { MLRule, Ruleset } from '@markuplint/ml-core'
 
 import { tryRequirePkg } from './helper'
 

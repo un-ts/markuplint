@@ -1,5 +1,5 @@
-import osLocale from 'os-locale'
 import { I18n, LocaleSet } from '@markuplint/i18n'
+import osLocale from 'os-locale'
 
 import { tryRequirePkg } from './helper'
 

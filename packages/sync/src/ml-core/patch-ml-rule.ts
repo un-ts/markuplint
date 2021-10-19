@@ -1,9 +1,9 @@
+import { I18n } from '@markuplint/i18n'
 import {
   RuleConfigValue,
   RuleInfo,
   VerifiedResult,
 } from '@markuplint/ml-config'
-import { I18n } from '@markuplint/i18n'
 import { Document, MLRule } from '@markuplint/ml-core'
 
 export abstract class MLRuleSync<T extends RuleConfigValue, O = null>

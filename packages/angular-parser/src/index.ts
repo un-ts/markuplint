@@ -1,4 +1,9 @@
 import {
+  attrTokenizer,
+  flattenNodes,
+  parseRawTag,
+} from '@markuplint/html-parser'
+import {
   MLASTAbstructNode,
   MLASTAttr,
   MLASTComment,
@@ -13,11 +18,6 @@ import {
   MLToken,
   Parse,
 } from '@markuplint/ml-ast'
-import {
-  attrTokenizer,
-  flattenNodes,
-  parseRawTag,
-} from '@markuplint/html-parser'
 import { uuid } from '@markuplint/parser-utils'
 import * as ngHtmlParser from 'angular-html-parser'
 import {
@@ -134,10 +134,9 @@ const visitor = {
 
     namespace =
       attrs.find(attr => attr.name === 'xmlns')?.value ||
-      namespace ||
       (nodeName === 'svg' || nodeName.startsWith('svg:')
         ? 'http://www.w3.org/2000/svg'
-        : 'http://www.w3.org/1999/xhtml')
+        : namespace || 'http://www.w3.org/1999/xhtml')
 
     const { endSpace, selfClosingSolidus } = parseRawTag(
       startTagText,

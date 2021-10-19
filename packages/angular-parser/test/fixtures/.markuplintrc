@@ -4,6 +4,7 @@
   },
   "rules": {
     "attr-duplication": true,
+    "case-sensitive-tag-name": true,
     "deprecated-element": true
   }
 }

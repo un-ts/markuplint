@@ -1,7 +1,7 @@
 import path from 'path'
 
-import { cosmiconfigSync } from 'cosmiconfig'
 import { Config, ConfigSet, margeConfig } from '@markuplint/file-resolver'
+import { cosmiconfigSync } from 'cosmiconfig'
 
 import { tryRequirePkg } from '../helper'
 
@@ -69,7 +69,7 @@ export function recursiveLoad(
           files.add(_file)
           config = margeConfig(mod, config)
         } catch (err) {
-          errs.push(err)
+          errs.push(err as Error)
         }
       }
     }

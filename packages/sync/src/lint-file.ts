@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { ExtendedSpec, MLMLSpec } from '@markuplint/ml-spec'
+import { ConfigSet } from '@markuplint/file-resolver'
 import { MLMarkupLanguageParser } from '@markuplint/ml-ast'
 import { RuleConfigValue, VerifiedResult } from '@markuplint/ml-config'
 import {
@@ -9,15 +9,15 @@ import {
   Document,
   MLRule,
 } from '@markuplint/ml-core'
-import { ConfigSet } from '@markuplint/file-resolver'
+import { ExtendedSpec, MLMLSpec } from '@markuplint/ml-spec'
 import { MLResultInfo } from 'markuplint/lib/types'
 import { toRegxp } from 'markuplint/lib/util'
 
-import { MLCoreSync } from './ml-core'
 import { MLFile } from './file-resolver'
-import { moduleAutoLoader } from './module-auto-loader'
-import { i18n } from './i18n'
 import { tryRequirePkg } from './helper'
+import { i18n } from './i18n'
+import { MLCoreSync } from './ml-core'
+import { moduleAutoLoader } from './module-auto-loader'
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function lintFile(

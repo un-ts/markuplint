@@ -1,5 +1,5 @@
-import { MarkupLintOptions } from './types'
 import { getAnonymousFile, getFiles, MLFile } from './file-resolver'
+import { MarkupLintOptions } from './types'
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function resolveLintTargetFiles(options: MarkupLintOptions) {

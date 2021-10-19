@@ -9,8 +9,12 @@
   "engines": {
     "node": ">=v10"
   },
-  "main": "lib",
-  "module": "lib/es2017",
+  "main": "lib/index.js",
+  "module": "lib/index.es2017.mjs",
+  "exports": {
+    "import": "./lib/index.es2017.mjs",
+    "require": "./lib/index.js"
+  },
   "types": "lib",
   "files": [
     "lib",
@@ -25,19 +29,19 @@
     "build": "rimraf rules && node scripts/patch-rules"
   },
   "dependencies": {
-    "@markuplint/file-resolver": "^1.4.0",
-    "@markuplint/html-spec": "^1.7.0",
+    "@markuplint/file-resolver": "^1.5.0",
+    "@markuplint/html-spec": "^1.8.2",
     "@markuplint/i18n": "^1.2.0",
     "@markuplint/ml-ast": "^1.6.0",
     "@markuplint/ml-config": "^1.3.0",
-    "@markuplint/ml-core": "^1.8.0",
-    "@markuplint/ml-spec": "^1.6.0",
-    "cosmiconfig": "^7.0.0",
-    "glob": "^7.1.7",
-    "markuplint": "^1.10.0",
+    "@markuplint/ml-core": "^1.9.0",
+    "@markuplint/ml-spec": "^1.7.0",
+    "cosmiconfig": "^7.0.1",
+    "glob": "^7.2.0",
+    "markuplint": "^1.11.4",
     "minimatch": "^3.0.4",
     "os-locale": "^5.0.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

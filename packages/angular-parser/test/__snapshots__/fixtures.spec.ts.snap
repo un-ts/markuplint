@@ -21,6 +21,8 @@ Array [
 ]
 `;
 
+exports[`fixtures: case-sensitive-tag-name.html 1`] = `Array []`;
+
 exports[`fixtures: deprecated-element.html 1`] = `
 Array [
   Object {

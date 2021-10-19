@@ -1,5 +1,11 @@
 # markuplint-sync
 
+## 0.3.3
+
+### Patch Changes
+
+- [#63](https://github.com/rx-ts/markuplint/pull/63) [`26bb1f3`](https://github.com/rx-ts/markuplint/commit/26bb1f32e2b3c2199a2a024b9ed57345198fcb05) Thanks [@JounQin](https://github.com/JounQin)! - fix: svg should always be in svg namespace
+
 ## 0.3.2
 
 ### Patch Changes

@@ -12,7 +12,6 @@ import {
   MLASTElement,
   MLASTElementCloseTag,
   MLASTNode,
-  MLASTNodeType,
   MLASTParentNode,
   MLASTText,
   MLToken,
@@ -149,7 +148,7 @@ const visitor = {
 
     const startTag: MLASTElement = {
       ...partialStartTag,
-      type: MLASTNodeType.StartTag,
+      type: 'starttag',
       nodeName,
       namespace,
       attributes,
@@ -184,7 +183,7 @@ const visitor = {
     } else if (endTagText) {
       startTag.pearNode = endTag = {
         ...nodeMapper(endSourceSpan!, options),
-        type: MLASTNodeType.EndTag,
+        type: 'endtag',
         nodeName,
         namespace,
         attributes: [],
@@ -249,7 +248,8 @@ const visitor = {
     const potentialValue = _value.replace(/(^{\s*{)|(}\s*}$)/g, '')
 
     node.potentialName = potentialName
-    node.isInvalid =
+
+    const isInvalid =
       ![
         plainName,
         `#${plainName}`,
@@ -261,12 +261,16 @@ const visitor = {
       ![potentialValue, `{{${potentialValue}}}`].includes(_value) ||
       (dynamicName && dynamicValue)
 
+    if (isInvalid) {
+      throw new Error('Parse error: It has invalid attribute')
+    }
+
     nodeList.push(node)
   },
   visitText(text: Text, { nodeList, ...options }: VisitorContext) {
     const node: MLASTText = {
       ...nodeMapper(text, options),
-      type: MLASTNodeType.Text,
+      type: 'text',
       nodeName: '#text',
     }
     nodeList.push(node)
@@ -275,7 +279,7 @@ const visitor = {
     // mark cdata as comment
     const node: MLASTComment = {
       ...nodeMapper(cdata, options),
-      type: MLASTNodeType.Comment,
+      type: 'comment',
       nodeName: '#comment',
     }
     nodeList.push(node)
@@ -283,7 +287,7 @@ const visitor = {
   visitComment(comment: Comment, { nodeList, ...options }: VisitorContext) {
     const node: MLASTComment = {
       ...nodeMapper(comment, options),
-      type: MLASTNodeType.Comment,
+      type: 'comment',
       nodeName: '#comment',
     }
     nodeList.push(node)
@@ -293,7 +297,7 @@ const visitor = {
     const matched = DOCTYPE_REGEXP.exec(partialDocType.raw)
     const node: MLASTDoctype = {
       ...partialDocType,
-      type: MLASTNodeType.Doctype,
+      type: 'doctype',
       name: docType.value!.split(/\s/)[0],
       nodeName: '#doctype',
       publicId: matched?.[2] ?? '',
@@ -328,9 +332,8 @@ export const parse: Parse = text => {
     nodeList: flattenNodes(nodeList, text),
     isFragment: !nodeList.some(
       node =>
-        node.type === MLASTNodeType.Doctype ||
-        (node.type === MLASTNodeType.StartTag &&
-          node.nodeName.toLowerCase() === 'html'),
+        node.type === 'doctype' ||
+        (node.type === 'starttag' && node.nodeName.toLowerCase() === 'html'),
     ),
   }
 

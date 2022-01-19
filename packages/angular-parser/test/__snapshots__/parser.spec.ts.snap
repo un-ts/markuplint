@@ -151,7 +151,6 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "isInvalid": true,
           "name": Object {
             "endCol": 10,
             "endLine": 1,
@@ -236,7 +235,6 @@ Object {
             "startOffset": 28,
           },
           "isDuplicatable": false,
-          "isInvalid": true,
           "name": Object {
             "endCol": 28,
             "endLine": 1,
@@ -321,7 +319,6 @@ Object {
             "startOffset": 43,
           },
           "isDuplicatable": false,
-          "isInvalid": true,
           "name": Object {
             "endCol": 43,
             "endLine": 1,
@@ -406,7 +403,6 @@ Object {
             "startOffset": 57,
           },
           "isDuplicatable": false,
-          "isInvalid": true,
           "name": Object {
             "endCol": 57,
             "endLine": 1,
@@ -640,7 +636,6 @@ Object {
             "startOffset": 457,
           },
           "isDuplicatable": false,
-          "isInvalid": false,
           "name": Object {
             "endCol": 18,
             "endLine": 8,
@@ -856,7 +851,6 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "isInvalid": false,
           "name": Object {
             "endCol": 25,
             "endLine": 11,
@@ -993,7 +987,6 @@ Object {
             "startOffset": 576,
           },
           "isDuplicatable": false,
-          "isInvalid": false,
           "name": Object {
             "endCol": 23,
             "endLine": 12,
@@ -1079,7 +1072,6 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "isInvalid": false,
           "name": Object {
             "endCol": 41,
             "endLine": 12,
@@ -1216,7 +1208,6 @@ Object {
             "startOffset": 628,
           },
           "isDuplicatable": false,
-          "isInvalid": false,
           "name": Object {
             "endCol": 23,
             "endLine": 13,
@@ -1302,7 +1293,6 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "isInvalid": false,
           "name": Object {
             "endCol": 40,
             "endLine": 13,
@@ -1491,7 +1481,6 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "isInvalid": false,
           "name": Object {
             "endCol": 30,
             "endLine": 15,

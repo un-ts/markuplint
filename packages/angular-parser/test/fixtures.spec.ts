@@ -1,12 +1,15 @@
 import path from 'path'
+import { promisify } from 'util'
 
-import { exec } from 'markuplint'
+import glob from 'glob'
+import { mlTestFile } from 'markuplint'
+
+const asyncGlob = promisify(glob)
 
 test('fixtures', async () => {
-  const resultInfos = await exec({
-    files: path.resolve(__dirname, 'fixtures/*.html'),
-  })
-  for (const { filePath, results } of resultInfos) {
-    expect(results).toMatchSnapshot(path.basename(filePath))
+  const files = await asyncGlob(path.resolve(__dirname, 'fixtures/*.html'))
+  for (const filePath of files) {
+    const { violations } = await mlTestFile(filePath)
+    expect(violations).toMatchSnapshot(path.basename(filePath))
   }
 })

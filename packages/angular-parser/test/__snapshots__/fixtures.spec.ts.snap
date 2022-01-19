@@ -5,7 +5,7 @@ Array [
   Object {
     "col": 19,
     "line": 1,
-    "message": "Duplicate attribute name",
+    "message": "The attribute name is duplicated",
     "raw": "[type]",
     "ruleId": "attr-duplication",
     "severity": "error",
@@ -13,7 +13,7 @@ Array [
   Object {
     "col": 39,
     "line": 1,
-    "message": "Duplicate attribute name",
+    "message": "The attribute name is duplicated",
     "raw": "[attr.type]",
     "ruleId": "attr-duplication",
     "severity": "error",
@@ -28,7 +28,7 @@ Array [
   Object {
     "col": 1,
     "line": 1,
-    "message": "Element is deprecated",
+    "message": "The \\"font\\" element is deprecated",
     "raw": "<font color=\\"red\\">",
     "ruleId": "deprecated-element",
     "severity": "error",

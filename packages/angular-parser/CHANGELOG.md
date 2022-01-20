@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 1.0.1
+
+### Patch Changes
+
+- [#75](https://github.com/rx-ts/markuplint/pull/75) [`32d0bb8`](https://github.com/rx-ts/markuplint/commit/32d0bb8c0fca8f58d236540a450dba2479873bdc) Thanks [@YusukeHirao](https://github.com/YusukeHirao)! - fix: avoid throwing the error when the attribute is invalid
+
 ## 1.0.0
 
 ### Major Changes

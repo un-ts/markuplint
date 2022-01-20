@@ -243,27 +243,8 @@ const visitor = {
       .replace(/^\[attr\./, '')
       // remove leading `*`, `[]` and `()` wrapper
       .replace(/[()*[\]]/g, '')
-    // remove leading `#`
-    const plainName = potentialName.replace(/#/g, '')
-    const potentialValue = _value.replace(/(^{\s*{)|(}\s*}$)/g, '')
 
     node.potentialName = potentialName
-
-    const isInvalid =
-      ![
-        plainName,
-        `#${plainName}`,
-        `*${plainName}`,
-        `[${plainName}]`,
-        `(${plainName})`,
-        `[(${plainName})]`,
-      ].includes(name) ||
-      ![potentialValue, `{{${potentialValue}}}`].includes(_value) ||
-      (dynamicName && dynamicValue)
-
-    if (isInvalid) {
-      throw new Error('Parse error: It has invalid attribute')
-    }
 
     nodeList.push(node)
   },

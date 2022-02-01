@@ -2794,10 +2794,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
-"@types/uuid@^8.3.3":
-  version "8.3.3"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.3.tgz#c6a60686d953dbd1b1d45e66f4ecdbd5d471b4d0"
-  integrity sha512-0LbEEx1zxrYB3pgpd1M5lEhLcXjKJnYghvhTRgaBeUivLHMDM1TzF3IJ6hXU2+8uA4Xz+5BA63mtZo5DjVT8iA==
+"@types/uuid@^8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/yargs-parser@*":
   version "20.2.0"
@@ -7247,6 +7247,17 @@ markdown-table@^2.0.0:
   integrity sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==
   dependencies:
     repeat-string "^1.0.0"
+
+markuplint-angular-parser@^0.3.4:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/markuplint-angular-parser/-/markuplint-angular-parser-0.3.5.tgz#ff6c4bd2e6164c1ebd4fefaade9ef2f4625fe7a4"
+  integrity sha512-TkK7daeVGA5sii5brkOthbtzWOYTprWquGl+J2FBEHh9tl8konilT/TjimhLkwgnE1HIZhqqiedfS5JVdRUpRQ==
+  dependencies:
+    "@markuplint/html-parser" "^1.7.3"
+    "@markuplint/ml-ast" "^1.6.0"
+    "@markuplint/parser-utils" "^1.6.3"
+    angular-html-parser "^1.8.0"
+    tslib "^2.3.1"
 
 markuplint@^1.10.1, markuplint@^1.11.4:
   version "1.11.4"

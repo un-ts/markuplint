@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 1.1.0
+
+### Minor Changes
+
+- [`3cf3099`](https://github.com/rx-ts/markuplint/commit/3cf30995cd29f08be2aa69a0b81ffb3e27de951d) Thanks [@JounQin](https://github.com/JounQin)! - feat: upgrade markuplint core modules
+
 ## 1.0.1
 
 ### Patch Changes

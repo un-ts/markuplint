@@ -43,8 +43,8 @@ export const _cleanParse = <T extends object>(nodes: T) => {
     nodes.splice(
       0,
       nodes.length,
-      ...nodes.filter(
-        node => (node as { type?: string } | null)?.type !== 'omittedtag',
+      ...(nodes as Array<{ type?: string } | null>).filter(
+        node => node?.type !== 'omittedtag',
       ),
     )
   }

@@ -6,7 +6,8 @@ import { cleanParse } from './helper'
 describe('parser', () => {
   test('parse', () => {
     expect(
-      cleanParse(/* HTML */ `<!DOCTYPE html>
+      cleanParse(/* HTML */ `
+        <!DOCTYPE html>
         <![CDATA[ Within this Character Data block I can use double dashes as
         much as I want (along with <, &, ', and ") *and* %MyParamEntity; will be
         expanded to the text "Has been expanded" ... however, I can't use the
@@ -28,7 +29,8 @@ describe('parser', () => {
               Text2
             </div>
           </body>
-        </html>`),
+        </html>
+      `),
     ).toMatchSnapshot()
   })
 
@@ -41,11 +43,13 @@ describe('parser', () => {
   })
 
   test('html parser difference', () => {
-    const html = /* HTML */ `<div>
-      Text1
-      <span>Text</span>
-      Text2
-    </div>`
+    const html = /* HTML */ `
+      <div>
+        Text1
+        <span>Text</span>
+        Text2
+      </div>
+    `
     expect(
       snapshotDiff(cleanParse(parse(html)), cleanParse(html)),
     ).toMatchSnapshot()
@@ -72,9 +76,11 @@ describe('parser', () => {
   })
 
   test('tag namespace', () => {
-    const html = /* HTML */ `<svg:defs>
-      <svg:linearGradient></svg:linearGradient>
-    </svg:defs>`
+    const html = /* HTML */ `
+      <svg:defs>
+        <svg:linearGradient></svg:linearGradient>
+      </svg:defs>
+    `
     const doc = cleanParse(html)
     expect(doc).toMatchSnapshot()
     expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()

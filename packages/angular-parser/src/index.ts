@@ -319,7 +319,7 @@ export const parse: Parse = text => {
   }
 
   if (errors.length > 0) {
-    document.parseError = errors.map(err => err.toString()).join('\n')
+    document.unkownParseError = errors.map(err => err.toString()).join('\n')
   }
 
   return document

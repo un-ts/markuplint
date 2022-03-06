@@ -3,9 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "markuplint-angular-parser": ["./packages/angular-parser/src"],
-      "markuplint-sync": ["./packages/sync/src"]
+      "markuplint-angular-parser": ["./packages/angular-parser/src"]
     },
-    "target": "es2017"
+    "target": "es2019"
   }
 }

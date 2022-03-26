@@ -61,6 +61,39 @@ const getRaw = (
   return text.slice(start.offset, end.offset)
 }
 
+const getPotentialName = (name: string) =>
+  name
+    /**
+     * Allow event binding
+     * @example (click)='onClick()' => data-click='onClick()'
+     */
+    .replace(/\((.*)\)/, 'data-$1')
+    /**
+     * Allow data binding
+     * @example [label]='click' => data-label='click'
+     */
+    .replace(/\[(.*)]/, 'data-$1')
+    /**
+     * Allow animation
+     * @example @open='open' => data-open='open'
+     */
+    .replace(/@(.*)/, 'data-$1')
+    /**
+     * Allow built-in directives
+     * @example *ngIf='flag' => data-ngIf='flag'
+     */
+    .replace(
+      // optimized by unicorn.
+      // before optimization: /(\*?ng[If|For|SwitchCase|SwitchDefault|Class|Style|Model])/
+      /\*?(ng[CDFIMSac-fhilor-uwy|])/,
+      'data-$1',
+    )
+    /**
+     * Allow component reference
+     * @example #childComponent => data-childComponent
+     */
+    .replace(/#(.*)/, 'data-$1')
+
 export interface NodeMapperOptions<T extends boolean = boolean>
   extends BaseVisitorContext {
   simpleToken?: T
@@ -231,18 +264,7 @@ const visitor = {
       node.isDynamicValue = true
     }
 
-    const potentialName = name
-      /**
-       * remove leading `[attr.`
-       *
-       * @example `<input [attr.type]="type" />`
-       *
-       * Notice `<input attr.type="number" />` is not same as `<input type="number" />`,
-       * what means `[]` wrapper is required
-       */
-      .replace(/^\[attr\./, '')
-      // remove leading `*`, `[]` and `()` wrapper
-      .replace(/[()*[\]]/g, '')
+    const potentialName = getPotentialName(name)
 
     node.potentialName = potentialName
 

@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 1.1.1
+
+### Patch Changes
+
+- [#85](https://github.com/rx-ts/markuplint/pull/85) [`4cc79ea`](https://github.com/rx-ts/markuplint/commit/4cc79eaa01b6929831ba9640a5f99b4a2babe00f) Thanks [@JounQin](https://github.com/JounQin)! - fix: animation trigger starts with @
+
 ## 1.1.0
 
 ### Minor Changes

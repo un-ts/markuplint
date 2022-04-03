@@ -241,8 +241,8 @@ const visitor = {
        * what means `[]` wrapper is required
        */
       .replace(/^\[attr\./, '')
-      // remove leading `*`, `[]` and `()` wrapper
-      .replace(/[()*[\]]/g, '')
+      // remove leading `*`, `@`, `[]` and `()` wrapper
+      .replace(/[()*@[\]]/g, '')
 
     node.potentialName = potentialName
 

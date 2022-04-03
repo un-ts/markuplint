@@ -28,6 +28,8 @@ describe('parser', () => {
               <span>Text</span>
               Text2
             </div>
+            <div @triggerName="expression"></div>
+            <div [@triggerName]="'expression'"></div>
           </body>
         </html>
       `),

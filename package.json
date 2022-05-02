@@ -24,7 +24,7 @@
     "typecov": "type-coverage"
   },
   "devDependencies": {
-    "@1stg/lib-config": "^5.4.0",
+    "@1stg/lib-config": "^5.5.0",
     "@changesets/changelog-github": "^0.4.4",
     "@changesets/cli": "^2.22.0",
     "@markuplint/rule-textlint": "^2.3.1",

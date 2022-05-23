@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 1.1.2
+
+### Patch Changes
+
+- [`b96e62a`](https://github.com/rx-ts/markuplint/commit/b96e62a863ddcec5905e654db73be314e0e7a534) Thanks [@JounQin](https://github.com/JounQin)! - fix(types): add types field to exports
+
 ## 1.1.1
 
 ### Patch Changes

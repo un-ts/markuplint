@@ -1,5 +1,5 @@
-import path from 'path'
-import { promisify } from 'util'
+import path from 'node:path'
+import { promisify } from 'node:util'
 
 import glob from 'glob'
 import { mlTestFile } from 'markuplint'

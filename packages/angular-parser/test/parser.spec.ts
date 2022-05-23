@@ -18,8 +18,14 @@ describe('parser', () => {
           <body>
             <!-- body comment -->
             <input [type]="'text'" />
-            <input type="radio" [checked]="true" />
-            <input type="number" [value]="123" />
+            <input
+              type="radio"
+              [checked]="true"
+            />
+            <input
+              type="number"
+              [value]="123"
+            />
             <select>
               <option selected="{{ true }}"></option>
             </select>

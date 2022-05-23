@@ -24,18 +24,18 @@
     "typecov": "type-coverage"
   },
   "devDependencies": {
-    "@1stg/lib-config": "^5.4.0",
+    "@1stg/lib-config": "^6.1.1",
     "@changesets/changelog-github": "^0.4.4",
     "@changesets/cli": "^2.22.0",
-    "@markuplint/rule-textlint": "^2.3.1",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.23",
-    "markuplint": "^2.5.0",
+    "@markuplint/rule-textlint": "^2.5.2",
+    "@types/jest": "^27.5.1",
+    "@types/node": "^17.0.35",
+    "markuplint": "^2.8.0",
     "snapshot-diff": "^0.9.0",
-    "ts-jest": "^27.1.4",
-    "ts-node": "^10.7.0",
+    "ts-jest": "^28.0.2",
+    "ts-node": "^10.8.0",
     "type-coverage": "^2.21.1",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   },
   "resolutions": {
     "prettier": "^2.6.2"

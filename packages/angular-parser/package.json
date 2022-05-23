@@ -1,6 +1,6 @@
 {
   "name": "markuplint-angular-parser",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Angular parser for markuplint.",
   "repository": "git+https://github.com/rx-ts/markuplint.git",
   "homepage": "https://github.com/rx-ts/markuplint/tree/main/packages/angular-parser",

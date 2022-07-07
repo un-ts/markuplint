@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 1.1.3
+
+### Patch Changes
+
+- [`77a7bfb`](https://github.com/un-ts/markuplint/commit/77a7bfb4a14c0241f7cf2fb918428639d3eae989) Thanks [@JounQin](https://github.com/JounQin)! - chore: add donate field, bump deps
+
 ## 1.1.2
 
 ### Patch Changes

@@ -2,9 +2,41 @@
   "name": "markuplint-angular-parser",
   "version": "1.1.2",
   "description": "Angular parser for markuplint.",
-  "repository": "git+https://github.com/rx-ts/markuplint.git",
-  "homepage": "https://github.com/rx-ts/markuplint/tree/main/packages/angular-parser",
-  "author": "JounQin <admin@1stg.me>",
+  "repository": "git+https://github.com/un-ts/markuplint.git",
+  "homepage": "https://github.com/un-ts/markuplint/tree/main/packages/angular-parser",
+  "author": "JounQin (https://www.1stG.me) <admin@1stg.me>",
+  "donate": {
+    "recipients": [
+      {
+        "name": "unts",
+        "platform": "opencollective",
+        "address": "https://opencollective.com/unts",
+        "weight": 60
+      },
+      {
+        "name": "rxts",
+        "platform": "opencollective",
+        "address": "https://opencollective.com/rxts",
+        "weight": 20
+      },
+      {
+        "name": "1stG",
+        "email": "i@1stg.me",
+        "weight": 20,
+        "platforms": [
+          {
+            "platform": "opencollective",
+            "address": "https://opencollective.com/1stG"
+          },
+          {
+            "platform": "patreon",
+            "address": "https://www.patreon.com/1stG"
+          }
+        ]
+      }
+    ]
+  },
+  "funding": "https://opencollective.com/unts",
   "license": "MIT",
   "engines": {
     "node": ">=v10"
@@ -18,8 +50,7 @@
   },
   "types": "./lib/index.d.ts",
   "files": [
-    "lib",
-    "!*.tsbuildinfo"
+    "lib"
   ],
   "keywords": [
     "markuplint",
@@ -30,9 +61,9 @@
     "angular-linter"
   ],
   "dependencies": {
-    "@markuplint/html-parser": "^2.2.1",
+    "@markuplint/html-parser": "^2.2.2",
     "@markuplint/ml-ast": "^2.0.0",
-    "@markuplint/parser-utils": "^2.2.0",
+    "@markuplint/parser-utils": "^2.2.1",
     "angular-html-parser": "^1.8.0",
     "tslib": "^2.4.0"
   },

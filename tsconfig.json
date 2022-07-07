@@ -4,8 +4,5 @@
     {
       "path": "packages/angular-parser"
     }
-  ],
-  "ts-node": {
-    "transpileOnly": true
-  }
+  ]
 }

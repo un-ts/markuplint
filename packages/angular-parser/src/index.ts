@@ -106,6 +106,7 @@ function nodeMapper(
 }
 
 const DOCTYPE_REGEXP =
+  // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group
   /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
 
 const visitor = {

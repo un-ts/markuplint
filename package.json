@@ -69,7 +69,7 @@
   "prettier": "@1stg/prettier-config",
   "remarkConfig": {
     "plugins": [
-      "@1stg/config"
+      "@1stg/remark-config"
     ]
   },
   "renovate": {

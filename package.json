@@ -9,6 +9,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "packageManager": "yarn@1.22.19",
   "scripts": {
     "build": "run-p build:*",
     "build:r": "r -f es2019",
@@ -24,16 +25,17 @@
     "typecov": "type-coverage"
   },
   "devDependencies": {
-    "@1stg/lib-config": "^8.0.0",
-    "@changesets/changelog-github": "^0.4.5",
-    "@changesets/cli": "^2.23.1",
-    "@markuplint/rule-textlint": "^2.5.3",
-    "@types/jest": "^28.1.4",
-    "@types/node": "^18.0.3",
-    "markuplint": "^2.9.0",
+    "@1stg/lib-config": "^9.0.1",
+    "@changesets/changelog-github": "^0.4.6",
+    "@changesets/cli": "^2.24.0",
+    "@markuplint/rule-textlint": "^2.5.4",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.0.6",
+    "jest": "^28.1.3",
+    "markuplint": "^2.10.0",
     "snapshot-diff": "^0.9.0",
-    "ts-jest": "^28.0.5",
-    "type-coverage": "^2.21.2",
+    "ts-jest": "^28.0.7",
+    "type-coverage": "^2.22.0",
     "typescript": "^4.7.4"
   },
   "resolutions": {
@@ -46,13 +48,22 @@
     "extends": "@1stg",
     "rules": {
       "regexp/strict": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": ".github/*.yml",
+        "rules": {
+          "unicorn/filename-case": "off"
+        }
+      }
+    ]
   },
   "eslintIgnore": [
     "coverage",
     "lib",
     "CHANGELOG.md",
     "packages/*/test/fixtures",
+    "!/.github",
     "!/.*.js"
   ],
   "jest": {

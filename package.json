@@ -60,7 +60,8 @@
       {
         "files": "**/*.spec.ts",
         "rules": {
-          "sonarjs/no-duplicate-string": "off"
+          "sonarjs/no-duplicate-string": "off",
+          "@typescript-eslint/no-unsafe-assignment": "off"
         }
       }
     ]

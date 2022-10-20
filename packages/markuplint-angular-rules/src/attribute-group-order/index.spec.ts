@@ -239,3 +239,33 @@ describe('partially supplied definitions', () => {
     }
   })
 })
+
+describe('options validation', () => {
+  it('throws an error when an order option is not an array', async () => {
+    const result = await mlRuleTest(rule, '<div></div>', {
+      rule: {
+        value: true,
+        option: {
+          order: 'incorrect',
+        } as unknown as Options,
+      },
+    })
+    expect(result.violations[0].message).toMatch(
+      /Error: The "order" option must be an array./,
+    )
+  })
+
+  it('throws an error when an incorrect order option is supplied', async () => {
+    const result = await mlRuleTest(rule, '<div></div>', {
+      rule: {
+        value: true,
+        option: {
+          order: ['incorrect'],
+        } as unknown as Options,
+      },
+    })
+    expect(result.violations[0].message).toMatch(
+      /Error: Unexpected attribute group "incorrect"/,
+    )
+  })
+})

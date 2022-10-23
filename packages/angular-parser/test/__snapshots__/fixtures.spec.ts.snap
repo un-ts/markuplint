@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fixtures: attr-duplication.html 1`] = `
-Array [
-  Object {
+[
+  {
     "col": 19,
     "line": 1,
     "message": "The attribute name is duplicated",
@@ -10,7 +10,7 @@ Array [
     "ruleId": "attr-duplication",
     "severity": "error",
   },
-  Object {
+  {
     "col": 39,
     "line": 1,
     "message": "The attribute name is duplicated",
@@ -21,15 +21,15 @@ Array [
 ]
 `;
 
-exports[`fixtures: case-sensitive-tag-name.html 1`] = `Array []`;
+exports[`fixtures: case-sensitive-tag-name.html 1`] = `[]`;
 
 exports[`fixtures: deprecated-element.html 1`] = `
-Array [
-  Object {
+[
+  {
     "col": 1,
     "line": 1,
-    "message": "The \\"font\\" element is deprecated",
-    "raw": "<font color=\\"red\\">",
+    "message": "The "font" element is deprecated",
+    "raw": "<font color="red">",
     "ruleId": "deprecated-element",
     "severity": "error",
   },

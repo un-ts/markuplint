@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parser doctype 1`] = `
-Object {
+{
   "isFragment": false,
-  "nodeList": Array [
-    Object {
+  "nodeList": [
+    {
       "endCol": 103,
       "endLine": 1,
       "endOffset": 102,
@@ -13,7 +13,7 @@ Object {
       "name": "html",
       "nodeName": "#doctype",
       "publicId": "-//W3C//DTD HTML 4.01 Transitional//EN",
-      "raw": "<!DOCTYPE html public \\"-//W3C//DTD HTML 4.01 Transitional//EN\\" \\"http://www.w3.org/TR/html4/loose.dtd\\">",
+      "raw": "<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">",
       "startCol": 1,
       "startLine": 1,
       "startOffset": 0,
@@ -25,10 +25,10 @@ Object {
 `;
 
 exports[`parser doctype 2`] = `
-Object {
+{
   "isFragment": false,
-  "nodeList": Array [
-    Object {
+  "nodeList": [
+    {
       "endCol": 64,
       "endLine": 1,
       "endOffset": 63,
@@ -37,7 +37,7 @@ Object {
       "name": "html",
       "nodeName": "#doctype",
       "publicId": "-//W3C//DTD HTML 4.01 Transitional//EN",
-      "raw": "<!DOCTYPE html public \\"-//W3C//DTD HTML 4.01 Transitional//EN\\">",
+      "raw": "<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN">",
       "startCol": 1,
       "startLine": 1,
       "startOffset": 0,
@@ -54,15 +54,15 @@ Compared values have no visual difference."
 `;
 
 exports[`parser doctype 4`] = `
-Object {
+{
   "isFragment": false,
-  "nodeList": Array [
-    Object {
-      "attributes": Array [],
+  "nodeList": [
+    {
+      "attributes": [],
       "endCol": 7,
       "endLine": 1,
       "endOffset": 6,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 6,
         "endLine": 1,
         "endOffset": 5,
@@ -78,7 +78,7 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "html",
       "raw": "<html>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 6,
         "endLine": 1,
         "endOffset": 5,
@@ -94,8 +94,8 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 14,
       "endLine": 1,
       "endOffset": 13,
@@ -122,25 +122,25 @@ Compared values have no visual difference."
 `;
 
 exports[`parser invalid tag 1`] = `
-Object {
+{
   "isFragment": true,
-  "nodeList": Array [
-    Object {
-      "attributes": Array [
-        Object {
+  "nodeList": [
+    {
+      "attributes": [
+        {
           "endCol": 20,
           "endLine": 1,
           "endOffset": 20,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 20,
             "endLine": 1,
             "endOffset": 20,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 19,
             "startLine": 1,
             "startOffset": 19,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 11,
             "endLine": 1,
             "endOffset": 11,
@@ -151,7 +151,7 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "name": Object {
+          "name": {
             "endCol": 10,
             "endLine": 1,
             "endOffset": 10,
@@ -161,8 +161,8 @@ Object {
             "startOffset": 3,
           },
           "potentialName": "ngIf",
-          "raw": "[*ngIf]=\\"1 === 1\\"",
-          "spacesAfterEqual": Object {
+          "raw": "[*ngIf]="1 === 1"",
+          "spacesAfterEqual": {
             "endCol": 11,
             "endLine": 1,
             "endOffset": 11,
@@ -171,7 +171,7 @@ Object {
             "startLine": 1,
             "startOffset": 11,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 10,
             "endLine": 1,
             "endOffset": 10,
@@ -180,7 +180,7 @@ Object {
             "startLine": 1,
             "startOffset": 10,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 3,
             "endLine": 1,
             "endOffset": 3,
@@ -192,17 +192,17 @@ Object {
           "startCol": 3,
           "startLine": 1,
           "startOffset": 3,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 12,
             "endLine": 1,
             "endOffset": 12,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 11,
             "startLine": 1,
             "startOffset": 11,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 19,
             "endLine": 1,
             "endOffset": 19,
@@ -212,20 +212,20 @@ Object {
             "startOffset": 12,
           },
         },
-        Object {
+        {
           "endCol": 38,
           "endLine": 1,
           "endOffset": 38,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 38,
             "endLine": 1,
             "endOffset": 38,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 37,
             "startLine": 1,
             "startOffset": 37,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 29,
             "endLine": 1,
             "endOffset": 29,
@@ -235,7 +235,7 @@ Object {
             "startOffset": 28,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 28,
             "endLine": 1,
             "endOffset": 28,
@@ -245,8 +245,8 @@ Object {
             "startOffset": 21,
           },
           "potentialName": "ng--if",
-          "raw": "ng-*-if=\\"2 === 2\\"",
-          "spacesAfterEqual": Object {
+          "raw": "ng-*-if="2 === 2"",
+          "spacesAfterEqual": {
             "endCol": 29,
             "endLine": 1,
             "endOffset": 29,
@@ -255,7 +255,7 @@ Object {
             "startLine": 1,
             "startOffset": 29,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 28,
             "endLine": 1,
             "endOffset": 28,
@@ -264,7 +264,7 @@ Object {
             "startLine": 1,
             "startOffset": 28,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 21,
             "endLine": 1,
             "endOffset": 21,
@@ -276,17 +276,17 @@ Object {
           "startCol": 21,
           "startLine": 1,
           "startOffset": 21,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 30,
             "endLine": 1,
             "endOffset": 30,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 29,
             "startLine": 1,
             "startOffset": 29,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 37,
             "endLine": 1,
             "endOffset": 37,
@@ -296,20 +296,20 @@ Object {
             "startOffset": 30,
           },
         },
-        Object {
+        {
           "endCol": 48,
           "endLine": 1,
           "endOffset": 48,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 48,
             "endLine": 1,
             "endOffset": 48,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 47,
             "startLine": 1,
             "startOffset": 47,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 44,
             "endLine": 1,
             "endOffset": 44,
@@ -319,7 +319,7 @@ Object {
             "startOffset": 43,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 43,
             "endLine": 1,
             "endOffset": 43,
@@ -329,8 +329,8 @@ Object {
             "startOffset": 39,
           },
           "potentialName": "href",
-          "raw": "href=\\"{{\\"",
-          "spacesAfterEqual": Object {
+          "raw": "href="{{"",
+          "spacesAfterEqual": {
             "endCol": 44,
             "endLine": 1,
             "endOffset": 44,
@@ -339,7 +339,7 @@ Object {
             "startLine": 1,
             "startOffset": 44,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 43,
             "endLine": 1,
             "endOffset": 43,
@@ -348,7 +348,7 @@ Object {
             "startLine": 1,
             "startOffset": 43,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 39,
             "endLine": 1,
             "endOffset": 39,
@@ -360,17 +360,17 @@ Object {
           "startCol": 39,
           "startLine": 1,
           "startOffset": 39,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 45,
             "endLine": 1,
             "endOffset": 45,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 44,
             "startLine": 1,
             "startOffset": 44,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 47,
             "endLine": 1,
             "endOffset": 47,
@@ -380,20 +380,20 @@ Object {
             "startOffset": 45,
           },
         },
-        Object {
+        {
           "endCol": 79,
           "endLine": 1,
           "endOffset": 79,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 79,
             "endLine": 1,
             "endOffset": 79,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 78,
             "startLine": 1,
             "startOffset": 78,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 58,
             "endLine": 1,
             "endOffset": 58,
@@ -403,7 +403,7 @@ Object {
             "startOffset": 57,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 57,
             "endLine": 1,
             "endOffset": 57,
@@ -413,8 +413,8 @@ Object {
             "startOffset": 49,
           },
           "potentialName": "download",
-          "raw": "download=\\"{ { downloadUrl } }\\"",
-          "spacesAfterEqual": Object {
+          "raw": "download="{ { downloadUrl } }"",
+          "spacesAfterEqual": {
             "endCol": 58,
             "endLine": 1,
             "endOffset": 58,
@@ -423,7 +423,7 @@ Object {
             "startLine": 1,
             "startOffset": 58,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 57,
             "endLine": 1,
             "endOffset": 57,
@@ -432,7 +432,7 @@ Object {
             "startLine": 1,
             "startOffset": 57,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 49,
             "endLine": 1,
             "endOffset": 49,
@@ -444,17 +444,17 @@ Object {
           "startCol": 49,
           "startLine": 1,
           "startOffset": 49,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 59,
             "endLine": 1,
             "endOffset": 59,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 58,
             "startLine": 1,
             "startOffset": 58,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 78,
             "endLine": 1,
             "endOffset": 78,
@@ -468,7 +468,7 @@ Object {
       "endCol": 83,
       "endLine": 1,
       "endOffset": 82,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 82,
         "endLine": 1,
         "endOffset": 81,
@@ -483,8 +483,8 @@ Object {
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "a",
-      "raw": "<a [*ngIf]=\\"1 === 1\\" ng-*-if=\\"2 === 2\\" href=\\"{{\\" download=\\"{ { downloadUrl } }\\" />",
-      "selfClosingSolidus": Object {
+      "raw": "<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" />",
+      "selfClosingSolidus": {
         "endCol": 82,
         "endLine": 1,
         "endOffset": 81,
@@ -500,7 +500,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 86,
       "endLine": 1,
       "endOffset": 85,
@@ -514,16 +514,16 @@ Object {
       "type": "text",
     },
   ],
-  "unkownParseError": "Only void and foreign elements can be self closed \\"a\\" (\\"[ERROR ->]<a [*ngIf]=\\"1 === 1\\" ng-*-if=\\"2 === 2\\" href=\\"{{\\" download=\\"{ { downloadUrl } }\\" /></>\\"): angular-html-parser@0:0
-Unexpected closing tag \\"\\". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags (\\"<a [*ngIf]=\\"1 === 1\\" ng-*-if=\\"2 === 2\\" href=\\"{{\\" download=\\"{ { downloadUrl } }\\" />[ERROR ->]</>\\"): angular-html-parser@0:82",
+  "unkownParseError": "Only void and foreign elements can be self closed "a" ("[ERROR ->]<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" /></>"): angular-html-parser@0:0
+Unexpected closing tag "". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags ("<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" />[ERROR ->]</>"): angular-html-parser@0:82",
 }
 `;
 
 exports[`parser parse 1`] = `
-Object {
+{
   "isFragment": false,
-  "nodeList": Array [
-    Object {
+  "nodeList": [
+    {
       "endCol": 9,
       "endLine": 2,
       "endOffset": 9,
@@ -537,7 +537,7 @@ Object {
       "startOffset": 0,
       "type": "text",
     },
-    Object {
+    {
       "endCol": 24,
       "endLine": 2,
       "endOffset": 24,
@@ -553,7 +553,7 @@ Object {
       "systemId": "",
       "type": "doctype",
     },
-    Object {
+    {
       "endCol": 9,
       "endLine": 3,
       "endOffset": 33,
@@ -567,7 +567,7 @@ Object {
       "startOffset": 24,
       "type": "text",
     },
-    Object {
+    {
       "endCol": 72,
       "endLine": 7,
       "endOffset": 412,
@@ -575,8 +575,8 @@ Object {
       "isGhost": false,
       "nodeName": "#comment",
       "raw": "<![CDATA[ Within this Character Data block I can use double dashes as
-        much as I want (along with <, &, ', and \\") *and* %MyParamEntity; will be
-        expanded to the text \\"Has been expanded\\" ... however, I can't use the
+        much as I want (along with <, &, ', and ") *and* %MyParamEntity; will be
+        expanded to the text "Has been expanded" ... however, I can't use the
         CEND sequence. If I need to use CEND I must escape one of the brackets
         or the greater-than sign using concatenated CDATA sections. ]]>",
       "startCol": 9,
@@ -584,7 +584,7 @@ Object {
       "startOffset": 33,
       "type": "comment",
     },
-    Object {
+    {
       "endCol": 9,
       "endLine": 8,
       "endOffset": 421,
@@ -598,7 +598,7 @@ Object {
       "startOffset": 412,
       "type": "text",
     },
-    Object {
+    {
       "endCol": 35,
       "endLine": 8,
       "endOffset": 447,
@@ -611,7 +611,7 @@ Object {
       "startOffset": 421,
       "type": "comment",
     },
-    Object {
+    {
       "endCol": 9,
       "endLine": 9,
       "endOffset": 456,
@@ -625,22 +625,22 @@ Object {
       "startOffset": 447,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 23,
           "endLine": 9,
           "endOffset": 471,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 23,
             "endLine": 9,
             "endOffset": 471,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 22,
             "startLine": 9,
             "startOffset": 470,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 19,
             "endLine": 9,
             "endOffset": 467,
@@ -650,7 +650,7 @@ Object {
             "startOffset": 466,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 18,
             "endLine": 9,
             "endOffset": 466,
@@ -660,8 +660,8 @@ Object {
             "startOffset": 462,
           },
           "potentialName": "lang",
-          "raw": "lang=\\"en\\"",
-          "spacesAfterEqual": Object {
+          "raw": "lang="en"",
+          "spacesAfterEqual": {
             "endCol": 19,
             "endLine": 9,
             "endOffset": 467,
@@ -670,7 +670,7 @@ Object {
             "startLine": 9,
             "startOffset": 467,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 18,
             "endLine": 9,
             "endOffset": 466,
@@ -679,7 +679,7 @@ Object {
             "startLine": 9,
             "startOffset": 466,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 14,
             "endLine": 9,
             "endOffset": 462,
@@ -691,17 +691,17 @@ Object {
           "startCol": 14,
           "startLine": 9,
           "startOffset": 462,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 20,
             "endLine": 9,
             "endOffset": 468,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 19,
             "startLine": 9,
             "startOffset": 467,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 22,
             "endLine": 9,
             "endOffset": 470,
@@ -715,7 +715,7 @@ Object {
       "endCol": 25,
       "endLine": 9,
       "endOffset": 472,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 24,
         "endLine": 9,
         "endOffset": 471,
@@ -730,8 +730,8 @@ Object {
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "html",
-      "raw": "<html lang=\\"en\\">",
-      "selfClosingSolidus": Object {
+      "raw": "<html lang="en">",
+      "selfClosingSolidus": {
         "endCol": 24,
         "endLine": 9,
         "endOffset": 471,
@@ -747,7 +747,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 11,
       "endLine": 10,
       "endOffset": 483,
@@ -761,12 +761,12 @@ Object {
       "startOffset": 472,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 17,
       "endLine": 10,
       "endOffset": 489,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 16,
         "endLine": 10,
         "endOffset": 488,
@@ -782,7 +782,7 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "body",
       "raw": "<body>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 16,
         "endLine": 10,
         "endOffset": 488,
@@ -798,7 +798,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 11,
       "endOffset": 502,
@@ -812,7 +812,7 @@ Object {
       "startOffset": 489,
       "type": "text",
     },
-    Object {
+    {
       "endCol": 34,
       "endLine": 11,
       "endOffset": 523,
@@ -825,7 +825,7 @@ Object {
       "startOffset": 502,
       "type": "comment",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 12,
       "endOffset": 536,
@@ -839,22 +839,22 @@ Object {
       "startOffset": 523,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 34,
           "endLine": 12,
           "endOffset": 558,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 34,
             "endLine": 12,
             "endOffset": 558,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 33,
             "startLine": 12,
             "startOffset": 557,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 26,
             "endLine": 12,
             "endOffset": 550,
@@ -865,7 +865,7 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "name": Object {
+          "name": {
             "endCol": 25,
             "endLine": 12,
             "endOffset": 549,
@@ -875,8 +875,8 @@ Object {
             "startOffset": 543,
           },
           "potentialName": "type",
-          "raw": "[type]=\\"'text'\\"",
-          "spacesAfterEqual": Object {
+          "raw": "[type]="'text'"",
+          "spacesAfterEqual": {
             "endCol": 26,
             "endLine": 12,
             "endOffset": 550,
@@ -885,7 +885,7 @@ Object {
             "startLine": 12,
             "startOffset": 550,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 25,
             "endLine": 12,
             "endOffset": 549,
@@ -894,7 +894,7 @@ Object {
             "startLine": 12,
             "startOffset": 549,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 19,
             "endLine": 12,
             "endOffset": 543,
@@ -906,17 +906,17 @@ Object {
           "startCol": 19,
           "startLine": 12,
           "startOffset": 543,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 27,
             "endLine": 12,
             "endOffset": 551,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 26,
             "startLine": 12,
             "startOffset": 550,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 33,
             "endLine": 12,
             "endOffset": 557,
@@ -930,7 +930,7 @@ Object {
       "endCol": 38,
       "endLine": 12,
       "endOffset": 561,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 37,
         "endLine": 12,
         "endOffset": 560,
@@ -945,8 +945,8 @@ Object {
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "input",
-      "raw": "<input [type]=\\"'text'\\" />",
-      "selfClosingSolidus": Object {
+      "raw": "<input [type]="'text'" />",
+      "selfClosingSolidus": {
         "endCol": 37,
         "endLine": 12,
         "endOffset": 560,
@@ -962,7 +962,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 13,
       "endOffset": 574,
@@ -976,22 +976,22 @@ Object {
       "startOffset": 561,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 26,
           "endLine": 14,
           "endOffset": 607,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 26,
             "endLine": 14,
             "endOffset": 607,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 25,
             "startLine": 14,
             "startOffset": 606,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 19,
             "endLine": 14,
             "endOffset": 600,
@@ -1001,7 +1001,7 @@ Object {
             "startOffset": 599,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 18,
             "endLine": 14,
             "endOffset": 599,
@@ -1011,8 +1011,8 @@ Object {
             "startOffset": 595,
           },
           "potentialName": "type",
-          "raw": "type=\\"radio\\"",
-          "spacesAfterEqual": Object {
+          "raw": "type="radio"",
+          "spacesAfterEqual": {
             "endCol": 19,
             "endLine": 14,
             "endOffset": 600,
@@ -1021,7 +1021,7 @@ Object {
             "startLine": 14,
             "startOffset": 600,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 18,
             "endLine": 14,
             "endOffset": 599,
@@ -1030,7 +1030,7 @@ Object {
             "startLine": 14,
             "startOffset": 599,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 14,
             "endLine": 14,
             "endOffset": 595,
@@ -1042,17 +1042,17 @@ Object {
           "startCol": 14,
           "startLine": 14,
           "startOffset": 595,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 20,
             "endLine": 14,
             "endOffset": 601,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 19,
             "startLine": 14,
             "startOffset": 600,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 25,
             "endLine": 14,
             "endOffset": 606,
@@ -1062,20 +1062,20 @@ Object {
             "startOffset": 601,
           },
         },
-        Object {
+        {
           "endCol": 30,
           "endLine": 15,
           "endOffset": 638,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 30,
             "endLine": 15,
             "endOffset": 638,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 29,
             "startLine": 15,
             "startOffset": 637,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 24,
             "endLine": 15,
             "endOffset": 632,
@@ -1086,7 +1086,7 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "name": Object {
+          "name": {
             "endCol": 23,
             "endLine": 15,
             "endOffset": 631,
@@ -1096,8 +1096,8 @@ Object {
             "startOffset": 622,
           },
           "potentialName": "checked",
-          "raw": "[checked]=\\"true\\"",
-          "spacesAfterEqual": Object {
+          "raw": "[checked]="true"",
+          "spacesAfterEqual": {
             "endCol": 24,
             "endLine": 15,
             "endOffset": 632,
@@ -1106,7 +1106,7 @@ Object {
             "startLine": 15,
             "startOffset": 632,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 23,
             "endLine": 15,
             "endOffset": 631,
@@ -1115,7 +1115,7 @@ Object {
             "startLine": 15,
             "startOffset": 631,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 14,
             "endLine": 15,
             "endOffset": 622,
@@ -1127,17 +1127,17 @@ Object {
           "startCol": 14,
           "startLine": 15,
           "startOffset": 622,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 25,
             "endLine": 15,
             "endOffset": 633,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 24,
             "startLine": 15,
             "startOffset": 632,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 29,
             "endLine": 15,
             "endOffset": 637,
@@ -1151,7 +1151,7 @@ Object {
       "endCol": 15,
       "endLine": 16,
       "endOffset": 653,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 14,
         "endLine": 16,
         "endOffset": 652,
@@ -1167,10 +1167,10 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "input",
       "raw": "<input
-              type=\\"radio\\"
-              [checked]=\\"true\\"
+              type="radio"
+              [checked]="true"
             />",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 14,
         "endLine": 16,
         "endOffset": 652,
@@ -1187,7 +1187,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 17,
       "endOffset": 666,
@@ -1201,22 +1201,22 @@ Object {
       "startOffset": 653,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 27,
           "endLine": 18,
           "endOffset": 700,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 27,
             "endLine": 18,
             "endOffset": 700,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 26,
             "startLine": 18,
             "startOffset": 699,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 19,
             "endLine": 18,
             "endOffset": 692,
@@ -1226,7 +1226,7 @@ Object {
             "startOffset": 691,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 18,
             "endLine": 18,
             "endOffset": 691,
@@ -1236,8 +1236,8 @@ Object {
             "startOffset": 687,
           },
           "potentialName": "type",
-          "raw": "type=\\"number\\"",
-          "spacesAfterEqual": Object {
+          "raw": "type="number"",
+          "spacesAfterEqual": {
             "endCol": 19,
             "endLine": 18,
             "endOffset": 692,
@@ -1246,7 +1246,7 @@ Object {
             "startLine": 18,
             "startOffset": 692,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 18,
             "endLine": 18,
             "endOffset": 691,
@@ -1255,7 +1255,7 @@ Object {
             "startLine": 18,
             "startOffset": 691,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 14,
             "endLine": 18,
             "endOffset": 687,
@@ -1267,17 +1267,17 @@ Object {
           "startCol": 14,
           "startLine": 18,
           "startOffset": 687,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 20,
             "endLine": 18,
             "endOffset": 693,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 19,
             "startLine": 18,
             "startOffset": 692,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 26,
             "endLine": 18,
             "endOffset": 699,
@@ -1287,20 +1287,20 @@ Object {
             "startOffset": 693,
           },
         },
-        Object {
+        {
           "endCol": 27,
           "endLine": 19,
           "endOffset": 728,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 27,
             "endLine": 19,
             "endOffset": 728,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 26,
             "startLine": 19,
             "startOffset": 727,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 22,
             "endLine": 19,
             "endOffset": 723,
@@ -1311,7 +1311,7 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "name": Object {
+          "name": {
             "endCol": 21,
             "endLine": 19,
             "endOffset": 722,
@@ -1321,8 +1321,8 @@ Object {
             "startOffset": 715,
           },
           "potentialName": "value",
-          "raw": "[value]=\\"123\\"",
-          "spacesAfterEqual": Object {
+          "raw": "[value]="123"",
+          "spacesAfterEqual": {
             "endCol": 22,
             "endLine": 19,
             "endOffset": 723,
@@ -1331,7 +1331,7 @@ Object {
             "startLine": 19,
             "startOffset": 723,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 21,
             "endLine": 19,
             "endOffset": 722,
@@ -1340,7 +1340,7 @@ Object {
             "startLine": 19,
             "startOffset": 722,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 14,
             "endLine": 19,
             "endOffset": 715,
@@ -1352,17 +1352,17 @@ Object {
           "startCol": 14,
           "startLine": 19,
           "startOffset": 715,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 23,
             "endLine": 19,
             "endOffset": 724,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 22,
             "startLine": 19,
             "startOffset": 723,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 26,
             "endLine": 19,
             "endOffset": 727,
@@ -1376,7 +1376,7 @@ Object {
       "endCol": 15,
       "endLine": 20,
       "endOffset": 743,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 14,
         "endLine": 20,
         "endOffset": 742,
@@ -1392,10 +1392,10 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "input",
       "raw": "<input
-              type=\\"number\\"
-              [value]=\\"123\\"
+              type="number"
+              [value]="123"
             />",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 14,
         "endLine": 20,
         "endOffset": 742,
@@ -1412,7 +1412,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 21,
       "endOffset": 756,
@@ -1426,12 +1426,12 @@ Object {
       "startOffset": 743,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 21,
       "endLine": 21,
       "endOffset": 764,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 20,
         "endLine": 21,
         "endOffset": 763,
@@ -1447,7 +1447,7 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "select",
       "raw": "<select>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 20,
         "endLine": 21,
         "endOffset": 763,
@@ -1463,7 +1463,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 15,
       "endLine": 22,
       "endOffset": 779,
@@ -1477,22 +1477,22 @@ Object {
       "startOffset": 764,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 43,
           "endLine": 22,
           "endOffset": 808,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 43,
             "endLine": 22,
             "endOffset": 808,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 42,
             "startLine": 22,
             "startOffset": 807,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 31,
             "endLine": 22,
             "endOffset": 796,
@@ -1503,7 +1503,7 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "name": Object {
+          "name": {
             "endCol": 30,
             "endLine": 22,
             "endOffset": 795,
@@ -1513,8 +1513,8 @@ Object {
             "startOffset": 787,
           },
           "potentialName": "selected",
-          "raw": "selected=\\"{{ true }}\\"",
-          "spacesAfterEqual": Object {
+          "raw": "selected="{{ true }}"",
+          "spacesAfterEqual": {
             "endCol": 31,
             "endLine": 22,
             "endOffset": 796,
@@ -1523,7 +1523,7 @@ Object {
             "startLine": 22,
             "startOffset": 796,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 30,
             "endLine": 22,
             "endOffset": 795,
@@ -1532,7 +1532,7 @@ Object {
             "startLine": 22,
             "startOffset": 795,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 22,
             "endLine": 22,
             "endOffset": 787,
@@ -1544,17 +1544,17 @@ Object {
           "startCol": 22,
           "startLine": 22,
           "startOffset": 787,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 32,
             "endLine": 22,
             "endOffset": 797,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 31,
             "startLine": 22,
             "startOffset": 796,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 42,
             "endLine": 22,
             "endOffset": 807,
@@ -1568,7 +1568,7 @@ Object {
       "endCol": 45,
       "endLine": 22,
       "endOffset": 809,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 44,
         "endLine": 22,
         "endOffset": 808,
@@ -1583,8 +1583,8 @@ Object {
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "option",
-      "raw": "<option selected=\\"{{ true }}\\">",
-      "selfClosingSolidus": Object {
+      "raw": "<option selected="{{ true }}">",
+      "selfClosingSolidus": {
         "endCol": 44,
         "endLine": 22,
         "endOffset": 808,
@@ -1600,8 +1600,8 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 54,
       "endLine": 22,
       "endOffset": 818,
@@ -1618,7 +1618,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 23,
       "endOffset": 831,
@@ -1632,8 +1632,8 @@ Object {
       "startOffset": 818,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 22,
       "endLine": 23,
       "endOffset": 840,
@@ -1650,7 +1650,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 24,
       "endOffset": 853,
@@ -1664,12 +1664,12 @@ Object {
       "startOffset": 840,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 18,
       "endLine": 24,
       "endOffset": 858,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 17,
         "endLine": 24,
         "endOffset": 857,
@@ -1685,7 +1685,7 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "div",
       "raw": "<div>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 17,
         "endLine": 24,
         "endOffset": 857,
@@ -1701,7 +1701,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 15,
       "endLine": 26,
       "endOffset": 893,
@@ -1716,12 +1716,12 @@ Object {
       "startOffset": 858,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 21,
       "endLine": 26,
       "endOffset": 899,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 20,
         "endLine": 26,
         "endOffset": 898,
@@ -1737,7 +1737,7 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "span",
       "raw": "<span>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 20,
         "endLine": 26,
         "endOffset": 898,
@@ -1753,7 +1753,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 25,
       "endLine": 26,
       "endOffset": 903,
@@ -1766,8 +1766,8 @@ Object {
       "startOffset": 899,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 32,
       "endLine": 26,
       "endOffset": 910,
@@ -1784,7 +1784,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 28,
       "endOffset": 943,
@@ -1799,8 +1799,8 @@ Object {
       "startOffset": 910,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 19,
       "endLine": 28,
       "endOffset": 949,
@@ -1817,7 +1817,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 29,
       "endOffset": 962,
@@ -1831,22 +1831,22 @@ Object {
       "startOffset": 949,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 42,
           "endLine": 29,
           "endOffset": 992,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 42,
             "endLine": 29,
             "endOffset": 992,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 41,
             "startLine": 29,
             "startOffset": 991,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 30,
             "endLine": 29,
             "endOffset": 980,
@@ -1856,7 +1856,7 @@ Object {
             "startOffset": 979,
           },
           "isDuplicatable": false,
-          "name": Object {
+          "name": {
             "endCol": 29,
             "endLine": 29,
             "endOffset": 979,
@@ -1866,8 +1866,8 @@ Object {
             "startOffset": 967,
           },
           "potentialName": "triggerName",
-          "raw": "@triggerName=\\"expression\\"",
-          "spacesAfterEqual": Object {
+          "raw": "@triggerName="expression"",
+          "spacesAfterEqual": {
             "endCol": 30,
             "endLine": 29,
             "endOffset": 980,
@@ -1876,7 +1876,7 @@ Object {
             "startLine": 29,
             "startOffset": 980,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 29,
             "endLine": 29,
             "endOffset": 979,
@@ -1885,7 +1885,7 @@ Object {
             "startLine": 29,
             "startOffset": 979,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 17,
             "endLine": 29,
             "endOffset": 967,
@@ -1897,17 +1897,17 @@ Object {
           "startCol": 17,
           "startLine": 29,
           "startOffset": 967,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 31,
             "endLine": 29,
             "endOffset": 981,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 30,
             "startLine": 29,
             "startOffset": 980,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 41,
             "endLine": 29,
             "endOffset": 991,
@@ -1921,7 +1921,7 @@ Object {
       "endCol": 44,
       "endLine": 29,
       "endOffset": 993,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 43,
         "endLine": 29,
         "endOffset": 992,
@@ -1936,8 +1936,8 @@ Object {
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "div",
-      "raw": "<div @triggerName=\\"expression\\">",
-      "selfClosingSolidus": Object {
+      "raw": "<div @triggerName="expression">",
+      "selfClosingSolidus": {
         "endCol": 43,
         "endLine": 29,
         "endOffset": 992,
@@ -1953,8 +1953,8 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 50,
       "endLine": 29,
       "endOffset": 999,
@@ -1971,7 +1971,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 13,
       "endLine": 30,
       "endOffset": 1012,
@@ -1985,22 +1985,22 @@ Object {
       "startOffset": 999,
       "type": "text",
     },
-    Object {
-      "attributes": Array [
-        Object {
+    {
+      "attributes": [
+        {
           "endCol": 46,
           "endLine": 30,
           "endOffset": 1046,
-          "endQuote": Object {
+          "endQuote": {
             "endCol": 46,
             "endLine": 30,
             "endOffset": 1046,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 45,
             "startLine": 30,
             "startOffset": 1045,
           },
-          "equal": Object {
+          "equal": {
             "endCol": 32,
             "endLine": 30,
             "endOffset": 1032,
@@ -2011,7 +2011,7 @@ Object {
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
-          "name": Object {
+          "name": {
             "endCol": 31,
             "endLine": 30,
             "endOffset": 1031,
@@ -2021,8 +2021,8 @@ Object {
             "startOffset": 1017,
           },
           "potentialName": "triggerName",
-          "raw": "[@triggerName]=\\"'expression'\\"",
-          "spacesAfterEqual": Object {
+          "raw": "[@triggerName]="'expression'"",
+          "spacesAfterEqual": {
             "endCol": 32,
             "endLine": 30,
             "endOffset": 1032,
@@ -2031,7 +2031,7 @@ Object {
             "startLine": 30,
             "startOffset": 1032,
           },
-          "spacesBeforeEqual": Object {
+          "spacesBeforeEqual": {
             "endCol": 31,
             "endLine": 30,
             "endOffset": 1031,
@@ -2040,7 +2040,7 @@ Object {
             "startLine": 30,
             "startOffset": 1031,
           },
-          "spacesBeforeName": Object {
+          "spacesBeforeName": {
             "endCol": 17,
             "endLine": 30,
             "endOffset": 1017,
@@ -2052,17 +2052,17 @@ Object {
           "startCol": 17,
           "startLine": 30,
           "startOffset": 1017,
-          "startQuote": Object {
+          "startQuote": {
             "endCol": 33,
             "endLine": 30,
             "endOffset": 1033,
-            "raw": "\\"",
+            "raw": """,
             "startCol": 32,
             "startLine": 30,
             "startOffset": 1032,
           },
           "type": "html-attr",
-          "value": Object {
+          "value": {
             "endCol": 45,
             "endLine": 30,
             "endOffset": 1045,
@@ -2076,7 +2076,7 @@ Object {
       "endCol": 48,
       "endLine": 30,
       "endOffset": 1047,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 47,
         "endLine": 30,
         "endOffset": 1046,
@@ -2091,8 +2091,8 @@ Object {
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "div",
-      "raw": "<div [@triggerName]=\\"'expression'\\">",
-      "selfClosingSolidus": Object {
+      "raw": "<div [@triggerName]="'expression'">",
+      "selfClosingSolidus": {
         "endCol": 47,
         "endLine": 30,
         "endOffset": 1046,
@@ -2108,8 +2108,8 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 54,
       "endLine": 30,
       "endOffset": 1053,
@@ -2126,7 +2126,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 11,
       "endLine": 31,
       "endOffset": 1064,
@@ -2140,8 +2140,8 @@ Object {
       "startOffset": 1053,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 18,
       "endLine": 31,
       "endOffset": 1071,
@@ -2158,7 +2158,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 9,
       "endLine": 32,
       "endOffset": 1080,
@@ -2172,8 +2172,8 @@ Object {
       "startOffset": 1071,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 16,
       "endLine": 32,
       "endOffset": 1087,
@@ -2190,7 +2190,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 7,
       "endLine": 33,
       "endOffset": 1094,
@@ -2209,10 +2209,10 @@ Object {
 `;
 
 exports[`parser tag namespace 1`] = `
-Object {
+{
   "isFragment": true,
-  "nodeList": Array [
-    Object {
+  "nodeList": [
+    {
       "endCol": 7,
       "endLine": 2,
       "endOffset": 7,
@@ -2226,12 +2226,12 @@ Object {
       "startOffset": 0,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 17,
       "endLine": 2,
       "endOffset": 17,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 16,
         "endLine": 2,
         "endOffset": 16,
@@ -2247,7 +2247,7 @@ Object {
       "namespace": "http://www.w3.org/2000/svg",
       "nodeName": "svg:defs",
       "raw": "<svg:defs>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 16,
         "endLine": 2,
         "endOffset": 16,
@@ -2263,7 +2263,7 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
+    {
       "endCol": 9,
       "endLine": 3,
       "endOffset": 26,
@@ -2277,12 +2277,12 @@ Object {
       "startOffset": 17,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 29,
       "endLine": 3,
       "endOffset": 46,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 28,
         "endLine": 3,
         "endOffset": 45,
@@ -2298,7 +2298,7 @@ Object {
       "namespace": "http://www.w3.org/2000/svg",
       "nodeName": "svg:linearGradient",
       "raw": "<svg:linearGradient>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 28,
         "endLine": 3,
         "endOffset": 45,
@@ -2314,8 +2314,8 @@ Object {
       "tagOpenChar": "<",
       "type": "starttag",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 50,
       "endLine": 3,
       "endOffset": 67,
@@ -2332,7 +2332,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 7,
       "endLine": 4,
       "endOffset": 74,
@@ -2346,8 +2346,8 @@ Object {
       "startOffset": 67,
       "type": "text",
     },
-    Object {
-      "attributes": Array [],
+    {
+      "attributes": [],
       "endCol": 18,
       "endLine": 4,
       "endOffset": 85,
@@ -2364,7 +2364,7 @@ Object {
       "tagOpenChar": "</",
       "type": "endtag",
     },
-    Object {
+    {
       "endCol": 5,
       "endLine": 5,
       "endOffset": 90,
@@ -2389,68 +2389,68 @@ exports[`parser tag namespace 2`] = `
 
 @@ -31,11 +31,11 @@
         },
-        \\"hasSpreadAttr\\": false,
-        \\"isCustomElement\\": false,
-        \\"isFragment\\": false,
-        \\"isGhost\\": false,
--       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
-+       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
-        \\"nodeName\\": \\"svg:defs\\",
-        \\"raw\\": \\"<svg:defs>\\",
-        \\"selfClosingSolidus\\": Object {
-          \\"endCol\\": 16,
-          \\"endLine\\": 2,
+        "hasSpreadAttr": false,
+        "isCustomElement": false,
+        "isFragment": false,
+        "isGhost": false,
+-       "namespace": "http://www.w3.org/1999/xhtml",
++       "namespace": "http://www.w3.org/2000/svg",
+        "nodeName": "svg:defs",
+        "raw": "<svg:defs>",
+        "selfClosingSolidus": Object {
+          "endCol": 16,
+          "endLine": 2,
 @@ -82,11 +82,11 @@
         },
-        \\"hasSpreadAttr\\": false,
-        \\"isCustomElement\\": false,
-        \\"isFragment\\": false,
-        \\"isGhost\\": false,
--       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
-+       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
-        \\"nodeName\\": \\"svg:linearGradient\\",
-        \\"raw\\": \\"<svg:linearGradient>\\",
-        \\"selfClosingSolidus\\": Object {
-          \\"endCol\\": 28,
-          \\"endLine\\": 3,
+        "hasSpreadAttr": false,
+        "isCustomElement": false,
+        "isFragment": false,
+        "isGhost": false,
+-       "namespace": "http://www.w3.org/1999/xhtml",
++       "namespace": "http://www.w3.org/2000/svg",
+        "nodeName": "svg:linearGradient",
+        "raw": "<svg:linearGradient>",
+        "selfClosingSolidus": Object {
+          "endCol": 28,
+          "endLine": 3,
 @@ -109,11 +109,11 @@
-        \\"endLine\\": 3,
-        \\"endOffset\\": 67,
-        \\"isCustomElement\\": false,
-        \\"isFragment\\": false,
-        \\"isGhost\\": false,
--       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
-+       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
-        \\"nodeName\\": \\"svg:linearGradient\\",
-        \\"raw\\": \\"</svg:linearGradient>\\",
-        \\"startCol\\": 29,
-        \\"startLine\\": 3,
-        \\"startOffset\\": 46,
+        "endLine": 3,
+        "endOffset": 67,
+        "isCustomElement": false,
+        "isFragment": false,
+        "isGhost": false,
+-       "namespace": "http://www.w3.org/1999/xhtml",
++       "namespace": "http://www.w3.org/2000/svg",
+        "nodeName": "svg:linearGradient",
+        "raw": "</svg:linearGradient>",
+        "startCol": 29,
+        "startLine": 3,
+        "startOffset": 46,
 @@ -141,11 +141,11 @@
-        \\"endLine\\": 4,
-        \\"endOffset\\": 85,
-        \\"isCustomElement\\": false,
-        \\"isFragment\\": false,
-        \\"isGhost\\": false,
--       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
-+       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
-        \\"nodeName\\": \\"svg:defs\\",
-        \\"raw\\": \\"</svg:defs>\\",
-        \\"startCol\\": 7,
-        \\"startLine\\": 4,
-        \\"startOffset\\": 74,"
+        "endLine": 4,
+        "endOffset": 85,
+        "isCustomElement": false,
+        "isFragment": false,
+        "isGhost": false,
+-       "namespace": "http://www.w3.org/1999/xhtml",
++       "namespace": "http://www.w3.org/2000/svg",
+        "nodeName": "svg:defs",
+        "raw": "</svg:defs>",
+        "startCol": 7,
+        "startLine": 4,
+        "startOffset": 74,"
 `;
 
 exports[`parser void element 1`] = `
-Object {
+{
   "isFragment": true,
-  "nodeList": Array [
-    Object {
-      "attributes": Array [],
+  "nodeList": [
+    {
+      "attributes": [],
       "endCol": 6,
       "endLine": 1,
       "endOffset": 5,
-      "endSpace": Object {
+      "endSpace": {
         "endCol": 5,
         "endLine": 1,
         "endOffset": 4,
@@ -2466,7 +2466,7 @@ Object {
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "img",
       "raw": "<img>",
-      "selfClosingSolidus": Object {
+      "selfClosingSolidus": {
         "endCol": 5,
         "endLine": 1,
         "endOffset": 4,

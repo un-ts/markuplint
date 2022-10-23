@@ -1,4 +1,3 @@
-import { Violation } from '@markuplint/ml-config'
 import { mlRuleTest } from 'markuplint'
 
 import rule, { Options } from './index'
@@ -74,17 +73,7 @@ describe('order example 1', () => {
     for (const example of incorrectCode) {
       const result = await mlRuleTest(rule, example, config)
 
-      expect(result.violations).toStrictEqual([
-        {
-          severity: 'error',
-          message: expect.stringMatching(
-            /Attribute ".*" is out of order. Expected order is \*structural, #variable, attribute, \[input], \[\(two-way\)], \(output\)/,
-          ),
-          line: 1,
-          col: 1,
-          raw: expect.any(String),
-        } as Violation,
-      ])
+      expect(result.violations).toMatchSnapshot()
     }
   })
 })
@@ -155,17 +144,7 @@ describe('order example 2', () => {
     for (const example of incorrectCode) {
       const result = await mlRuleTest(rule, example, config)
 
-      expect(result.violations).toStrictEqual([
-        {
-          severity: 'error',
-          message: expect.stringMatching(
-            /Attribute ".*" is out of order. Expected order is .*/,
-          ),
-          line: 1,
-          col: 1,
-          raw: expect.any(String),
-        } as Violation,
-      ])
+      expect(result.violations).toMatchSnapshot()
     }
   })
 })
@@ -225,17 +204,7 @@ describe('partially supplied definitions', () => {
     for (const example of incorrectCode) {
       const result = await mlRuleTest(rule, example, config)
 
-      expect(result.violations).toStrictEqual([
-        {
-          severity: 'error',
-          message: expect.stringMatching(
-            /Attribute ".*" is out of order. Expected order is \*structural, attribute, \(output\)/,
-          ),
-          line: 1,
-          col: 1,
-          raw: expect.any(String),
-        } as Violation,
-      ])
+      expect(result.violations).toMatchSnapshot()
     }
   })
 })

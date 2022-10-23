@@ -46,7 +46,7 @@ If you want to enable additional Angular-specific linter rules, install `markupl
 }
 ```
 
-See [markuplint-angular-rules](./packages/markuplint-angular-rules/README.md) for list of rules.
+See [markuplint-angular-rules](./packages/angular-rules/README.md) for list of rules.
 
 ## Packages
 

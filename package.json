@@ -56,6 +56,12 @@
         "rules": {
           "unicorn/filename-case": "off"
         }
+      },
+      {
+        "files": "**/*.spec.ts",
+        "rules": {
+          "sonarjs/no-duplicate-string": "off"
+        }
       }
     ]
   },

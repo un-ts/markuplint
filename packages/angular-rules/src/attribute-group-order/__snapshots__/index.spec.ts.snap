@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`order example 1 fails incorrect markup 1`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "*ngIf="true"" is out of order. Expected order is *structural, #variable, attribute, [input], [(two-way)], (output)",
+    "raw": "<div [class.valid]="true" *ngIf="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 1 fails incorrect markup 2`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "*ngIf="true"" is out of order. Expected order is *structural, #variable, attribute, [input], [(two-way)], (output)",
+    "raw": "<div #myDiv [class.valid]="true" *ngIf="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 1 fails incorrect markup 3`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "data-bar="foo"" is out of order. Expected order is *structural, #variable, attribute, [input], [(two-way)], (output)",
+    "raw": "<div *ngIf="true" [class.valid]="true" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 1 fails incorrect markup 4`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "data-bar="foo"" is out of order. Expected order is *structural, #variable, attribute, [input], [(two-way)], (output)",
+    "raw": "<div *ngIf="true" [class.valid]="true" (click)="onClick()" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 1 fails incorrect markup 5`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "data-bar="foo"" is out of order. Expected order is *structural, #variable, attribute, [input], [(two-way)], (output)",
+    "raw": "<div data-bar="foo" [class.valid]="true" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 1 fails incorrect markup 6`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is *structural, #variable, attribute, [input], [(two-way)], (output)",
+    "raw": "<div data-bar="foo" (click)="onClick()" [class.valid]="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 2 fails incorrect markup 1`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is (output), [(two-way)], [input], attribute, #variable, *structural",
+    "raw": "<div *ngIf="true" [class.valid]="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 2 fails incorrect markup 2`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is (output), [(two-way)], [input], attribute, #variable, *structural",
+    "raw": "<div #myDiv [class.valid]="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 2 fails incorrect markup 3`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is (output), [(two-way)], [input], attribute, #variable, *structural",
+    "raw": "<div *ngIf="true" [class.valid]="true" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 2 fails incorrect markup 4`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is (output), [(two-way)], [input], attribute, #variable, *structural",
+    "raw": "<div *ngIf="true" [class.valid]="true" (click)="onClick()" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 2 fails incorrect markup 5`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is (output), [(two-way)], [input], attribute, #variable, *structural",
+    "raw": "<div data-bar="foo" [class.valid]="true" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`order example 2 fails incorrect markup 6`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "(click)="onClick()"" is out of order. Expected order is (output), [(two-way)], [input], attribute, #variable, *structural",
+    "raw": "<div data-bar="foo" (click)="onClick()" [class.valid]="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`partially supplied definitions fails incorrect markup 1`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "*ngIf="true"" is out of order. Expected order is *structural, attribute, (output)",
+    "raw": "<div disabled *ngIf="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`partially supplied definitions fails incorrect markup 2`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "disabled" is out of order. Expected order is *structural, attribute, (output)",
+    "raw": "<div *ngIf="true" (click)="delete" disabled>",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`partially supplied definitions fails incorrect markup 3`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "disabled" is out of order. Expected order is *structural, attribute, (output)",
+    "raw": "<div color="red" (click)="delete" disabled>",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`partially supplied definitions fails incorrect markup 4`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "disabled" is out of order. Expected order is *structural, attribute, (output)",
+    "raw": "<div (click)="delete" disabled *ngIf="true"">",
+    "severity": "error",
+  },
+]
+`;

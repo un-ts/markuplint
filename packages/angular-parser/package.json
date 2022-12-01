@@ -34,7 +34,7 @@
     "@markuplint/ml-ast": "^2.0.0",
     "@markuplint/parser-utils": "^2.2.1",
     "angular-html-parser": "^1.8.0",
-    "tslib": "^2.4.0"
+    "tslib": "^2.4.1"
   },
   "publishConfig": {
     "access": "public"

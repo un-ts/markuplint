@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 2.0.0
+
+### Major Changes
+
+- [#114](https://github.com/un-ts/markuplint/pull/114) [`343a77e`](https://github.com/un-ts/markuplint/commit/343a77ed29792edc4bf0329fb29024cc8cd8de70) Thanks [@JounQin](https://github.com/JounQin)! - feat!: migrate to markuplint v3
+
 ## 1.1.3
 
 ### Patch Changes

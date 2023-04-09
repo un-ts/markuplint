@@ -19,13 +19,13 @@
 
 To enable Angular parser, install `markuplint-angular-parser` and adjust your `.markuplintrc`:
 
-```json
+```jsonc
 {
   "parser": {
     ".html$": "markuplint-angular-parser"
   },
   "rules": {
-    ...
+    // ...
   }
 }
 ```

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`parser doctype 1`] = `
+exports[`parser > doctype 1`] = `
 {
   "isFragment": false,
   "nodeList": [
@@ -13,7 +13,7 @@ exports[`parser doctype 1`] = `
       "name": "html",
       "nodeName": "#doctype",
       "publicId": "-//W3C//DTD HTML 4.01 Transitional//EN",
-      "raw": "<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">",
+      "raw": "<!DOCTYPE html public \\"-//W3C//DTD HTML 4.01 Transitional//EN\\" \\"http://www.w3.org/TR/html4/loose.dtd\\">",
       "startCol": 1,
       "startLine": 1,
       "startOffset": 0,
@@ -24,7 +24,7 @@ exports[`parser doctype 1`] = `
 }
 `;
 
-exports[`parser doctype 2`] = `
+exports[`parser > doctype 2`] = `
 {
   "isFragment": false,
   "nodeList": [
@@ -37,7 +37,7 @@ exports[`parser doctype 2`] = `
       "name": "html",
       "nodeName": "#doctype",
       "publicId": "-//W3C//DTD HTML 4.01 Transitional//EN",
-      "raw": "<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN">",
+      "raw": "<!DOCTYPE html public \\"-//W3C//DTD HTML 4.01 Transitional//EN\\">",
       "startCol": 1,
       "startLine": 1,
       "startOffset": 0,
@@ -48,17 +48,85 @@ exports[`parser doctype 2`] = `
 }
 `;
 
-exports[`parser doctype 3`] = `
+exports[`parser > doctype 3`] = `
 "Snapshot Diff:
-Compared values have no visual difference."
+- First value
++ Second value
+
+@@ -15,64 +15,7 @@
+        \\"startLine\\": 1,
+        \\"startOffset\\": 0,
+        \\"systemId\\": \\"http://www.w3.org/TR/html4/loose.dtd\\",
+        \\"type\\": \\"doctype\\",
+      },
+-     Object {
+-       \\"attributes\\": Array [],
+-       \\"elementType\\": \\"html\\",
+-       \\"endCol\\": 103,
+-       \\"endLine\\": 1,
+-       \\"endOffset\\": 102,
+-       \\"hasSpreadAttr\\": false,
+-       \\"isFragment\\": false,
+-       \\"isGhost\\": true,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
+-       \\"nodeName\\": \\"html\\",
+-       \\"raw\\": \\"\\",
+-       \\"startCol\\": 103,
+-       \\"startLine\\": 1,
+-       \\"startOffset\\": 102,
+-       \\"tagCloseChar\\": \\"\\",
+-       \\"tagOpenChar\\": \\"\\",
+-       \\"type\\": \\"starttag\\",
+-     },
+-     Object {
+-       \\"attributes\\": Array [],
+-       \\"elementType\\": \\"html\\",
+-       \\"endCol\\": 103,
+-       \\"endLine\\": 1,
+-       \\"endOffset\\": 102,
+-       \\"hasSpreadAttr\\": false,
+-       \\"isFragment\\": false,
+-       \\"isGhost\\": true,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
+-       \\"nodeName\\": \\"head\\",
+-       \\"raw\\": \\"\\",
+-       \\"startCol\\": 103,
+-       \\"startLine\\": 1,
+-       \\"startOffset\\": 102,
+-       \\"tagCloseChar\\": \\"\\",
+-       \\"tagOpenChar\\": \\"\\",
+-       \\"type\\": \\"starttag\\",
+-     },
+-     Object {
+-       \\"attributes\\": Array [],
+-       \\"elementType\\": \\"html\\",
+-       \\"endCol\\": 103,
+-       \\"endLine\\": 1,
+-       \\"endOffset\\": 102,
+-       \\"hasSpreadAttr\\": false,
+-       \\"isFragment\\": false,
+-       \\"isGhost\\": true,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
+-       \\"nodeName\\": \\"body\\",
+-       \\"raw\\": \\"\\",
+-       \\"startCol\\": 103,
+-       \\"startLine\\": 1,
+-       \\"startOffset\\": 102,
+-       \\"tagCloseChar\\": \\"\\",
+-       \\"tagOpenChar\\": \\"\\",
+-       \\"type\\": \\"starttag\\",
+-     },
+    ],
+  }"
 `;
 
-exports[`parser doctype 4`] = `
+exports[`parser > doctype 4`] = `
 {
   "isFragment": false,
   "nodeList": [
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 7,
       "endLine": 1,
       "endOffset": 6,
@@ -72,7 +140,6 @@ exports[`parser doctype 4`] = `
         "startOffset": 5,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -99,7 +166,6 @@ exports[`parser doctype 4`] = `
       "endCol": 14,
       "endLine": 1,
       "endOffset": 13,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -116,12 +182,12 @@ exports[`parser doctype 4`] = `
 }
 `;
 
-exports[`parser html parser difference 1`] = `
+exports[`parser > html parser difference 1`] = `
 "Snapshot Diff:
 Compared values have no visual difference."
 `;
 
-exports[`parser invalid tag 1`] = `
+exports[`parser > invalid tag 1`] = `
 {
   "isFragment": true,
   "nodeList": [
@@ -135,7 +201,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 20,
             "endLine": 1,
             "endOffset": 20,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 19,
             "startLine": 1,
             "startOffset": 19,
@@ -151,6 +217,8 @@ exports[`parser invalid tag 1`] = `
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 10,
             "endLine": 1,
@@ -160,8 +228,9 @@ exports[`parser invalid tag 1`] = `
             "startLine": 1,
             "startOffset": 3,
           },
+          "nodeName": "[*ngIf]",
           "potentialName": "ngIf",
-          "raw": "[*ngIf]="1 === 1"",
+          "raw": "[*ngIf]=\\"1 === 1\\"",
           "spacesAfterEqual": {
             "endCol": 11,
             "endLine": 1,
@@ -196,7 +265,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 12,
             "endLine": 1,
             "endOffset": 12,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 11,
             "startLine": 1,
             "startOffset": 11,
@@ -220,7 +289,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 38,
             "endLine": 1,
             "endOffset": 38,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 37,
             "startLine": 1,
             "startOffset": 37,
@@ -235,6 +304,8 @@ exports[`parser invalid tag 1`] = `
             "startOffset": 28,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 28,
             "endLine": 1,
@@ -244,8 +315,9 @@ exports[`parser invalid tag 1`] = `
             "startLine": 1,
             "startOffset": 21,
           },
+          "nodeName": "ng-*-if",
           "potentialName": "ng--if",
-          "raw": "ng-*-if="2 === 2"",
+          "raw": "ng-*-if=\\"2 === 2\\"",
           "spacesAfterEqual": {
             "endCol": 29,
             "endLine": 1,
@@ -280,7 +352,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 30,
             "endLine": 1,
             "endOffset": 30,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 29,
             "startLine": 1,
             "startOffset": 29,
@@ -304,7 +376,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 48,
             "endLine": 1,
             "endOffset": 48,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 47,
             "startLine": 1,
             "startOffset": 47,
@@ -319,6 +391,8 @@ exports[`parser invalid tag 1`] = `
             "startOffset": 43,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 43,
             "endLine": 1,
@@ -328,8 +402,9 @@ exports[`parser invalid tag 1`] = `
             "startLine": 1,
             "startOffset": 39,
           },
+          "nodeName": "href",
           "potentialName": "href",
-          "raw": "href="{{"",
+          "raw": "href=\\"{{\\"",
           "spacesAfterEqual": {
             "endCol": 44,
             "endLine": 1,
@@ -364,7 +439,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 45,
             "endLine": 1,
             "endOffset": 45,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 44,
             "startLine": 1,
             "startOffset": 44,
@@ -388,7 +463,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 79,
             "endLine": 1,
             "endOffset": 79,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 78,
             "startLine": 1,
             "startOffset": 78,
@@ -403,6 +478,8 @@ exports[`parser invalid tag 1`] = `
             "startOffset": 57,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 57,
             "endLine": 1,
@@ -412,8 +489,9 @@ exports[`parser invalid tag 1`] = `
             "startLine": 1,
             "startOffset": 49,
           },
+          "nodeName": "download",
           "potentialName": "download",
-          "raw": "download="{ { downloadUrl } }"",
+          "raw": "download=\\"{ { downloadUrl } }\\"",
           "spacesAfterEqual": {
             "endCol": 58,
             "endLine": 1,
@@ -448,7 +526,7 @@ exports[`parser invalid tag 1`] = `
             "endCol": 59,
             "endLine": 1,
             "endOffset": 59,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 58,
             "startLine": 1,
             "startOffset": 58,
@@ -465,6 +543,7 @@ exports[`parser invalid tag 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 83,
       "endLine": 1,
       "endOffset": 82,
@@ -478,12 +557,11 @@ exports[`parser invalid tag 1`] = `
         "startOffset": 81,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "a",
-      "raw": "<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" />",
+      "raw": "<a [*ngIf]=\\"1 === 1\\" ng-*-if=\\"2 === 2\\" href=\\"{{\\" download=\\"{ { downloadUrl } }\\" />",
       "selfClosingSolidus": {
         "endCol": 82,
         "endLine": 1,
@@ -514,12 +592,12 @@ exports[`parser invalid tag 1`] = `
       "type": "text",
     },
   ],
-  "unkownParseError": "Only void and foreign elements can be self closed "a" ("[ERROR ->]<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" /></>"): angular-html-parser@0:0
-Unexpected closing tag "". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags ("<a [*ngIf]="1 === 1" ng-*-if="2 === 2" href="{{" download="{ { downloadUrl } }" />[ERROR ->]</>"): angular-html-parser@0:82",
+  "unknownParseError": "Only void, custom and foreign elements can be self closed \\"a\\" (\\"[ERROR ->]<a [*ngIf]=\\"1 === 1\\" ng-*-if=\\"2 === 2\\" href=\\"{{\\" download=\\"{ { downloadUrl } }\\" /></>\\"): angular-html-parser@0:0
+Unexpected closing tag \\"\\". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags (\\"<a [*ngIf]=\\"1 === 1\\" ng-*-if=\\"2 === 2\\" href=\\"{{\\" download=\\"{ { downloadUrl } }\\" />[ERROR ->]</>\\"): angular-html-parser@0:82",
 }
 `;
 
-exports[`parser parse 1`] = `
+exports[`parser > parse 1`] = `
 {
   "isFragment": false,
   "nodeList": [
@@ -575,8 +653,8 @@ exports[`parser parse 1`] = `
       "isGhost": false,
       "nodeName": "#comment",
       "raw": "<![CDATA[ Within this Character Data block I can use double dashes as
-        much as I want (along with <, &, ', and ") *and* %MyParamEntity; will be
-        expanded to the text "Has been expanded" ... however, I can't use the
+        much as I want (along with <, &, ', and \\") *and* %MyParamEntity; will be
+        expanded to the text \\"Has been expanded\\" ... however, I can't use the
         CEND sequence. If I need to use CEND I must escape one of the brackets
         or the greater-than sign using concatenated CDATA sections. ]]>",
       "startCol": 9,
@@ -635,7 +713,7 @@ exports[`parser parse 1`] = `
             "endCol": 23,
             "endLine": 9,
             "endOffset": 471,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 22,
             "startLine": 9,
             "startOffset": 470,
@@ -650,6 +728,8 @@ exports[`parser parse 1`] = `
             "startOffset": 466,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 18,
             "endLine": 9,
@@ -659,8 +739,9 @@ exports[`parser parse 1`] = `
             "startLine": 9,
             "startOffset": 462,
           },
+          "nodeName": "lang",
           "potentialName": "lang",
-          "raw": "lang="en"",
+          "raw": "lang=\\"en\\"",
           "spacesAfterEqual": {
             "endCol": 19,
             "endLine": 9,
@@ -695,7 +776,7 @@ exports[`parser parse 1`] = `
             "endCol": 20,
             "endLine": 9,
             "endOffset": 468,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 19,
             "startLine": 9,
             "startOffset": 467,
@@ -712,6 +793,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 25,
       "endLine": 9,
       "endOffset": 472,
@@ -725,12 +807,11 @@ exports[`parser parse 1`] = `
         "startOffset": 471,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "html",
-      "raw": "<html lang="en">",
+      "raw": "<html lang=\\"en\\">",
       "selfClosingSolidus": {
         "endCol": 24,
         "endLine": 9,
@@ -763,6 +844,7 @@ exports[`parser parse 1`] = `
     },
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 17,
       "endLine": 10,
       "endOffset": 489,
@@ -776,7 +858,6 @@ exports[`parser parse 1`] = `
         "startOffset": 488,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -849,7 +930,7 @@ exports[`parser parse 1`] = `
             "endCol": 34,
             "endLine": 12,
             "endOffset": 558,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 33,
             "startLine": 12,
             "startOffset": 557,
@@ -865,6 +946,8 @@ exports[`parser parse 1`] = `
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 25,
             "endLine": 12,
@@ -874,8 +957,9 @@ exports[`parser parse 1`] = `
             "startLine": 12,
             "startOffset": 543,
           },
+          "nodeName": "[type]",
           "potentialName": "type",
-          "raw": "[type]="'text'"",
+          "raw": "[type]=\\"'text'\\"",
           "spacesAfterEqual": {
             "endCol": 26,
             "endLine": 12,
@@ -910,7 +994,7 @@ exports[`parser parse 1`] = `
             "endCol": 27,
             "endLine": 12,
             "endOffset": 551,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 26,
             "startLine": 12,
             "startOffset": 550,
@@ -927,6 +1011,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 38,
       "endLine": 12,
       "endOffset": 561,
@@ -940,12 +1025,11 @@ exports[`parser parse 1`] = `
         "startOffset": 560,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "input",
-      "raw": "<input [type]="'text'" />",
+      "raw": "<input [type]=\\"'text'\\" />",
       "selfClosingSolidus": {
         "endCol": 37,
         "endLine": 12,
@@ -986,7 +1070,7 @@ exports[`parser parse 1`] = `
             "endCol": 26,
             "endLine": 14,
             "endOffset": 607,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 25,
             "startLine": 14,
             "startOffset": 606,
@@ -1001,6 +1085,8 @@ exports[`parser parse 1`] = `
             "startOffset": 599,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 18,
             "endLine": 14,
@@ -1010,8 +1096,9 @@ exports[`parser parse 1`] = `
             "startLine": 14,
             "startOffset": 595,
           },
+          "nodeName": "type",
           "potentialName": "type",
-          "raw": "type="radio"",
+          "raw": "type=\\"radio\\"",
           "spacesAfterEqual": {
             "endCol": 19,
             "endLine": 14,
@@ -1046,7 +1133,7 @@ exports[`parser parse 1`] = `
             "endCol": 20,
             "endLine": 14,
             "endOffset": 601,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 19,
             "startLine": 14,
             "startOffset": 600,
@@ -1070,7 +1157,7 @@ exports[`parser parse 1`] = `
             "endCol": 30,
             "endLine": 15,
             "endOffset": 638,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 29,
             "startLine": 15,
             "startOffset": 637,
@@ -1086,6 +1173,8 @@ exports[`parser parse 1`] = `
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 23,
             "endLine": 15,
@@ -1095,8 +1184,9 @@ exports[`parser parse 1`] = `
             "startLine": 15,
             "startOffset": 622,
           },
+          "nodeName": "[checked]",
           "potentialName": "checked",
-          "raw": "[checked]="true"",
+          "raw": "[checked]=\\"true\\"",
           "spacesAfterEqual": {
             "endCol": 24,
             "endLine": 15,
@@ -1131,7 +1221,7 @@ exports[`parser parse 1`] = `
             "endCol": 25,
             "endLine": 15,
             "endOffset": 633,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 24,
             "startLine": 15,
             "startOffset": 632,
@@ -1148,6 +1238,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 15,
       "endLine": 16,
       "endOffset": 653,
@@ -1161,14 +1252,13 @@ exports[`parser parse 1`] = `
         "startOffset": 652,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "input",
       "raw": "<input
-              type="radio"
-              [checked]="true"
+              type=\\"radio\\"
+              [checked]=\\"true\\"
             />",
       "selfClosingSolidus": {
         "endCol": 14,
@@ -1211,7 +1301,7 @@ exports[`parser parse 1`] = `
             "endCol": 27,
             "endLine": 18,
             "endOffset": 700,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 26,
             "startLine": 18,
             "startOffset": 699,
@@ -1226,6 +1316,8 @@ exports[`parser parse 1`] = `
             "startOffset": 691,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 18,
             "endLine": 18,
@@ -1235,8 +1327,9 @@ exports[`parser parse 1`] = `
             "startLine": 18,
             "startOffset": 687,
           },
+          "nodeName": "type",
           "potentialName": "type",
-          "raw": "type="number"",
+          "raw": "type=\\"number\\"",
           "spacesAfterEqual": {
             "endCol": 19,
             "endLine": 18,
@@ -1271,7 +1364,7 @@ exports[`parser parse 1`] = `
             "endCol": 20,
             "endLine": 18,
             "endOffset": 693,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 19,
             "startLine": 18,
             "startOffset": 692,
@@ -1295,7 +1388,7 @@ exports[`parser parse 1`] = `
             "endCol": 27,
             "endLine": 19,
             "endOffset": 728,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 26,
             "startLine": 19,
             "startOffset": 727,
@@ -1311,6 +1404,8 @@ exports[`parser parse 1`] = `
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 21,
             "endLine": 19,
@@ -1320,8 +1415,9 @@ exports[`parser parse 1`] = `
             "startLine": 19,
             "startOffset": 715,
           },
+          "nodeName": "[value]",
           "potentialName": "value",
-          "raw": "[value]="123"",
+          "raw": "[value]=\\"123\\"",
           "spacesAfterEqual": {
             "endCol": 22,
             "endLine": 19,
@@ -1356,7 +1452,7 @@ exports[`parser parse 1`] = `
             "endCol": 23,
             "endLine": 19,
             "endOffset": 724,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 22,
             "startLine": 19,
             "startOffset": 723,
@@ -1373,6 +1469,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 15,
       "endLine": 20,
       "endOffset": 743,
@@ -1386,14 +1483,13 @@ exports[`parser parse 1`] = `
         "startOffset": 742,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "input",
       "raw": "<input
-              type="number"
-              [value]="123"
+              type=\\"number\\"
+              [value]=\\"123\\"
             />",
       "selfClosingSolidus": {
         "endCol": 14,
@@ -1428,6 +1524,7 @@ exports[`parser parse 1`] = `
     },
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 21,
       "endLine": 21,
       "endOffset": 764,
@@ -1441,7 +1538,6 @@ exports[`parser parse 1`] = `
         "startOffset": 763,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1487,7 +1583,7 @@ exports[`parser parse 1`] = `
             "endCol": 43,
             "endLine": 22,
             "endOffset": 808,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 42,
             "startLine": 22,
             "startOffset": 807,
@@ -1503,6 +1599,8 @@ exports[`parser parse 1`] = `
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 30,
             "endLine": 22,
@@ -1512,8 +1610,9 @@ exports[`parser parse 1`] = `
             "startLine": 22,
             "startOffset": 787,
           },
+          "nodeName": "selected",
           "potentialName": "selected",
-          "raw": "selected="{{ true }}"",
+          "raw": "selected=\\"{{ true }}\\"",
           "spacesAfterEqual": {
             "endCol": 31,
             "endLine": 22,
@@ -1548,7 +1647,7 @@ exports[`parser parse 1`] = `
             "endCol": 32,
             "endLine": 22,
             "endOffset": 797,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 31,
             "startLine": 22,
             "startOffset": 796,
@@ -1565,6 +1664,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 45,
       "endLine": 22,
       "endOffset": 809,
@@ -1578,12 +1678,11 @@ exports[`parser parse 1`] = `
         "startOffset": 808,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "option",
-      "raw": "<option selected="{{ true }}">",
+      "raw": "<option selected=\\"{{ true }}\\">",
       "selfClosingSolidus": {
         "endCol": 44,
         "endLine": 22,
@@ -1605,7 +1704,6 @@ exports[`parser parse 1`] = `
       "endCol": 54,
       "endLine": 22,
       "endOffset": 818,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1637,7 +1735,6 @@ exports[`parser parse 1`] = `
       "endCol": 22,
       "endLine": 23,
       "endOffset": 840,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1666,6 +1763,7 @@ exports[`parser parse 1`] = `
     },
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 18,
       "endLine": 24,
       "endOffset": 858,
@@ -1679,7 +1777,6 @@ exports[`parser parse 1`] = `
         "startOffset": 857,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1718,6 +1815,7 @@ exports[`parser parse 1`] = `
     },
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 21,
       "endLine": 26,
       "endOffset": 899,
@@ -1731,7 +1829,6 @@ exports[`parser parse 1`] = `
         "startOffset": 898,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1771,7 +1868,6 @@ exports[`parser parse 1`] = `
       "endCol": 32,
       "endLine": 26,
       "endOffset": 910,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1804,7 +1900,6 @@ exports[`parser parse 1`] = `
       "endCol": 19,
       "endLine": 28,
       "endOffset": 949,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1841,7 +1936,7 @@ exports[`parser parse 1`] = `
             "endCol": 42,
             "endLine": 29,
             "endOffset": 992,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 41,
             "startLine": 29,
             "startOffset": 991,
@@ -1856,6 +1951,8 @@ exports[`parser parse 1`] = `
             "startOffset": 979,
           },
           "isDuplicatable": false,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 29,
             "endLine": 29,
@@ -1865,8 +1962,9 @@ exports[`parser parse 1`] = `
             "startLine": 29,
             "startOffset": 967,
           },
+          "nodeName": "@triggerName",
           "potentialName": "triggerName",
-          "raw": "@triggerName="expression"",
+          "raw": "@triggerName=\\"expression\\"",
           "spacesAfterEqual": {
             "endCol": 30,
             "endLine": 29,
@@ -1901,7 +1999,7 @@ exports[`parser parse 1`] = `
             "endCol": 31,
             "endLine": 29,
             "endOffset": 981,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 30,
             "startLine": 29,
             "startOffset": 980,
@@ -1918,6 +2016,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 44,
       "endLine": 29,
       "endOffset": 993,
@@ -1931,12 +2030,11 @@ exports[`parser parse 1`] = `
         "startOffset": 992,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "div",
-      "raw": "<div @triggerName="expression">",
+      "raw": "<div @triggerName=\\"expression\\">",
       "selfClosingSolidus": {
         "endCol": 43,
         "endLine": 29,
@@ -1958,7 +2056,6 @@ exports[`parser parse 1`] = `
       "endCol": 50,
       "endLine": 29,
       "endOffset": 999,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -1995,7 +2092,7 @@ exports[`parser parse 1`] = `
             "endCol": 46,
             "endLine": 30,
             "endOffset": 1046,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 45,
             "startLine": 30,
             "startOffset": 1045,
@@ -2011,6 +2108,8 @@ exports[`parser parse 1`] = `
           },
           "isDuplicatable": false,
           "isDynamicValue": true,
+          "isFragment": false,
+          "isGhost": false,
           "name": {
             "endCol": 31,
             "endLine": 30,
@@ -2020,8 +2119,9 @@ exports[`parser parse 1`] = `
             "startLine": 30,
             "startOffset": 1017,
           },
+          "nodeName": "[@triggerName]",
           "potentialName": "triggerName",
-          "raw": "[@triggerName]="'expression'"",
+          "raw": "[@triggerName]=\\"'expression'\\"",
           "spacesAfterEqual": {
             "endCol": 32,
             "endLine": 30,
@@ -2056,7 +2156,7 @@ exports[`parser parse 1`] = `
             "endCol": 33,
             "endLine": 30,
             "endOffset": 1033,
-            "raw": """,
+            "raw": "\\"",
             "startCol": 32,
             "startLine": 30,
             "startOffset": 1032,
@@ -2073,6 +2173,7 @@ exports[`parser parse 1`] = `
           },
         },
       ],
+      "elementType": "html",
       "endCol": 48,
       "endLine": 30,
       "endOffset": 1047,
@@ -2086,12 +2187,11 @@ exports[`parser parse 1`] = `
         "startOffset": 1046,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
       "nodeName": "div",
-      "raw": "<div [@triggerName]="'expression'">",
+      "raw": "<div [@triggerName]=\\"'expression'\\">",
       "selfClosingSolidus": {
         "endCol": 47,
         "endLine": 30,
@@ -2113,7 +2213,6 @@ exports[`parser parse 1`] = `
       "endCol": 54,
       "endLine": 30,
       "endOffset": 1053,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -2145,7 +2244,6 @@ exports[`parser parse 1`] = `
       "endCol": 18,
       "endLine": 31,
       "endOffset": 1071,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -2177,7 +2275,6 @@ exports[`parser parse 1`] = `
       "endCol": 16,
       "endLine": 32,
       "endOffset": 1087,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -2208,7 +2305,7 @@ exports[`parser parse 1`] = `
 }
 `;
 
-exports[`parser tag namespace 1`] = `
+exports[`parser > tag namespace 1`] = `
 {
   "isFragment": true,
   "nodeList": [
@@ -2228,6 +2325,7 @@ exports[`parser tag namespace 1`] = `
     },
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 17,
       "endLine": 2,
       "endOffset": 17,
@@ -2241,7 +2339,6 @@ exports[`parser tag namespace 1`] = `
         "startOffset": 16,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/2000/svg",
@@ -2279,6 +2376,7 @@ exports[`parser tag namespace 1`] = `
     },
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 29,
       "endLine": 3,
       "endOffset": 46,
@@ -2292,7 +2390,6 @@ exports[`parser tag namespace 1`] = `
         "startOffset": 45,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/2000/svg",
@@ -2319,7 +2416,6 @@ exports[`parser tag namespace 1`] = `
       "endCol": 50,
       "endLine": 3,
       "endOffset": 67,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/2000/svg",
@@ -2351,7 +2447,6 @@ exports[`parser tag namespace 1`] = `
       "endCol": 18,
       "endLine": 4,
       "endOffset": 85,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/2000/svg",
@@ -2382,71 +2477,72 @@ exports[`parser tag namespace 1`] = `
 }
 `;
 
-exports[`parser tag namespace 2`] = `
+exports[`parser > tag namespace 2`] = `
 "Snapshot Diff:
 - First value
 + Second value
 
 @@ -31,11 +31,11 @@
+          \\"startOffset\\": 16,
         },
-        "hasSpreadAttr": false,
-        "isCustomElement": false,
-        "isFragment": false,
-        "isGhost": false,
--       "namespace": "http://www.w3.org/1999/xhtml",
-+       "namespace": "http://www.w3.org/2000/svg",
-        "nodeName": "svg:defs",
-        "raw": "<svg:defs>",
-        "selfClosingSolidus": Object {
-          "endCol": 16,
-          "endLine": 2,
+        \\"hasSpreadAttr\\": false,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:defs\\",
+        \\"raw\\": \\"<svg:defs>\\",
+        \\"selfClosingSolidus\\": Object {
+          \\"endCol\\": 16,
+          \\"endLine\\": 2,
 @@ -82,11 +82,11 @@
+          \\"startOffset\\": 45,
         },
-        "hasSpreadAttr": false,
-        "isCustomElement": false,
-        "isFragment": false,
-        "isGhost": false,
--       "namespace": "http://www.w3.org/1999/xhtml",
-+       "namespace": "http://www.w3.org/2000/svg",
-        "nodeName": "svg:linearGradient",
-        "raw": "<svg:linearGradient>",
-        "selfClosingSolidus": Object {
-          "endCol": 28,
-          "endLine": 3,
-@@ -109,11 +109,11 @@
-        "endLine": 3,
-        "endOffset": 67,
-        "isCustomElement": false,
-        "isFragment": false,
-        "isGhost": false,
--       "namespace": "http://www.w3.org/1999/xhtml",
-+       "namespace": "http://www.w3.org/2000/svg",
-        "nodeName": "svg:linearGradient",
-        "raw": "</svg:linearGradient>",
-        "startCol": 29,
-        "startLine": 3,
-        "startOffset": 46,
-@@ -141,11 +141,11 @@
-        "endLine": 4,
-        "endOffset": 85,
-        "isCustomElement": false,
-        "isFragment": false,
-        "isGhost": false,
--       "namespace": "http://www.w3.org/1999/xhtml",
-+       "namespace": "http://www.w3.org/2000/svg",
-        "nodeName": "svg:defs",
-        "raw": "</svg:defs>",
-        "startCol": 7,
-        "startLine": 4,
-        "startOffset": 74,"
+        \\"hasSpreadAttr\\": false,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:linearGradient\\",
+        \\"raw\\": \\"<svg:linearGradient>\\",
+        \\"selfClosingSolidus\\": Object {
+          \\"endCol\\": 28,
+          \\"endLine\\": 3,
+@@ -108,11 +108,11 @@
+        \\"endCol\\": 50,
+        \\"endLine\\": 3,
+        \\"endOffset\\": 67,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:linearGradient\\",
+        \\"raw\\": \\"</svg:linearGradient>\\",
+        \\"startCol\\": 29,
+        \\"startLine\\": 3,
+        \\"startOffset\\": 46,
+@@ -139,11 +139,11 @@
+        \\"endCol\\": 18,
+        \\"endLine\\": 4,
+        \\"endOffset\\": 85,
+        \\"isFragment\\": false,
+        \\"isGhost\\": false,
+-       \\"namespace\\": \\"http://www.w3.org/1999/xhtml\\",
++       \\"namespace\\": \\"http://www.w3.org/2000/svg\\",
+        \\"nodeName\\": \\"svg:defs\\",
+        \\"raw\\": \\"</svg:defs>\\",
+        \\"startCol\\": 7,
+        \\"startLine\\": 4,
+        \\"startOffset\\": 74,"
 `;
 
-exports[`parser void element 1`] = `
+exports[`parser > void element 1`] = `
 {
   "isFragment": true,
   "nodeList": [
     {
       "attributes": [],
+      "elementType": "html",
       "endCol": 6,
       "endLine": 1,
       "endOffset": 5,
@@ -2460,7 +2556,6 @@ exports[`parser void element 1`] = `
         "startOffset": 4,
       },
       "hasSpreadAttr": false,
-      "isCustomElement": false,
       "isFragment": false,
       "isGhost": false,
       "namespace": "http://www.w3.org/1999/xhtml",
@@ -2486,7 +2581,7 @@ exports[`parser void element 1`] = `
 }
 `;
 
-exports[`parser void element 2`] = `
+exports[`parser > void element 2`] = `
 "Snapshot Diff:
 Compared values have no visual difference."
 `;

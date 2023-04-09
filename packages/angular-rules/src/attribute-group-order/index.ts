@@ -1,6 +1,6 @@
 import { createRule } from '@markuplint/ml-core'
 
-type AngularAttributeType =
+export type AngularAttributeType =
   | '(output)'
   | '[(two-way)]'
   | '[input]'
@@ -8,7 +8,7 @@ type AngularAttributeType =
   | '#variable'
   | 'attribute'
 
-const defaultOrder: AngularAttributeType[] = [
+export const defaultOrder: AngularAttributeType[] = [
   '*structural',
   '#variable',
   'attribute',
@@ -22,15 +22,15 @@ export interface Options {
 }
 
 export default createRule<boolean, Options>({
-  defaultServerity: 'error',
+  defaultSeverity: 'error',
   defaultValue: true,
   defaultOptions: {
     order: defaultOrder,
   },
   async verify(context) {
     await context.document.walkOn('Element', node => {
-      validateOptions(node.rule.option)
-      const order = node.rule.option.order
+      validateOptions(node.rule.options)
+      const order = node.rule.options.order
       const attributes = node.attributes
       let lastFoundType: AngularAttributeType | null = null
       for (const attribute of attributes) {
@@ -68,18 +68,24 @@ export default createRule<boolean, Options>({
 
 function getAttributeType(attribute: string): AngularAttributeType {
   switch (true) {
-    case attribute.startsWith('*'):
+    case attribute.startsWith('*'): {
       return '*structural'
-    case attribute.startsWith('[('):
+    }
+    case attribute.startsWith('[('): {
       return '[(two-way)]'
-    case attribute.startsWith('['):
+    }
+    case attribute.startsWith('['): {
       return '[input]'
-    case attribute.startsWith('('):
+    }
+    case attribute.startsWith('('): {
       return '(output)'
-    case attribute.startsWith('#'):
+    }
+    case attribute.startsWith('#'): {
       return '#variable'
-    default:
+    }
+    default: {
       return 'attribute'
+    }
   }
 }
 

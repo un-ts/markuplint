@@ -1,6 +1,6 @@
 import { mlRuleTest } from 'markuplint'
 
-import rule, { Options } from './index'
+import { type Options, attributeGroupOrder } from 'markuplint-angular-rules'
 
 describe('order example 1', () => {
   const config = {
@@ -33,7 +33,7 @@ describe('order example 1', () => {
     ]
 
     for (const example of correctCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
       expect(result.violations.length).toBe(0)
     }
   })
@@ -55,7 +55,7 @@ describe('order example 1', () => {
     ]
 
     for (const example of correctCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
       expect(result.violations.length).toBe(0)
     }
   })
@@ -71,7 +71,7 @@ describe('order example 1', () => {
     ]
 
     for (const example of incorrectCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
 
       expect(result.violations).toMatchSnapshot()
     }
@@ -108,7 +108,7 @@ describe('order example 2', () => {
     ]
 
     for (const example of correctCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
       expect(result.violations.length).toBe(0)
     }
   })
@@ -126,7 +126,7 @@ describe('order example 2', () => {
     ]
 
     for (const example of correctCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
       expect(result.violations.length).toBe(0)
     }
   })
@@ -142,7 +142,7 @@ describe('order example 2', () => {
     ]
 
     for (const example of incorrectCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
 
       expect(result.violations).toMatchSnapshot()
     }
@@ -172,7 +172,7 @@ describe('partially supplied definitions', () => {
     ]
 
     for (const example of correctCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
       expect(result.violations.length).toBe(0)
     }
   })
@@ -188,7 +188,7 @@ describe('partially supplied definitions', () => {
     ]
 
     for (const example of correctCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
       expect(result.violations.length).toBe(0)
     }
   })
@@ -202,7 +202,7 @@ describe('partially supplied definitions', () => {
     ]
 
     for (const example of incorrectCode) {
-      const result = await mlRuleTest(rule, example, config)
+      const result = await mlRuleTest(attributeGroupOrder, example, config)
 
       expect(result.violations).toMatchSnapshot()
     }
@@ -211,12 +211,13 @@ describe('partially supplied definitions', () => {
 
 describe('options validation', () => {
   it('throws an error when an order option is not an array', async () => {
-    const result = await mlRuleTest(rule, '<div></div>', {
+    const result = await mlRuleTest(attributeGroupOrder, '<div></div>', {
       rule: {
         value: true,
-        option: {
+        options: {
+          // @ts-expect-error
           order: 'incorrect',
-        } as unknown as Options,
+        },
       },
     })
     expect(result.violations[0].message).toMatch(
@@ -225,12 +226,13 @@ describe('options validation', () => {
   })
 
   it('throws an error when an incorrect order option is supplied', async () => {
-    const result = await mlRuleTest(rule, '<div></div>', {
+    const result = await mlRuleTest(attributeGroupOrder, '<div></div>', {
       rule: {
         value: true,
-        option: {
+        options: {
+          // @ts-expect-error
           order: ['incorrect'],
-        } as unknown as Options,
+        },
       },
     })
     expect(result.violations[0].message).toMatch(

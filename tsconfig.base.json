@@ -2,8 +2,10 @@
   "extends": "@1stg/tsconfig/node",
   "compilerOptions": {
     "paths": {
-      "markuplint-angular-parser": ["./packages/angular-parser/src"]
+      "markuplint-angular-parser": ["./packages/angular-parser/src"],
+      "markuplint-angular-rules": ["./packages/angular-rules/src"]
     },
-    "target": "ES2019"
+    "module": "ESNext",
+    "target": "ES2020"
   }
 }

@@ -12,3 +12,8 @@ export default createPlugin({
     }
   },
 })
+
+export {
+  default as attributeGroupOrder,
+  type Options,
+} from './attribute-group-order'

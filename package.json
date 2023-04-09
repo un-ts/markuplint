@@ -12,7 +12,7 @@
   "packageManager": "yarn@1.22.19",
   "scripts": {
     "build": "run-p build:*",
-    "build:r": "r -f es2019",
+    "build:r": "r -f cjs",
     "build:ts": "tsc -b",
     "clean": "rimraf packages/*/{lib,*.tsbuildinfo}",
     "lint": "run-p lint:*",
@@ -21,26 +21,25 @@
     "prepare": "simple-git-hooks && yarn-deduplicate --strategy fewer || exit 0",
     "prerelease": "yarn build",
     "release": "changeset publish",
-    "test": "jest",
+    "test": "vitest run --coverage",
     "typecov": "type-coverage"
   },
   "devDependencies": {
-    "@1stg/lib-config": "^10.3.0",
+    "@1stg/lib-config": "^11.0.1",
     "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.25.2",
-    "@markuplint/rule-textlint": "^2.5.6",
-    "@types/jest": "^29.2.5",
-    "@types/node": "^18.11.3",
-    "jest": "^29.3.1",
-    "markuplint": "^2.10.2",
+    "@changesets/cli": "^2.26.1",
+    "@types/node": "^18.15.11",
+    "@vitest/coverage-istanbul": "^0.29.8",
     "snapshot-diff": "^0.10.0",
-    "ts-jest": "^29.0.3",
-    "type-coverage": "^2.22.0",
-    "typescript": "^4.8.4",
-    "yarn-deduplicate": "^6.0.0"
+    "type-coverage": "^2.25.0",
+    "typescript": "^5.0.4",
+    "unplugin-auto-import": "^0.15.2",
+    "vitest": "^0.29.8",
+    "yarn-deduplicate": "^6.0.1"
   },
   "resolutions": {
-    "prettier": "^2.7.1"
+    "markuplint": "^3.7.0",
+    "prettier": "^2.8.7"
   },
   "commitlint": {
     "extends": "@1stg"
@@ -70,20 +69,10 @@
     "lib",
     "CHANGELOG.md",
     "packages/*/test/fixtures",
+    "/auto-imports.d.ts",
     "!/.github",
     "!/.*.js"
   ],
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/packages/sync/rules"
-    ],
-    "moduleNameMapper": {
-      "^markuplint-angular-parser$": "<rootDir>/packages/angular-parser/src"
-    }
-  },
   "prettier": "@1stg/prettier-config",
   "remarkConfig": {
     "plugins": [

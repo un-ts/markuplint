@@ -1,6 +1,7 @@
 {
   "name": "markuplint-angular-parser",
   "version": "1.1.3",
+  "type": "module",
   "description": "Angular parser for markuplint.",
   "repository": "git+https://github.com/un-ts/markuplint.git",
   "homepage": "https://github.com/un-ts/markuplint/tree/main/packages/angular-parser",
@@ -8,14 +9,14 @@
   "funding": "https://opencollective.com/unts",
   "license": "MIT",
   "engines": {
-    "node": ">=v10"
+    "node": ">=14"
   },
-  "main": "./lib/index.js",
-  "module": "./lib/index.es2019.mjs",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.js",
   "exports": {
     "types": "./lib/index.d.ts",
-    "import": "./lib/index.es2019.mjs",
-    "require": "./lib/index.js"
+    "import": "./lib/index.js",
+    "require": "./lib/index.cjs"
   },
   "types": "./lib/index.d.ts",
   "files": [
@@ -30,11 +31,12 @@
     "angular-linter"
   ],
   "dependencies": {
-    "@markuplint/html-parser": "^2.2.2",
-    "@markuplint/ml-ast": "^2.0.0",
-    "@markuplint/parser-utils": "^2.2.1",
-    "angular-html-parser": "^1.8.0",
-    "tslib": "^2.4.1"
+    "@markuplint/html-parser": "^3.6.1",
+    "@markuplint/ml-ast": "^3.1.0",
+    "@markuplint/parser-utils": "^3.6.1",
+    "angular-html-parser": "^4.0.1",
+    "synckit": "^0.8.5",
+    "tslib": "^2.5.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`fixtures: attr-duplication.html 1`] = `
+exports[`fixtures > attr-duplication.html 1`] = `
 [
   {
     "col": 19,
@@ -21,15 +21,15 @@ exports[`fixtures: attr-duplication.html 1`] = `
 ]
 `;
 
-exports[`fixtures: case-sensitive-tag-name.html 1`] = `[]`;
+exports[`fixtures > case-sensitive-tag-name.html 1`] = `[]`;
 
-exports[`fixtures: deprecated-element.html 1`] = `
+exports[`fixtures > deprecated-element.html 1`] = `
 [
   {
     "col": 1,
     "line": 1,
-    "message": "The "font" element is deprecated",
-    "raw": "<font color="red">",
+    "message": "The \\"font\\" element is obsolete",
+    "raw": "<font color=\\"red\\">",
     "ruleId": "deprecated-element",
     "severity": "error",
   },

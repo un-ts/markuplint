@@ -39,7 +39,7 @@
   },
   "resolutions": {
     "markuplint": "^3.7.0",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.8"
   },
   "commitlint": {
     "extends": "@1stg"

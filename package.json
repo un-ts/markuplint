@@ -35,7 +35,7 @@
     "typescript": "^5.0.4",
     "unplugin-auto-import": "^0.15.2",
     "vitest": "^0.29.8",
-    "yarn-deduplicate": "^6.0.1"
+    "yarn-deduplicate": "^6.0.2"
   },
   "resolutions": {
     "markuplint": "^3.7.0",

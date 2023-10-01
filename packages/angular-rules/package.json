@@ -4,7 +4,7 @@
   "type": "module",
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=14.21.3"
   },
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",

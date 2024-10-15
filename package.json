@@ -31,7 +31,7 @@
     "@types/node": "^18.15.11",
     "@vitest/coverage-istanbul": "^0.29.8",
     "snapshot-diff": "^0.10.0",
-    "type-coverage": "^2.25.0",
+    "type-coverage": "^2.29.7",
     "typescript": "^5.0.4",
     "unplugin-auto-import": "^0.15.2",
     "vitest": "^0.29.8",

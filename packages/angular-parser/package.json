@@ -36,7 +36,7 @@
     "@markuplint/parser-utils": "^3.6.1",
     "angular-html-parser": "^4.0.1",
     "synckit": "^0.8.5",
-    "tslib": "^2.5.0"
+    "tslib": "^2.8.1"
   },
   "publishConfig": {
     "access": "public"

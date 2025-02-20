@@ -27,7 +27,7 @@
   "devDependencies": {
     "@1stg/lib-config": "^11.0.1",
     "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.26.1",
+    "@changesets/cli": "^2.28.1",
     "@types/node": "^18.15.11",
     "@vitest/coverage-istanbul": "^0.29.8",
     "snapshot-diff": "^0.10.0",

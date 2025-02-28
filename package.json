@@ -32,7 +32,7 @@
     "@vitest/coverage-istanbul": "^0.29.8",
     "snapshot-diff": "^0.10.0",
     "type-coverage": "^2.25.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.8.2",
     "unplugin-auto-import": "^0.15.2",
     "vitest": "^0.29.8",
     "yarn-deduplicate": "^6.0.1"

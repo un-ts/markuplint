@@ -6,8 +6,8 @@ __metadata:
   cacheKey: 10c0
 
 "@1stg/babel-preset@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@1stg/babel-preset@npm:4.0.2"
+  version: 4.0.3
+  resolution: "@1stg/babel-preset@npm:4.0.3"
   dependencies:
     "@babel/helper-plugin-utils": "npm:^7.26.5"
     "@babel/plugin-proposal-decorators": "npm:^7.25.9"
@@ -15,6 +15,7 @@ __metadata:
     "@babel/preset-env": "npm:^7.26.9"
     "@babel/preset-react": "npm:^7.26.3"
     "@babel/preset-typescript": "npm:^7.26.0"
+    "@pkgr/utils": "npm:^3.0.0"
     "@vue/babel-helper-vue-jsx-merge-props": "npm:^1.4.0"
     "@vue/babel-plugin-jsx": "npm:^1.3.0"
     "@vue/babel-preset-jsx": "npm:^1.4.0"
@@ -28,7 +29,7 @@ __metadata:
     fast-async: "npm:^7.0.6"
   peerDependencies:
     "@babel/core": ">=7.14.1"
-  checksum: 10c0/25888fd330a2021cdce958f9ab331452f5e96d6664d5f21aa171ddc425a4c98fba7b8321f9a0e3fa767d9e32d13cef9e2ecfc4a3d581663573face332235df6a
+  checksum: 10c0/0f7305879608a325e6fe5b11655b9a363956b310d378258124b424ecfaaf86a07bbb1d489e2aa3cdd8a2183bf8cceb333da0e3421f8af22e4b051522dc00db44
   languageName: node
   linkType: hard
 
@@ -70,8 +71,8 @@ __metadata:
   linkType: hard
 
 "@1stg/eslint-config@npm:^8.0.3":
-  version: 8.0.4
-  resolution: "@1stg/eslint-config@npm:8.0.4"
+  version: 8.0.6
+  resolution: "@1stg/eslint-config@npm:8.0.6"
   dependencies:
     "@1stg/config": "npm:^1.0.0"
     "@babel/eslint-parser": "npm:^7.26.8"
@@ -109,7 +110,7 @@ __metadata:
     typescript-eslint: "npm:^8.26.0"
   peerDependencies:
     eslint: ">=8.0.0"
-  checksum: 10c0/fdc4b92d08fc4c1b1788f6c7c34a2d801c8dc094e0b109c5d70dadbd165c75d0c82aa7419f3371e375a76108cd49faa9e443d98939d58b5cb15ea6cea22583f1
+  checksum: 10c0/1622e5de4e036fd44b16a4827651ebe9303ea71497d1f62ee0ae3ba2ce76d1fa892f422822de173761ac712eb98d0d676e89e8d1097a79a07ed62243fc465ef8
   languageName: node
   linkType: hard
 
@@ -4047,7 +4048,7 @@ __metadata:
     npm-run-all2: "npm:^7.0.2"
     prettier: "npm:^3.5.3"
     rimraf: "npm:^6.0.1"
-    simple-git-hooks: "JounQin/simple-git-hooks#feat/esm_config"
+    simple-git-hooks: "npm:^2.11.1"
     snapshot-diff: "npm:^0.10.0"
     type-coverage: "npm:^2.29.7"
     type-fest: "npm:^4.37.0"
@@ -12625,12 +12626,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git-hooks@JounQin/simple-git-hooks#feat/esm_config":
+"simple-git-hooks@npm:^2.11.1":
   version: 2.11.1
-  resolution: "simple-git-hooks@https://github.com/JounQin/simple-git-hooks.git#commit=fa5482ea9faa089cd2579f3afc54b439fbd4a4fb"
+  resolution: "simple-git-hooks@npm:2.11.1"
   bin:
-    simple-git-hooks: ./cli.js
-  checksum: 10c0/612be1e58c88f97e31ac199469bc480c216358c337231f2fbe40d5f2abc685b9569ea2160945f84e72b5a57c144b586e822dc5969489f2d1bca8f1b4e32e6506
+    simple-git-hooks: cli.js
+  checksum: 10c0/ba48c38bcfebc80f8050f36bf313dd6ec3c6d4ccee55b05c1e2c3b2983b13acf7baaca705de8b9b9a6d81a5934a7b22aca3d6116d5550000c97dc76b0219fa54
   languageName: node
   linkType: hard
 

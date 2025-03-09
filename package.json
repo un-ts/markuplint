@@ -37,7 +37,7 @@
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
-    "simple-git-hooks": "JounQin/simple-git-hooks#feat/esm_config",
+    "simple-git-hooks": "^2.11.1",
     "snapshot-diff": "^0.10.0",
     "type-coverage": "^2.29.7",
     "type-fest": "^4.37.0",

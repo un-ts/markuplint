@@ -50,6 +50,7 @@
   },
   "resolutions": {
     "markuplint": "^4.11.7",
+    "markuplint-angular-parser": "workspace:*",
     "prettier": "^3.5.3"
   },
   "commitlint": {
@@ -63,7 +64,7 @@
   },
   "renovate": {
     "extends": [
-      "@1stg"
+      "github>1stG/configs"
     ]
   },
   "typeCoverage": {

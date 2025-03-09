@@ -1,0 +1,13 @@
+diff --git a/node_modules/@markuplint/ml-ast/lib/types.d.ts b/node_modules/@markuplint/ml-ast/lib/types.d.ts
+index 43e0352..994e23f 100644
+--- a/node_modules/@markuplint/ml-ast/lib/types.d.ts
++++ b/node_modules/@markuplint/ml-ast/lib/types.d.ts
+@@ -23,7 +23,7 @@ export interface MLASTToken {
+     readonly startCol: number;
+     readonly endCol: number;
+ }
+-interface MLASTAbstractNode extends MLASTToken {
++export interface MLASTAbstractNode extends MLASTToken {
+     readonly type: MLASTNodeType;
+     readonly nodeName: string;
+     readonly parentNode: MLASTParentNode | null;

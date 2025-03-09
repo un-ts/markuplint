@@ -1,0 +1,21 @@
+diff --git a/node_modules/@markuplint/html-parser/lib/index.d.ts b/node_modules/@markuplint/html-parser/lib/index.d.ts
+index 7e4151b..6360046 100644
+--- a/node_modules/@markuplint/html-parser/lib/index.d.ts
++++ b/node_modules/@markuplint/html-parser/lib/index.d.ts
+@@ -1,2 +1,2 @@
+ export { getNamespace } from './get-namespace.js';
+-export { parser, HtmlParser } from './parser.js';
++export { parser, HtmlParser, type State, type Node } from './parser.js';
+diff --git a/node_modules/@markuplint/html-parser/lib/parser.d.ts b/node_modules/@markuplint/html-parser/lib/parser.d.ts
+index 5f0d3ca..9dea6ef 100644
+--- a/node_modules/@markuplint/html-parser/lib/parser.d.ts
++++ b/node_modules/@markuplint/html-parser/lib/parser.d.ts
+@@ -3,7 +3,7 @@ import type { Node } from './types.js';
+ import type { MLASTNodeTreeItem, MLASTParentNode } from '@markuplint/ml-ast';
+ import type { ChildToken, ParseOptions, ParserOptions } from '@markuplint/parser-utils';
+ import { Parser } from '@markuplint/parser-utils';
+-type State = {
++export type State = {
+     startsHeadTagOrBodyTag: Replacements | null;
+     afterPosition: {
+         endOffset: number;

@@ -22,11 +22,11 @@ To enable Angular parser, install `markuplint-angular-parser` and adjust your `.
 ```jsonc
 {
   "parser": {
-    ".html$": "markuplint-angular-parser"
+    ".html$": "markuplint-angular-parser",
   },
   "rules": {
     // ...
-  }
+  },
 }
 ```
 
@@ -52,10 +52,10 @@ See [markuplint-angular-rules](./packages/angular-rules/README.md) for list of r
 
 This repository is a monorepo managed by [changesets][] what means we actually publish several packages to npm from same codebase, including:
 
-| Package                                                          | Description                            | Version                                                                                                                                                                                                                                                         |
-| ---------------------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`markuplint-angular-parser`](/packages/angular-parser)          | Angular parser for markuplint.         | [![npm](https://img.shields.io/npm/v/markuplint-angular-parser.svg)](https://www.npmjs.com/package/markuplint-angular-parser) [![View changelog](https://img.shields.io/badge/changelog-explore-brightgreen)](https://changelogs.xyz/markuplint-angular-parser) |
-| [`markuplint-angular-rules`](/packages/markuplint-angular-rules) | Angular specific rules for Markuplint. | [![npm](https://img.shields.io/npm/v/markuplint-angular-rules.svg)](https://www.npmjs.com/package/markuplint-angular-rules) [![View changelog](https://img.shields.io/badge/changelog-explore-brightgreen)](https://changelogs.xyz/markuplint-angular-rules)    |
+| Package                                                 | Description                            | Version                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`markuplint-angular-parser`](/packages/angular-parser) | Angular parser for markuplint.         | [![npm](https://img.shields.io/npm/v/markuplint-angular-parser.svg)](https://www.npmjs.com/package/markuplint-angular-parser) [![View changelog](https://img.shields.io/badge/changelog-explore-brightgreen)](https://changelogs.xyz/markuplint-angular-parser) |
+| [`markuplint-angular-rules`](/packages/angular-rules)   | Angular specific rules for Markuplint. | [![npm](https://img.shields.io/npm/v/markuplint-angular-rules.svg)](https://www.npmjs.com/package/markuplint-angular-rules) [![View changelog](https://img.shields.io/badge/changelog-explore-brightgreen)](https://changelogs.xyz/markuplint-angular-rules)    |
 
 `markuplint-sync` has been deprecated, please use [`synckit`][] to wrap it directly instead.
 

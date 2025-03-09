@@ -31,12 +31,10 @@
     "angular-linter"
   ],
   "dependencies": {
-    "@markuplint/html-parser": "^3.6.1",
-    "@markuplint/ml-ast": "^3.1.0",
-    "@markuplint/parser-utils": "^3.6.1",
-    "angular-html-parser": "^4.0.1",
-    "synckit": "^0.8.5",
-    "tslib": "^2.5.0"
+    "@markuplint/ml-ast": "^4.4.9",
+    "@markuplint/parser-utils": "^4.8.5",
+    "angular-html-parser": "^8.0.1",
+    "uuid": "^11.1.0"
   },
   "publishConfig": {
     "access": "public"

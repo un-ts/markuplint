@@ -28,7 +28,7 @@ Enforces certain order of inputs, outputs, directives and other attributes on ht
 
 | Property | Type       | Optional | Default Value                                                                                     | Description                                                                                                                                                |
 | -------- | ---------- | -------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `order`  | `string[]` | ✔        | <br/>`*structural`<br/>`#variable`<br/>`attribute`<br/>`[input]`<br/>`[(two-way)]`<br/>`(output)` | Specify order of attribute groups. Available tokens are: <br/>`*structural`<br/>`#variable`<br/>`attribute`<br/>`[input]`<br/>`[(two-way)]`<br/>`(output)` |
+| `order`  | `string[]` | ✔       | <br/>`*structural`<br/>`#variable`<br/>`attribute`<br/>`[input]`<br/>`[(two-way)]`<br/>`(output)` | Specify order of attribute groups. Available tokens are: <br/>`*structural`<br/>`#variable`<br/>`attribute`<br/>`[input]`<br/>`[(two-way)]`<br/>`(output)` |
 
 ### Example config
 

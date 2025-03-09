@@ -1,6 +1,6 @@
-import { MLASTDocument } from '@markuplint/ml-ast'
+import type { MLASTDocument } from '@markuplint/ml-ast'
 
-import { parse } from 'markuplint-angular-parser'
+import { parser } from 'markuplint-angular-parser'
 
 const map = new WeakMap<object, true>()
 
@@ -54,5 +54,7 @@ export const _cleanParse = <T extends object>(nodes: T) => {
 
 export const cleanParse = (textOrDocument: MLASTDocument | string) =>
   _cleanParse(
-    typeof textOrDocument === 'string' ? parse(textOrDocument) : textOrDocument,
+    typeof textOrDocument === 'string'
+      ? parser.parse(textOrDocument)
+      : textOrDocument,
   )

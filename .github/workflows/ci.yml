@@ -10,22 +10,30 @@ jobs:
     strategy:
       matrix:
         node:
-          - 14
           - 16
           - 18
+          - 20
+          - 22
+      fail-fast: false
     runs-on: ubuntu-latest
+    env:
+      YARN_IGNORE_NODE: 1
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: yarn
 
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
+
+      - name: Downgrade ESLint plugins
+        if: ${{ matrix.node == 16 }}
+        run: yarn add -D eslint-plugin-unicorn@^56.0.1
 
       - name: Build, Lint and Test
         run: yarn run-s build lint test
@@ -34,4 +42,6 @@ jobs:
           PARSER_NO_WATCH: true
 
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

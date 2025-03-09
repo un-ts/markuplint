@@ -3,16 +3,16 @@
 exports[`fixtures > attr-duplication.html 1`] = `
 [
   {
-    "col": 19,
-    "line": 1,
+    "col": 2,
+    "line": 3,
     "message": "The attribute name is duplicated",
     "raw": "[type]",
     "ruleId": "attr-duplication",
     "severity": "error",
   },
   {
-    "col": 39,
-    "line": 1,
+    "col": 2,
+    "line": 4,
     "message": "The attribute name is duplicated",
     "raw": "[attr.type]",
     "ruleId": "attr-duplication",
@@ -28,8 +28,8 @@ exports[`fixtures > deprecated-element.html 1`] = `
   {
     "col": 1,
     "line": 1,
-    "message": "The \\"font\\" element is obsolete",
-    "raw": "<font color=\\"red\\">",
+    "message": "The "font" element is obsolete",
+    "raw": "<font color="red">",
     "ruleId": "deprecated-element",
     "severity": "error",
   },

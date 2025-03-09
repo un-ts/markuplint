@@ -31,12 +31,12 @@ jobs:
       - name: Install Dependencies
         run: yarn --immutable
 
-      - name: Downgrade ESLint plugins
-        if: ${{ matrix.node == 16 }}
-        run: yarn add -D eslint-plugin-unicorn@^56.0.1
+      - name: Build
+        run: yarn build
 
-      - name: Build, Lint and Test
-        run: yarn run-s build lint test
+      - name: Lint and Test
+        if: ${{ matrix.node != 16 }}
+        run: yarn run-s lint test
         env:
           EFF_NO_LINK_RULES: true
           PARSER_NO_WATCH: true

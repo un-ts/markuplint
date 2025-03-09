@@ -1,21 +1,52 @@
 <div>
   <svg>
     <defs>
-      <linearGradient id="succ" gradientTransform="rotate(90)">
-        <stop offset="0%" stop-color="#d2f1ea" />
-        <stop offset="100%" stop-color="#fff" />
+      <linearGradient
+        id="succ"
+        gradientTransform="rotate(90)"
+      >
+        <stop
+          offset="0%"
+          stop-color="#d2f1ea"
+        />
+        <stop
+          offset="100%"
+          stop-color="#fff"
+        />
       </linearGradient>
-      <linearGradient id="failed" gradientTransform="rotate(90)">
-        <stop offset="0%" stop-color="#fce0e0" />
-        <stop offset="100%" stop-color="#fff" />
+      <linearGradient
+        id="failed"
+        gradientTransform="rotate(90)"
+      >
+        <stop
+          offset="0%"
+          stop-color="#fce0e0"
+        />
+        <stop
+          offset="100%"
+          stop-color="#fff"
+        />
       </linearGradient>
-      <filter id="dropshadow" height="130%">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <filter
+        id="dropshadow"
+        height="130%"
+      >
+        <feGaussianBlur
+          in="SourceAlpha"
+          stdDeviation="2"
+        />
         <!-- stdDeviation is how much to blur -->
-        <feOffset dx="0" dy="0" result="offsetblur" />
+        <feOffset
+          dx="0"
+          dy="0"
+          result="offsetblur"
+        />
         <!-- how much to offset -->
         <feComponentTransfer>
-          <feFuncA type="linear" slope="0.5" />
+          <feFuncA
+            type="linear"
+            slope="0.5"
+          />
           <!-- slope is the opacity of the shadow -->
         </feComponentTransfer>
         <feMerge>

@@ -1,10 +1,10 @@
-import { parse } from '@markuplint/html-parser'
+import { parser } from '@markuplint/html-parser'
 import snapshotDiff from 'snapshot-diff'
 
-import { cleanParse } from './helper'
+import { cleanParse } from './helper.js'
 
 describe('parser', () => {
-  test('parse', () => {
+  test('parser.parse', () => {
     expect(
       cleanParse(/* HTML */ `
         <!DOCTYPE html>
@@ -59,7 +59,7 @@ describe('parser', () => {
       </div>
     `
     expect(
-      snapshotDiff(cleanParse(parse(html)), cleanParse(html)),
+      snapshotDiff(cleanParse(parser.parse(html)), cleanParse(html)),
     ).toMatchSnapshot()
   })
 
@@ -72,7 +72,7 @@ describe('parser', () => {
         /* HTML */ `<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN">`,
       ),
     ).toMatchSnapshot()
-    expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+    expect(snapshotDiff(cleanParse(parser.parse(html)), doc)).toMatchSnapshot()
     expect(cleanParse(`<html></html>`)).toMatchSnapshot()
   })
 
@@ -80,7 +80,7 @@ describe('parser', () => {
     const html = `<img>`
     const doc = cleanParse(html)
     expect(doc).toMatchSnapshot()
-    expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+    expect(snapshotDiff(cleanParse(parser.parse(html)), doc)).toMatchSnapshot()
   })
 
   test('tag namespace', () => {
@@ -91,6 +91,6 @@ describe('parser', () => {
     `
     const doc = cleanParse(html)
     expect(doc).toMatchSnapshot()
-    expect(snapshotDiff(cleanParse(parse(html)), doc)).toMatchSnapshot()
+    expect(snapshotDiff(cleanParse(parser.parse(html)), doc)).toMatchSnapshot()
   })
 })

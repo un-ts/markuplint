@@ -1,11 +1,10 @@
 {
-  "extends": "@1stg/tsconfig/node",
+  "extends": "@1stg/tsconfig/nodenext",
   "compilerOptions": {
     "paths": {
       "markuplint-angular-parser": ["./packages/angular-parser/src"],
       "markuplint-angular-rules": ["./packages/angular-rules/src"]
     },
-    "module": "ESNext",
     "target": "ES2020"
   }
 }

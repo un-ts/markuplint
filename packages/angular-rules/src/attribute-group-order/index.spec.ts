@@ -215,7 +215,7 @@ describe('options validation', () => {
       rule: {
         value: true,
         options: {
-          // @ts-expect-error
+          // @ts-expect-error -- testing
           order: 'incorrect',
         },
       },
@@ -230,7 +230,7 @@ describe('options validation', () => {
       rule: {
         value: true,
         options: {
-          // @ts-expect-error
+          // @ts-expect-error -- testing
           order: ['incorrect'],
         },
       },

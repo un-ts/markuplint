@@ -1,6 +1,6 @@
 import { createPlugin } from '@markuplint/ml-core'
 
-import attributeGroupOrder from './attribute-group-order'
+import attributeGroupOrder from './attribute-group-order/index.js'
 
 export default createPlugin({
   name: 'markuplint-angular-rules',
@@ -16,4 +16,4 @@ export default createPlugin({
 export {
   default as attributeGroupOrder,
   type Options,
-} from './attribute-group-order'
+} from './attribute-group-order/index.js'

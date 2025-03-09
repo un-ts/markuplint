@@ -1,5 +1,11 @@
 # markuplint-angular-rules
 
+## 2.0.1
+
+### Patch Changes
+
+- [#129](https://github.com/un-ts/markuplint/pull/129) [`ee14968`](https://github.com/un-ts/markuplint/commit/ee1496823998c86b648853ac90f543adaa55ba07) Thanks [@JounQin](https://github.com/JounQin)! - fix: incorrect pkg entries
+
 ## 2.0.0
 
 ### Major Changes

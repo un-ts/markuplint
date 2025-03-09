@@ -2,7 +2,6 @@
 
 [![GitHub Actions](https://github.com/un-ts/markuplint/workflows/CI/badge.svg)](https://github.com/un-ts/markuplint/actions/workflows/ci.yml)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fun-ts%2Fmarkuplint.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fun-ts%2Fmarkuplint?ref=badge_shield)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/un-ts/markuplint.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/un-ts/markuplint/context:javascript)
 [![Codecov](https://img.shields.io/codecov/c/gh/un-ts/markuplint)](https://codecov.io/gh/un-ts/markuplint)
 [![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fun-ts%2Feslint%2Fmain%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
 [![GitHub release](https://img.shields.io/github/release/un-ts/markuplint)](https://github.com/un-ts/markuplint/releases)

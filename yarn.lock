@@ -9762,7 +9762,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markuplint-angular-parser@npm:^2.0.0, markuplint-angular-parser@workspace:packages/angular-parser":
+"markuplint-angular-parser@workspace:*, markuplint-angular-parser@workspace:packages/angular-parser":
   version: 0.0.0-use.local
   resolution: "markuplint-angular-parser@workspace:packages/angular-parser"
   dependencies:

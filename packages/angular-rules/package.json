@@ -2,16 +2,22 @@
   "name": "markuplint-angular-rules",
   "version": "2.0.0",
   "type": "module",
+  "description": "Angular-specific rules for Markuplint.",
+  "repository": "git+https://github.com/un-ts/markuplint.git",
+  "homepage": "https://github.com/un-ts/markuplint/tree/main/packages/angular-rules",
+  "author": "Evgeny Stepanovych <undsoft@gmail.com>",
+  "maintainers": [
+    "JounQin (https://www.1stG.me) <admin@1stg.me>"
+  ],
+  "funding": "https://opencollective.com/unts",
   "license": "MIT",
   "engines": {
     "node": ">=14"
   },
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.js",
+  "main": "./lib/index.js",
   "exports": {
-    "types": "./lib/index.d.ts",
-    "import": "./lib/index.js",
-    "require": "./lib/index.cjs"
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
   },
   "types": "./lib/index.d.ts",
   "files": [

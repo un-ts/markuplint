@@ -11,12 +11,10 @@
   "engines": {
     "node": ">=14"
   },
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.js",
+  "main": "./lib/index.js",
   "exports": {
-    "types": "./lib/index.d.ts",
-    "import": "./lib/index.js",
-    "require": "./lib/index.cjs"
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
   },
   "types": "./lib/index.d.ts",
   "files": [

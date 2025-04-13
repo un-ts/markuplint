@@ -1,5 +1,11 @@
 # markuplint-angular-parser
 
+## 3.0.2
+
+### Patch Changes
+
+- [#133](https://github.com/un-ts/markuplint/pull/133) [`a0f46d6`](https://github.com/un-ts/markuplint/commit/a0f46d6d9eed18a1e3cf5f3925e3763278a49963) Thanks [@JounQin](https://github.com/JounQin)! - fix: should run `build` for `release`
+
 ## 3.0.1
 
 ### Patch Changes

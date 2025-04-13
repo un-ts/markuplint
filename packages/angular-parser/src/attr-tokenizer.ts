@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 import { tokenizer } from './tokenizer.js'
 
 const reAttrsInStartTag =
-  // eslint-disable-next-line no-control-regex, regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, sonarjs/no-control-regex, sonarjs/regex-complexity, sonarjs/slow-regex
+  // eslint-disable-next-line regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, sonarjs/no-control-regex, sonarjs/regex-complexity, sonarjs/slow-regex
   /(\s*)([^\u0000-\u001F\u007F-\u009F "'>/=]+)(?:(\s*)(=)(\s*)(?:"([^"]*)"|'([^']*)'|(\S*)))?/
 
 export default function attrTokenizer(

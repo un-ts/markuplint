@@ -2,10 +2,10 @@
   "extends": "./tsconfig.base",
   "references": [
     {
-      "path": "packages/angular-parser"
+      "path": "./packages/angular-parser"
     },
     {
-      "path": "packages/angular-rules"
+      "path": "./packages/angular-rules"
     }
   ]
 }

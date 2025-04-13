@@ -9,22 +9,22 @@
   "maintainers": [
     "JounQin (https://www.1stG.me) <admin@1stg.me>"
   ],
-  "funding": "https://opencollective.com/unts",
+  "funding": "https://opencollective.com/markuplint",
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=18.18.0"
   },
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": "./lib/index.js",
     "./package.json": "./package.json"
   },
-  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
   "dependencies": {
-    "@markuplint/ml-core": "^4.12.2"
+    "@markuplint/ml-core": "^4.12.3"
   },
   "publishConfig": {
     "access": "public"

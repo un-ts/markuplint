@@ -6,17 +6,17 @@
   "repository": "git+https://github.com/un-ts/markuplint.git",
   "homepage": "https://github.com/un-ts/markuplint/tree/main/packages/angular-parser",
   "author": "JounQin (https://www.1stG.me) <admin@1stg.me>",
-  "funding": "https://opencollective.com/unts",
+  "funding": "https://opencollective.com/markuplint",
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=18.18.0"
   },
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": "./lib/index.js",
     "./package.json": "./package.json"
   },
-  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -30,8 +30,8 @@
   ],
   "dependencies": {
     "@markuplint/ml-ast": "^4.4.9",
-    "@markuplint/parser-utils": "^4.8.5",
-    "angular-html-parser": "^8.0.1",
+    "@markuplint/parser-utils": "^4.8.6",
+    "angular-html-parser": "^8.1.0",
     "uuid": "^11.1.0"
   },
   "publishConfig": {

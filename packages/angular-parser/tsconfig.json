@@ -3,8 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": "src",
-    "outDir": "lib",
-    "rewriteRelativeImportExtensions": false
+    "outDir": "lib"
   },
   "include": ["src"]
 }

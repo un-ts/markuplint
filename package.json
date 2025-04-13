@@ -10,43 +10,46 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.8.1",
+  "packageManager": "yarn@4.9.1",
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf packages/*/{lib,node_modules,*.tsbuildinfo}",
+    "clean": "rimraf -g .type-coverage coverage '.*cache' 'packages/*/{lib,node_modules,*.tsbuildinfo}'",
+    "format": "prettier --write .",
     "lint": "run-p 'lint:*'",
-    "lint:es": "eslint . --cache -f friendly --max-warnings 10",
-    "lint:tsc": "tsc --noEmit",
-    "prepare": "simple-git-hooks && patch-package || exit 0",
-    "prerelease": "yarn build",
+    "lint:es": "eslint . --cache --max-warnings 10",
+    "lint:tsc": "tsc -b --noEmit",
+    "prepare": "simple-git-hooks && patch-package && yarn-berry-deduplicate || exit 0",
     "prettier": "prettier --log-level error",
     "release": "changeset publish",
     "test": "vitest run --coverage",
-    "typecov": "type-coverage"
+    "typecov": "type-coverage",
+    "version": "changeset version && yarn --no-immutable"
   },
   "devDependencies": {
-    "@1stg/common-config": "^11.0.3",
+    "@1stg/common-config": "^12.0.0",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.28.1",
     "@commitlint/cli": "^19.8.0",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.14.1",
     "@unts/patch-package": "^8.1.1",
-    "@vitest/coverage-istanbul": "^3.0.8",
-    "eslint": "^9.22.0",
-    "lint-staged": "^15.4.3",
+    "@vitest/coverage-istanbul": "^3.1.1",
+    "eslint": "^9.24.0",
+    "lint-staged": "^15.5.1",
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
-    "simple-git-hooks": "^2.11.1",
+    "simple-git-hooks": "^2.12.1",
     "snapshot-diff": "^0.10.0",
     "type-coverage": "^2.29.7",
-    "type-fest": "^4.37.0",
-    "typescript": "^5.8.2",
-    "unplugin-auto-import": "^19.1.1",
-    "vitest": "^3.0.8"
+    "type-fest": "^4.39.1",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.1",
+    "yarn-berry-deduplicate": "^6.1.1"
   },
   "resolutions": {
-    "markuplint": "^4.11.7",
+    "es5-ext": "npm:@unes/es5-ext@latest",
+    "markuplint": "^4.11.8",
     "markuplint-angular-parser": "workspace:*",
     "prettier": "^3.5.3"
   },
@@ -57,11 +60,6 @@
   "remarkConfig": {
     "plugins": [
       "@1stg/preset"
-    ]
-  },
-  "renovate": {
-    "extends": [
-      "github>1stG/configs"
     ]
   },
   "typeCoverage": {

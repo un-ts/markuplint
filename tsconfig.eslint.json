@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base",
+  "compilerOptions": {
+    "paths": {
+      "markuplint-angular-parser": ["./packages/angular-parser/src/index.ts"],
+      "markuplint-angular-rules": ["./packages/angular-rules/src/index.ts"]
+    },
+    "target": "ES2020"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "markuplint-angular-rules",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "description": "Angular-specific rules for Markuplint.",
   "repository": "git+https://github.com/un-ts/markuplint.git",

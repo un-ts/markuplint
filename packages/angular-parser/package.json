@@ -31,7 +31,7 @@
   "dependencies": {
     "@markuplint/ml-ast": "^4.4.9",
     "@markuplint/parser-utils": "^4.8.6",
-    "angular-html-parser": "^8.1.0",
+    "angular-html-parser": "^9.0.0",
     "uuid": "^11.1.0"
   },
   "publishConfig": {

@@ -3015,7 +3015,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@markuplint/parser-utils@npm:4.8.6, @markuplint/parser-utils@npm:^4.8.6":
+"@markuplint/parser-utils@npm:4.8.6":
   version: 4.8.6
   resolution: "@markuplint/parser-utils@npm:4.8.6"
   dependencies:
@@ -3031,7 +3031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@markuplint/parser-utils@npm:4.8.7":
+"@markuplint/parser-utils@npm:^4.8.6, @markuplint/parser-utils@npm:4.8.7":
   version: 4.8.7
   resolution: "@markuplint/parser-utils@npm:4.8.7"
   dependencies:
@@ -3305,14 +3305,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pkgr/core@npm:^0.2.0, @pkgr/core@npm:^0.2.1, @pkgr/core@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@pkgr/core@npm:0.2.2"
-  checksum: 10c0/86a0507731f2c5172e2225abb42d947b3908d06f0330e7050b5e6ad0c29dab4d586358f2d984aa00fd32bf421ed3405fa97878b352f16c3c23d20398b5fd14e4
-  languageName: node
-  linkType: hard
-
-"@pkgr/core@npm:^0.2.3, @pkgr/core@npm:^0.2.4":
+"@pkgr/core@npm:^0.2.0, @pkgr/core@npm:^0.2.1, @pkgr/core@npm:^0.2.2, @pkgr/core@npm:^0.2.3, @pkgr/core@npm:^0.2.4":
   version: 0.2.4
   resolution: "@pkgr/core@npm:0.2.4"
   checksum: 10c0/2528a443bbbef5d4686614e1d73f834f19ccbc975f62b2a64974a6b97bcdf677b9c5e8948e04808ac4f0d853e2f422adfaae2a06e9e9f4f5cf8af76f1adf8dc1
@@ -7077,19 +7070,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fdir@npm:^6.4.3":
-  version: 6.4.3
-  resolution: "fdir@npm:6.4.3"
-  peerDependencies:
-    picomatch: ^3 || ^4
-  peerDependenciesMeta:
-    picomatch:
-      optional: true
-  checksum: 10c0/d13c10120e9625adf21d8d80481586200759928c19405a816b77dd28eaeb80e7c59c5def3e2941508045eb06d34eb47fad865ccc8bf98e6ab988bb0ed160fb6f
-  languageName: node
-  linkType: hard
-
-"fdir@npm:^6.4.4":
+"fdir@npm:^6.4.3, fdir@npm:^6.4.4":
   version: 6.4.4
   resolution: "fdir@npm:6.4.4"
   peerDependencies:
@@ -13281,17 +13262,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"synckit@npm:^0.11.0":
-  version: 0.11.3
-  resolution: "synckit@npm:0.11.3"
-  dependencies:
-    "@pkgr/core": "npm:^0.2.1"
-    tslib: "npm:^2.8.1"
-  checksum: 10c0/7b08187eb13047314ddb71d4868fb7c1f75b15f3a60ce7881bc2adf1d1353c478c1643e3d5e27525b23a09f04f87630fdbe4581af67f90d57741856658c1fb95
-  languageName: node
-  linkType: hard
-
-"synckit@npm:^0.11.4":
+"synckit@npm:^0.11.0, synckit@npm:^0.11.4":
   version: 0.11.4
   resolution: "synckit@npm:0.11.4"
   dependencies:
@@ -13413,17 +13384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyglobby@npm:^0.2.12":
-  version: 0.2.12
-  resolution: "tinyglobby@npm:0.2.12"
-  dependencies:
-    fdir: "npm:^6.4.3"
-    picomatch: "npm:^4.0.2"
-  checksum: 10c0/7c9be4fd3625630e262dcb19015302aad3b4ba7fc620f269313e688f2161ea8724d6cb4444baab5ef2826eb6bed72647b169a33ec8eea37501832a2526ff540f
-  languageName: node
-  linkType: hard
-
-"tinyglobby@npm:^0.2.13":
+"tinyglobby@npm:^0.2.12, tinyglobby@npm:^0.2.13":
   version: 0.2.13
   resolution: "tinyglobby@npm:0.2.13"
   dependencies:

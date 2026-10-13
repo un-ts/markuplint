@@ -23,6 +23,8 @@ exports[`fixtures > attr-duplication.html 1`] = `
 
 exports[`fixtures > case-sensitive-tag-name.html 1`] = `[]`;
 
+exports[`fixtures > control-flow.html 1`] = `[]`;
+
 exports[`fixtures > deprecated-element.html 1`] = `
 [
   {

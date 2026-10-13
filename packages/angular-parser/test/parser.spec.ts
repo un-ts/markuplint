@@ -96,17 +96,35 @@ describe('parser', () => {
     expect(snapshotDiff(cleanParse(parser.parse(html)), doc)).toMatchSnapshot()
   })
 
-  test('unsupported angular nodes are ignored', () => {
-    // `angular-html-parser` only emits these nodes when the corresponding
-    // tokenizer options are enabled, which `AngularParser` intentionally
-    // leaves off, so assert the handlers themselves stay no-ops.
+  test('control flow blocks', () => {
+    expect(
+      cleanParse(/* HTML */ `
+        @if (loggedIn) {
+        <b>hello</b>
+        } @else if (pending) {
+        <i>wait</i>
+        } @else {
+        <u>guest</u>
+        } @for (item of items; track item.id) {
+        <span>{{ item.name }}</span>
+        } @empty {
+        <em>empty</em>
+        } @switch (value) { @case (1) {
+        <b>one</b>
+        } @default {
+        <i>other</i>
+        } } @let total = items.length;
+      `),
+    ).toMatchSnapshot()
+  })
+
+  test('unreachable angular nodes stay ignored', () => {
+    // Selectorless components/directives need `enableAngularSelectorlessSyntax`,
+    // which hangs the upstream lexer on lowercase `@directive`, and block
+    // parameters are part of the block signature, not nodes of their own.
     const context = { nodeList: [] }
-    expect(visitor.visitBlock(undefined as never, context)).toBeUndefined()
     expect(
       visitor.visitBlockParameter(undefined as never, context),
-    ).toBeUndefined()
-    expect(
-      visitor.visitLetDeclaration(undefined as never, context),
     ).toBeUndefined()
     expect(visitor.visitComponent(undefined as never, context)).toBeUndefined()
     expect(visitor.visitDirective(undefined as never, context)).toBeUndefined()

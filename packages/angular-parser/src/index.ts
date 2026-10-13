@@ -1,5 +1,7 @@
 import type {
   MLASTAttr,
+  MLASTBlockBehavior,
+  MLASTBlockBehaviorType,
   MLASTChildNode,
   MLASTComment,
   MLASTDoctype,
@@ -9,6 +11,7 @@ import type {
   MLASTHTMLAttr,
   MLASTNodeTreeItem,
   MLASTParentNode,
+  MLASTPreprocessorSpecificBlock,
   MLASTText,
   MLASTToken,
   NamespaceURI,
@@ -28,6 +31,9 @@ import parseSelfClosingSolidus from './parse-self-closing-solidus.js'
 
 type Expansion = Ast.Expansion
 type ExpansionCase = Ast.ExpansionCase
+type Block = Ast.Block
+type BlockParameter = Ast.BlockParameter
+type LetDeclaration = Ast.LetDeclaration
 
 export interface BaseVisitorContext {
   parentNode: MLASTParentNode | null
@@ -99,6 +105,29 @@ function nodeMapper(
 const DOCTYPE_REGEXP =
   // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group, sonarjs/super-linear-regex
   /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
+
+const blockBehaviorTypes: Record<string, MLASTBlockBehaviorType | undefined> = {
+  if: 'if',
+  'else if': 'if:elseif',
+  else: 'if:else',
+  for: 'each',
+  empty: 'each:empty',
+  case: 'switch:case',
+  default: 'switch:default',
+}
+
+const getBlockBehavior = (block: Block): MLASTBlockBehavior | null => {
+  const type = blockBehaviorTypes[block.name]
+  if (!type) {
+    return null
+  }
+  return {
+    type,
+    expression: block.parameters
+      .map(parameter => parameter.expression)
+      .join('; '),
+  }
+}
 
 export const visitor: Ast.Visitor = {
   visitElement(
@@ -298,14 +327,47 @@ export const visitor: Ast.Visitor = {
         expansionCase.toString(),
     )
   },
-  visitBlock() {
-    // markuplint does not support angular block
+  visitBlock(
+    block: Block,
+    { nodeList, namespace, ...options }: VisitorContext,
+  ) {
+    const childNodes: MLASTChildNode[] = []
+    const node: Writable<MLASTPreprocessorSpecificBlock> = {
+      ...nodeMapper(block, options),
+      type: 'psblock',
+      depth: 0,
+      nodeName: block.name,
+      isFragment: false,
+      childNodes,
+      blockBehavior: getBlockBehavior(block),
+      isBogus: false,
+    }
+    visitAll(visitor, block.children, {
+      parentNode: node,
+      nodeList: childNodes,
+      text: options.text,
+      namespace,
+    })
+    nodeList.push(node)
   },
-  visitBlockParameter() {
-    // markuplint does not support angular block
+  visitBlockParameter(_parameter: BlockParameter, _context: VisitorContext) {
+    // parameters are part of the block signature, not separate nodes
   },
-  visitLetDeclaration() {
-    // markuplint does not support angular block
+  visitLetDeclaration(
+    declaration: LetDeclaration,
+    { nodeList, ...options }: VisitorContext,
+  ) {
+    const node: Writable<MLASTPreprocessorSpecificBlock> = {
+      ...nodeMapper(declaration, options),
+      type: 'psblock',
+      depth: 0,
+      nodeName: 'let',
+      isFragment: false,
+      childNodes: [],
+      blockBehavior: null,
+      isBogus: false,
+    }
+    nodeList.push(node)
   },
   /* istanbul ignore next */
   visitComponent() {
@@ -319,7 +381,10 @@ export const visitor: Ast.Visitor = {
 
 export class AngularParser extends Parser<Ast.Node> {
   override parse(text: string) {
-    const { rootNodes, errors } = parse(text)
+    const { rootNodes, errors } = parse(text, {
+      tokenizeAngularBlocks: true,
+      tokenizeAngularLetDeclaration: true,
+    })
 
     const nodeList: MLASTNodeTreeItem[] = []
 

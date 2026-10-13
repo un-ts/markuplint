@@ -226,12 +226,13 @@ const visitor: Visitor = {
 
     const potentialName = name
       /**
-       * remove leading `[attr.`
+       * Remove leading `[attr.`
        *
-       * @example `<input [attr.type]="type" />`
+       * @example
+       *   `<input [attr.type]="type" />`
        *
-       * Notice `<input attr.type="number" />` is not same as `<input type="number" />`,
-       * what means `[]` wrapper is required
+       *   Notice `<input attr.type="number" />` is not same as `<input type="number" />`,
+       *   what means `[]` wrapper is required
        */
       .replace(/^\[attr\./, '')
       // remove leading `*`, `@`, `[]` and `()` wrapper

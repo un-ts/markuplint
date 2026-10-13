@@ -1,6 +1,6 @@
 {
   "name": "markuplint-angular-parser",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "type": "module",
   "description": "Angular parser for markuplint.",
   "repository": "git+https://github.com/un-ts/markuplint.git",

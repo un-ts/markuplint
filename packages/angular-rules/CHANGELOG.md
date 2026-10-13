@@ -1,5 +1,14 @@
 # markuplint-angular-rules
 
+## 3.0.0
+
+### Major Changes
+
+- [#135](https://github.com/un-ts/markuplint/pull/135) [`a555c69`](https://github.com/un-ts/markuplint/commit/a555c695443e1300dda7fa96da4de571ae3ac3e3) Thanks [@renovate](https://github.com/apps/renovate)! - feat: migrate to `markuplint` v5 and support Angular control flow
+
+  - `markuplint-angular-parser` now targets `@markuplint/*` v5 and `angular-html-parser` v10.
+  - Angular control-flow syntax (`@if` / `@else if` / `@else`, `@for` / `@empty`, `@switch` / `@case` / `@default`, `@let`) is mapped to markuplint `psblock` nodes with the matching `blockBehavior`, so content-model rules can analyse each branch.
+
 ## 2.0.2
 
 ### Patch Changes

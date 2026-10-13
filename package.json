@@ -50,11 +50,9 @@
     "yarn-berry-deduplicate": "^7.0.0"
   },
   "resolutions": {
-    "es5-ext": "npm:@unes/es5-ext@latest",
     "markuplint": "^5.0.0",
     "markuplint-angular-parser": "workspace:*",
-    "pm-dedup-core": "2.2.2",
-    "prettier": "^3.5.3"
+    "pm-dedup-core": "2.2.2"
   },
   "commitlint": {
     "extends": "@1stg"

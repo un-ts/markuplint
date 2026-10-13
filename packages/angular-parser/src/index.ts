@@ -31,8 +31,9 @@ export interface BaseVisitorContext {
   text: string
 }
 
-export interface VisitorContext<T extends MLASTToken = MLASTToken>
-  extends BaseVisitorContext {
+export interface VisitorContext<
+  T extends MLASTToken = MLASTToken,
+> extends BaseVisitorContext {
   nodeList: T[]
   namespace?: string
 }
@@ -55,8 +56,9 @@ const getRaw = (
   return text.slice(start.offset, end.offset)
 }
 
-export interface NodeMapperOptions<T extends boolean = boolean>
-  extends BaseVisitorContext {
+export interface NodeMapperOptions<
+  T extends boolean = boolean,
+> extends BaseVisitorContext {
   simpleToken?: T
 }
 

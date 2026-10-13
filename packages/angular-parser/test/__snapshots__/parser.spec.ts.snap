@@ -2314,6 +2314,252 @@ exports[`parser > parser.parse 1`] = `
 }
 `;
 
+exports[`parser > start tag comments 1`] = `
+{
+  "isFragment": true,
+  "nodeList": [
+    {
+      "col": 1,
+      "depth": 0,
+      "line": 1,
+      "nodeName": "#text",
+      "offset": 0,
+      "raw": "
+      ",
+      "type": "text",
+    },
+    {
+      "attributes": [
+        {
+          "col": 31,
+          "endQuote": {
+            "col": 39,
+            "line": 2,
+            "offset": 40,
+            "raw": """,
+          },
+          "equal": {
+            "col": 36,
+            "line": 2,
+            "offset": 37,
+            "raw": "=",
+          },
+          "isDuplicatable": false,
+          "isDynamicValue": undefined,
+          "line": 2,
+          "name": {
+            "col": 31,
+            "line": 2,
+            "offset": 32,
+            "raw": "class",
+          },
+          "nodeName": "class",
+          "offset": 32,
+          "potentialName": "class",
+          "raw": "class="a"",
+          "spacesAfterEqual": {
+            "col": 37,
+            "line": 2,
+            "offset": 38,
+            "raw": "",
+          },
+          "spacesBeforeEqual": {
+            "col": 36,
+            "line": 2,
+            "offset": 37,
+            "raw": "",
+          },
+          "spacesBeforeName": {
+            "col": 31,
+            "line": 2,
+            "offset": 32,
+            "raw": "",
+          },
+          "startQuote": {
+            "col": 37,
+            "line": 2,
+            "offset": 38,
+            "raw": """,
+          },
+          "type": "attr",
+          "value": {
+            "col": 38,
+            "line": 2,
+            "offset": 39,
+            "raw": "a",
+          },
+        },
+      ],
+      "blockBehavior": null,
+      "col": 7,
+      "depth": 0,
+      "elementType": "html",
+      "hasSpreadAttr": false,
+      "isFragment": false,
+      "isGhost": false,
+      "line": 2,
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "nodeName": "div",
+      "offset": 7,
+      "raw": "<div /* block comment */ class="a">",
+      "tagCloseChar": ">",
+      "tagOpenChar": "<",
+      "type": "starttag",
+    },
+    {
+      "col": 12,
+      "depth": 0,
+      "isBogus": false,
+      "line": 2,
+      "nodeName": "#comment",
+      "offset": 12,
+      "raw": "/* block comment */",
+      "type": "comment",
+    },
+    {
+      "col": 42,
+      "depth": 0,
+      "line": 2,
+      "nodeName": "div",
+      "offset": 42,
+      "raw": "</div>",
+      "tagCloseChar": ">",
+      "tagOpenChar": "</",
+      "type": "endtag",
+    },
+    {
+      "col": 48,
+      "depth": 0,
+      "line": 2,
+      "nodeName": "#text",
+      "offset": 48,
+      "raw": "
+      ",
+      "type": "text",
+    },
+    {
+      "attributes": [
+        {
+          "col": 8,
+          "endQuote": {
+            "col": 16,
+            "line": 5,
+            "offset": 100,
+            "raw": """,
+          },
+          "equal": {
+            "col": 13,
+            "line": 5,
+            "offset": 97,
+            "raw": "=",
+          },
+          "isDuplicatable": false,
+          "isDynamicValue": undefined,
+          "line": 5,
+          "name": {
+            "col": 8,
+            "line": 5,
+            "offset": 92,
+            "raw": "class",
+          },
+          "nodeName": "class",
+          "offset": 92,
+          "potentialName": "class",
+          "raw": "class="b"",
+          "spacesAfterEqual": {
+            "col": 14,
+            "line": 5,
+            "offset": 98,
+            "raw": "",
+          },
+          "spacesBeforeEqual": {
+            "col": 13,
+            "line": 5,
+            "offset": 97,
+            "raw": "",
+          },
+          "spacesBeforeName": {
+            "col": 8,
+            "line": 5,
+            "offset": 92,
+            "raw": "",
+          },
+          "startQuote": {
+            "col": 14,
+            "line": 5,
+            "offset": 98,
+            "raw": """,
+          },
+          "type": "attr",
+          "value": {
+            "col": 15,
+            "line": 5,
+            "offset": 99,
+            "raw": "b",
+          },
+        },
+      ],
+      "blockBehavior": null,
+      "col": 7,
+      "depth": 0,
+      "elementType": "html",
+      "hasSpreadAttr": false,
+      "isFragment": false,
+      "isGhost": false,
+      "line": 3,
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "nodeName": "div",
+      "offset": 55,
+      "raw": "<div
+        // line comment
+        class="b"
+      >",
+      "tagCloseChar": ">",
+      "tagOpenChar": "<",
+      "type": "starttag",
+    },
+    {
+      "col": 9,
+      "depth": 0,
+      "isBogus": false,
+      "line": 4,
+      "nodeName": "#comment",
+      "offset": 68,
+      "raw": "// line comment",
+      "type": "comment",
+    },
+    {
+      "col": 8,
+      "depth": 0,
+      "line": 6,
+      "nodeName": "div",
+      "offset": 109,
+      "raw": "</div>",
+      "tagCloseChar": ">",
+      "tagOpenChar": "</",
+      "type": "endtag",
+    },
+    {
+      "col": 14,
+      "depth": 0,
+      "line": 6,
+      "nodeName": "#text",
+      "offset": 115,
+      "raw": "
+    ",
+      "type": "text",
+    },
+  ],
+  "raw": "
+      <div /* block comment */ class="a"></div>
+      <div
+        // line comment
+        class="b"
+      ></div>
+    ",
+}
+`;
+
 exports[`parser > tag namespace 1`] = `
 {
   "isFragment": true,

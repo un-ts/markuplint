@@ -1,4 +1,5 @@
 import { parser } from '@markuplint/html-parser'
+import type { MLASTElement } from '@markuplint/ml-ast'
 import snapshotDiff from 'snapshot-diff'
 
 import { cleanParse } from './helper.js'
@@ -116,6 +117,33 @@ describe('parser', () => {
         } } @let total = items.length;
       `),
     ).toMatchSnapshot()
+  })
+
+  test('start tag comments', () => {
+    const doc = cleanParse(/* HTML */ `
+      <div /* block comment */ class="a"></div>
+      <div
+        // line comment
+        class="b"
+      ></div>
+    `)
+    expect(doc.unknownParseError).toBeUndefined()
+    const attributes = doc.nodeList
+      .filter(
+        (node): node is MLASTElement =>
+          node.type === 'starttag' && node.nodeName === 'div',
+      )
+      .map(node =>
+        node.attributes
+          .filter(attr => attr.type === 'attr')
+          .map(attr => attr.nodeName),
+      )
+    expect(attributes).toEqual([['class'], ['class']])
+    const comments = doc.nodeList
+      .filter(node => node.type === 'comment')
+      .map(node => node.raw)
+    expect(comments).toEqual(['/* block comment */', '// line comment'])
+    expect(doc).toMatchSnapshot()
   })
 
   test('unreachable angular nodes stay ignored', () => {

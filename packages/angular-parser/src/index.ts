@@ -136,6 +136,7 @@ export const visitor: Ast.Visitor = {
       endSourceSpan,
       name: nodeName,
       attrs,
+      comments,
       children,
     }: Ast.Element,
     { nodeList, namespace, ...options }: VisitorContext,
@@ -188,6 +189,13 @@ export const visitor: Ast.Visitor = {
     visitAll(visitor, attrs, {
       parentNode: startTag,
       nodeList: attributes,
+      text,
+      namespace,
+    })
+
+    visitAll(visitor, comments, {
+      parentNode: startTag,
+      nodeList: childNodes,
       text,
       namespace,
     })
@@ -297,6 +305,19 @@ export const visitor: Ast.Visitor = {
     }
     nodeList.push(node)
   },
+  visitStartTagComment(
+    comment: Ast.StartTagComment,
+    { nodeList, ...options }: VisitorContext,
+  ) {
+    const node: MLASTComment = {
+      ...nodeMapper(comment, options),
+      depth: 0,
+      type: 'comment',
+      nodeName: '#comment',
+      isBogus: false,
+    }
+    nodeList.push(node)
+  },
   visitDocType(docType: Ast.DocType, { nodeList, ...options }: VisitorContext) {
     const partialDocType = nodeMapper(docType, options)
     const matched = DOCTYPE_REGEXP.exec(partialDocType.raw)
@@ -384,6 +405,8 @@ export class AngularParser extends Parser<Ast.Node> {
     const { rootNodes, errors } = parse(text, {
       tokenizeAngularBlocks: true,
       tokenizeAngularLetDeclaration: true,
+      // Angular allows `/* ... */` and `// ...` comments inside a start tag
+      allowStartTagComments: true,
     })
 
     const nodeList: MLASTNodeTreeItem[] = []

@@ -46,12 +46,11 @@
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vite": "^8.0.0",
     "vitest": "^5.0.4",
-    "yarn-berry-deduplicate": "^7.0.0"
+    "yarn-berry-deduplicate": "^7.1.0"
   },
   "resolutions": {
     "markuplint": "^5.0.0",
-    "markuplint-angular-parser": "workspace:*",
-    "pm-dedup-core": "2.2.2"
+    "markuplint-angular-parser": "workspace:*"
   },
   "commitlint": {
     "extends": "@1stg"

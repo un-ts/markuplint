@@ -1,9 +1,9 @@
 @if (loggedIn) {
-  <input type="text" />
+  <b>hello</b>
 } @else if (pending) {
-  <input type="radio" />
+  <i>wait</i>
 } @else {
-  <input type="hidden" />
+  <u>guest</u>
 }
 
 @for (item of items; track item.id) {

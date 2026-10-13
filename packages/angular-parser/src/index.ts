@@ -26,6 +26,9 @@ import { v4 as uuid } from 'uuid'
 import attrTokenizer from './attr-tokenizer.js'
 import parseSelfClosingSolidus from './parse-self-closing-solidus.js'
 
+type Expansion = Ast.Expansion
+type ExpansionCase = Ast.ExpansionCase
+
 export interface BaseVisitorContext {
   parentNode: MLASTParentNode | null
   text: string
@@ -280,7 +283,7 @@ const visitor: Ast.Visitor = {
     nodeList.push(node)
   },
   /* istanbul ignore next */
-  visitExpansion(expansion: Ast.Expansion, _context: VisitorContext) {
+  visitExpansion(expansion: Expansion, _context: VisitorContext) {
     throw new Error(
       'unexpected expansion node: ' +
         // eslint-disable-next-line @typescript-eslint/no-base-to-string
@@ -288,10 +291,7 @@ const visitor: Ast.Visitor = {
     )
   },
   /* istanbul ignore next */
-  visitExpansionCase(
-    expansionCase: Ast.ExpansionCase,
-    _context: VisitorContext,
-  ) {
+  visitExpansionCase(expansionCase: ExpansionCase, _context: VisitorContext) {
     throw new Error(
       'unexpected expansionCase node: ' +
         // eslint-disable-next-line @typescript-eslint/no-base-to-string
@@ -307,9 +307,11 @@ const visitor: Ast.Visitor = {
   visitLetDeclaration() {
     // markuplint does not support angular block
   },
+  /* istanbul ignore next */
   visitComponent() {
     // markuplint does not support angular component
   },
+  /* istanbul ignore next */
   visitDirective() {
     // markuplint does not support angular directive
   },

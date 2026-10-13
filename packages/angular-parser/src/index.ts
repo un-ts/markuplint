@@ -100,7 +100,7 @@ const DOCTYPE_REGEXP =
   // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group, sonarjs/super-linear-regex
   /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
 
-const visitor: Ast.Visitor = {
+export const visitor: Ast.Visitor = {
   visitElement(
     {
       startSourceSpan,

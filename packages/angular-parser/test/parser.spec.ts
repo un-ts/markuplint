@@ -3,6 +3,8 @@ import snapshotDiff from 'snapshot-diff'
 
 import { cleanParse } from './helper.js'
 
+import { visitor } from 'markuplint-angular-parser'
+
 describe('parser', () => {
   test('parser.parse', () => {
     expect(
@@ -92,5 +94,21 @@ describe('parser', () => {
     const doc = cleanParse(html)
     expect(doc).toMatchSnapshot()
     expect(snapshotDiff(cleanParse(parser.parse(html)), doc)).toMatchSnapshot()
+  })
+
+  test('unsupported angular nodes are ignored', () => {
+    // `angular-html-parser` only emits these nodes when the corresponding
+    // tokenizer options are enabled, which `AngularParser` intentionally
+    // leaves off, so assert the handlers themselves stay no-ops.
+    const context = { nodeList: [] }
+    expect(visitor.visitBlock(undefined as never, context)).toBeUndefined()
+    expect(
+      visitor.visitBlockParameter(undefined as never, context),
+    ).toBeUndefined()
+    expect(
+      visitor.visitLetDeclaration(undefined as never, context),
+    ).toBeUndefined()
+    expect(visitor.visitComponent(undefined as never, context)).toBeUndefined()
+    expect(visitor.visitDirective(undefined as never, context)).toBeUndefined()
   })
 })

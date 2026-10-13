@@ -4813,7 +4813,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-html-parser@npm:^10.0.0":
+"angular-html-parser@npm:^10.10.0":
   version: 10.13.0
   resolution: "angular-html-parser@npm:10.13.0"
   checksum: 10c0/2cb43600ce003d99281de6b5815926d1c39ec7edb589e98c135d050c0c3dc4704abedd370016f88d6f6cf4e2487361f6ee229f687eb54010ffa09bd846eafe5d
@@ -8184,7 +8184,7 @@ __metadata:
   dependencies:
     "@markuplint/ml-ast": "npm:^5.0.0"
     "@markuplint/parser-utils": "npm:^5.0.0"
-    angular-html-parser: "npm:^10.0.0"
+    angular-html-parser: "npm:^10.10.0"
     uuid: "npm:^14.0.0"
   languageName: unknown
   linkType: soft

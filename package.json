@@ -10,7 +10,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.18.1",
   "scripts": {
     "build": "tsc -b",
     "clean": "rimraf -g .type-coverage coverage '.*cache' 'packages/*/{lib,node_modules,*.tsbuildinfo}'",
@@ -26,30 +26,30 @@
     "version": "changeset version && yarn --no-immutable"
   },
   "devDependencies": {
-    "@1stg/common-config": "^12.0.0",
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.28.1",
-    "@commitlint/cli": "^19.8.0",
-    "@types/node": "^22.14.1",
+    "@1stg/common-config": "^16.0.0",
+    "@changesets/changelog-github": "^1.0.0",
+    "@changesets/cli": "^3.0.0",
+    "@commitlint/cli": "^21.0.0",
+    "@types/node": "^24.0.0",
     "@unts/patch-package": "^8.1.1",
-    "@vitest/coverage-istanbul": "^3.1.1",
-    "eslint": "^9.24.0",
-    "lint-staged": "^15.5.1",
-    "npm-run-all2": "^7.0.2",
+    "@vitest/coverage-istanbul": "^5.0.0",
+    "eslint": "^10.0.0",
+    "lint-staged": "^17.0.0",
+    "npm-run-all2": "^9.0.0",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.12.1",
     "snapshot-diff": "^0.10.0",
     "type-coverage": "^2.29.7",
-    "type-fest": "^4.39.1",
-    "typescript": "^5.8.3",
-    "vite-tsconfig-paths": "^5.1.4",
+    "type-fest": "^5.0.0",
+    "typescript": "^7.0.0",
+    "vite-tsconfig-paths": "^6.0.0",
     "vitest": "^3.1.1",
-    "yarn-berry-deduplicate": "^6.1.1"
+    "yarn-berry-deduplicate": "^7.0.0"
   },
   "resolutions": {
     "es5-ext": "npm:@unes/es5-ext@latest",
-    "markuplint": "^4.11.8",
+    "markuplint": "^5.0.0",
     "markuplint-angular-parser": "workspace:*",
     "prettier": "^3.5.3"
   },

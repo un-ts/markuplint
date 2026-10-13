@@ -24,7 +24,7 @@
     "lib"
   ],
   "dependencies": {
-    "@markuplint/ml-core": "^4.12.3"
+    "@markuplint/ml-core": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"

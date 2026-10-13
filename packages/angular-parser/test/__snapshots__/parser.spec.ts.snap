@@ -2407,6 +2407,16 @@ exports[`parser > start tag comments 1`] = `
       "type": "starttag",
     },
     {
+      "col": 12,
+      "depth": 0,
+      "isBogus": false,
+      "line": 2,
+      "nodeName": "#comment",
+      "offset": 12,
+      "raw": "/* block comment */",
+      "type": "comment",
+    },
+    {
       "col": 42,
       "depth": 0,
       "line": 2,
@@ -2507,6 +2517,16 @@ exports[`parser > start tag comments 1`] = `
       "tagCloseChar": ">",
       "tagOpenChar": "<",
       "type": "starttag",
+    },
+    {
+      "col": 9,
+      "depth": 0,
+      "isBogus": false,
+      "line": 4,
+      "nodeName": "#comment",
+      "offset": 68,
+      "raw": "// line comment",
+      "type": "comment",
     },
     {
       "col": 8,

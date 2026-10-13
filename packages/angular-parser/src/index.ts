@@ -136,6 +136,7 @@ export const visitor: Ast.Visitor = {
       endSourceSpan,
       name: nodeName,
       attrs,
+      comments,
       children,
     }: Ast.Element,
     { nodeList, namespace, ...options }: VisitorContext,
@@ -188,6 +189,13 @@ export const visitor: Ast.Visitor = {
     visitAll(visitor, attrs, {
       parentNode: startTag,
       nodeList: attributes,
+      text,
+      namespace,
+    })
+
+    visitAll(visitor, comments, {
+      parentNode: startTag,
+      nodeList: childNodes,
       text,
       namespace,
     })
@@ -288,6 +296,19 @@ export const visitor: Ast.Visitor = {
     nodeList.push(node)
   },
   visitComment(comment: Ast.Comment, { nodeList, ...options }: VisitorContext) {
+    const node: MLASTComment = {
+      ...nodeMapper(comment, options),
+      depth: 0,
+      type: 'comment',
+      nodeName: '#comment',
+      isBogus: false,
+    }
+    nodeList.push(node)
+  },
+  visitStartTagComment(
+    comment: Ast.StartTagComment,
+    { nodeList, ...options }: VisitorContext,
+  ) {
     const node: MLASTComment = {
       ...nodeMapper(comment, options),
       depth: 0,

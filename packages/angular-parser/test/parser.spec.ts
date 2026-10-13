@@ -139,6 +139,10 @@ describe('parser', () => {
           .map(attr => attr.nodeName),
       )
     expect(attributes).toEqual([['class'], ['class']])
+    const comments = doc.nodeList
+      .filter(node => node.type === 'comment')
+      .map(node => node.raw)
+    expect(comments).toEqual(['/* block comment */', '// line comment'])
     expect(doc).toMatchSnapshot()
   })
 

@@ -6,7 +6,7 @@ import { tokenizer } from './tokenizer.js'
 const reTag = /^<([\s\S]+)>\s*$/
 const reTagName = /^[a-z][^\0\t\n\f\u0020/>]*/i
 
-// eslint-disable-next-line sonarjs/slow-regex
+// eslint-disable-next-line sonarjs/super-linear-regex
 const reEndTokens = /(\s*\/)?\s*>$/
 
 export default function parseSelfClosingSolidus(
@@ -39,5 +39,5 @@ export default function parseSelfClosingSolidus(
 
   const endTokens = reEndTokens.exec(raw)
 
-  return tokenizer(endTokens?.[1], line, col, offset)
+  return tokenizer(endTokens?.[1], line, col, offset).token
 }

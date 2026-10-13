@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import type { MLASTHTMLAttr } from '@markuplint/ml-ast'
-import { v4 as uuid } from 'uuid'
 
 import { tokenizer } from './tokenizer.js'
 
 const reAttrsInStartTag =
-  // eslint-disable-next-line regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, sonarjs/no-control-regex, sonarjs/regex-complexity, sonarjs/slow-regex
+  // eslint-disable-next-line regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, sonarjs/regex-complexity, sonarjs/super-linear-regex
   /(\s*)([^\u0000-\u001F\u007F-\u009F "'>/=]+)(?:(\s*)(=)(\s*)(?:"([^"]*)"|'([^']*)'|(\S*)))?/
 
 export default function attrTokenizer(
@@ -80,31 +79,24 @@ export default function attrTokenizer(
       (quoteChars ?? '') +
       (valueChars ?? '') +
       (quoteChars ?? ''),
-    name.startLine,
-    name.startCol,
-    name.startOffset,
+    name.token.line,
+    name.token.col,
+    name.token.offset,
   )
 
   return {
     type: 'attr',
-    uuid: uuid(),
-    raw: attrToken.raw,
-    startOffset: attrToken.startOffset,
-    endOffset: attrToken.endOffset,
-    startLine: attrToken.startLine,
-    endLine: attrToken.endLine,
-    startCol: attrToken.startCol,
-    endCol: attrToken.endCol,
-    spacesBeforeName,
-    name,
-    spacesBeforeEqual,
-    equal,
-    spacesAfterEqual,
-    startQuote,
-    value,
-    endQuote,
+    ...attrToken.token,
+    spacesBeforeName: spacesBeforeName.token,
+    name: name.token,
+    spacesBeforeEqual: spacesBeforeEqual.token,
+    equal: equal.token,
+    spacesAfterEqual: spacesAfterEqual.token,
+    startQuote: startQuote.token,
+    value: value.token,
+    endQuote: endQuote.token,
     isDuplicatable: false,
-    nodeName: name.raw,
+    nodeName: name.token.raw,
     isDynamicValue,
   }
 }

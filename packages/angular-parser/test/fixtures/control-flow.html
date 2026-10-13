@@ -1,0 +1,24 @@
+@if (loggedIn) {
+  <b>hello</b>
+} @else if (pending) {
+  <i>wait</i>
+} @else {
+  <u>guest</u>
+}
+
+@for (item of items; track item.id) {
+  <span>{{ item.name }}</span>
+} @empty {
+  <em>empty</em>
+}
+
+@switch (value) {
+  @case (1) {
+    <b>one</b>
+  }
+  @default {
+    <i>other</i>
+  }
+}
+
+@let total = items.length;

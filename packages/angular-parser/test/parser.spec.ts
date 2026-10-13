@@ -3,6 +3,8 @@ import snapshotDiff from 'snapshot-diff'
 
 import { cleanParse } from './helper.js'
 
+import { visitor } from 'markuplint-angular-parser'
+
 describe('parser', () => {
   test('parser.parse', () => {
     expect(
@@ -92,5 +94,39 @@ describe('parser', () => {
     const doc = cleanParse(html)
     expect(doc).toMatchSnapshot()
     expect(snapshotDiff(cleanParse(parser.parse(html)), doc)).toMatchSnapshot()
+  })
+
+  test('control flow blocks', () => {
+    expect(
+      cleanParse(/* HTML */ `
+        @if (loggedIn) {
+        <b>hello</b>
+        } @else if (pending) {
+        <i>wait</i>
+        } @else {
+        <u>guest</u>
+        } @for (item of items; track item.id) {
+        <span>{{ item.name }}</span>
+        } @empty {
+        <em>empty</em>
+        } @switch (value) { @case (1) {
+        <b>one</b>
+        } @default {
+        <i>other</i>
+        } } @let total = items.length;
+      `),
+    ).toMatchSnapshot()
+  })
+
+  test('unreachable angular nodes stay ignored', () => {
+    // Selectorless components/directives need `enableAngularSelectorlessSyntax`,
+    // which hangs the upstream lexer on lowercase `@directive`, and block
+    // parameters are part of the block signature, not nodes of their own.
+    const context = { nodeList: [] }
+    expect(
+      visitor.visitBlockParameter(undefined as never, context),
+    ).toBeUndefined()
+    expect(visitor.visitComponent(undefined as never, context)).toBeUndefined()
+    expect(visitor.visitDirective(undefined as never, context)).toBeUndefined()
   })
 })

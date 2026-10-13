@@ -30,6 +30,8 @@ export const _cleanParse = <T extends object>(nodes: T) => {
         'uuid',
         'childNodes',
         'parentNode',
+        'parentNodeUuid',
+        'pairNodeUuid',
         'prevNode',
         'nextNode',
         'pearNode',

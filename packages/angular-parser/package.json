@@ -29,9 +29,9 @@
     "angular-linter"
   ],
   "dependencies": {
-    "@markuplint/ml-ast": "^4.4.9",
-    "@markuplint/parser-utils": "^4.8.6",
-    "angular-html-parser": "^8.1.0",
+    "@markuplint/ml-ast": "^5.0.0",
+    "@markuplint/parser-utils": "^5.0.0",
+    "angular-html-parser": "^10.0.0",
     "uuid": "^11.1.0"
   },
   "publishConfig": {

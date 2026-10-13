@@ -7,7 +7,7 @@ exports[`fixtures > attr-duplication.html 1`] = `
     "line": 3,
     "message": "The attribute name is duplicated",
     "raw": "[type]",
-    "ruleId": "attr-duplication",
+    "ruleId": "no-duplicate-attr",
     "severity": "error",
   },
   {
@@ -15,13 +15,15 @@ exports[`fixtures > attr-duplication.html 1`] = `
     "line": 4,
     "message": "The attribute name is duplicated",
     "raw": "[attr.type]",
-    "ruleId": "attr-duplication",
+    "ruleId": "no-duplicate-attr",
     "severity": "error",
   },
 ]
 `;
 
 exports[`fixtures > case-sensitive-tag-name.html 1`] = `[]`;
+
+exports[`fixtures > control-flow.html 1`] = `[]`;
 
 exports[`fixtures > deprecated-element.html 1`] = `
 [
@@ -30,7 +32,7 @@ exports[`fixtures > deprecated-element.html 1`] = `
     "line": 1,
     "message": "The "font" element is obsolete",
     "raw": "<font color="red">",
-    "ruleId": "deprecated-element",
+    "ruleId": "no-obsolete-element",
     "severity": "error",
   },
 ]

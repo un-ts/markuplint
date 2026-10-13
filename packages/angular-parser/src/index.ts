@@ -1,6 +1,4 @@
-import { type State, type Node } from '@markuplint/html-parser'
 import type {
-  MLASTAbstractNode,
   MLASTAttr,
   MLASTChildNode,
   MLASTComment,
@@ -9,25 +7,19 @@ import type {
   MLASTElement,
   MLASTElementCloseTag,
   MLASTHTMLAttr,
-  MLASTNode,
   MLASTNodeTreeItem,
   MLASTParentNode,
   MLASTText,
   MLASTToken,
+  NamespaceURI,
 } from '@markuplint/ml-ast'
 import { Parser } from '@markuplint/parser-utils'
-import { parse, visitAll } from 'angular-html-parser'
-import type {
-  Attribute,
-  CDATA,
-  Comment,
-  DocType,
-  Expansion,
-  ExpansionCase,
-  Text,
-  Visitor,
-} from 'angular-html-parser/lib/compiler/src/ml_parser/ast.js'
-import type { ParseSourceSpan } from 'angular-html-parser/lib/compiler/src/parse_util.js'
+import {
+  type Ast,
+  type ParseSourceSpan,
+  parse,
+  visitAll,
+} from 'angular-html-parser'
 import type { Writable } from 'type-fest'
 import { v4 as uuid } from 'uuid'
 
@@ -39,7 +31,7 @@ export interface BaseVisitorContext {
   text: string
 }
 
-export interface VisitorContext<T extends MLASTToken = MLASTNode>
+export interface VisitorContext<T extends MLASTToken = MLASTToken>
   extends BaseVisitorContext {
   nodeList: T[]
   namespace?: string
@@ -68,6 +60,10 @@ export interface NodeMapperOptions<T extends boolean = boolean>
   simpleToken?: T
 }
 
+type MLASTNodeBase = MLASTToken & {
+  readonly parentNodeUuid: string | null
+}
+
 function nodeMapper(
   nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   options: Required<NodeMapperOptions<true>>,
@@ -75,45 +71,39 @@ function nodeMapper(
 function nodeMapper(
   nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   options: NodeMapperOptions<false>,
-): Omit<MLASTAbstractNode, 'nodeName' | 'type'>
+): MLASTNodeBase
 function nodeMapper(
   nodeOrSourceSpan: ParseSourceSpan | { sourceSpan: ParseSourceSpan },
   { parentNode, text, simpleToken }: NodeMapperOptions,
-) {
-  const { start, end } = getSourceSpan(nodeOrSourceSpan)
-  const startOffset = start.offset
-  const endOffset = end.offset
+): MLASTNodeBase | MLASTToken {
+  const { start } = getSourceSpan(nodeOrSourceSpan)
 
   const token: MLASTToken = {
     uuid: uuid(),
     raw: getRaw(nodeOrSourceSpan, text),
-    startOffset,
-    endOffset,
-    startLine: start.line + 1,
-    endLine: end.line + 1,
-    startCol: start.col + 1,
-    endCol: end.col + 1,
+    offset: start.offset,
+    line: start.line + 1,
+    col: start.col + 1,
   }
 
   return simpleToken
     ? token
-    : {
-        ...token,
-        parentNode,
-        prevNode: null,
-        nextNode: null,
-        isFragment: false,
-        isGhost: false,
-      }
+    : { ...token, parentNodeUuid: parentNode?.uuid ?? null }
 }
 
 const DOCTYPE_REGEXP =
-  // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group, sonarjs/slow-regex
+  // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-unused-capturing-group, sonarjs/super-linear-regex
   /^<!doctype\s+html\s+public\s*(["'])([^"']*)\1\s*((["'])([^"']*)\4)?.*>$/i
 
-const visitor: Visitor = {
+const visitor: Ast.Visitor = {
   visitElement(
-    { startSourceSpan, endSourceSpan, name: nodeName, attrs, children },
+    {
+      startSourceSpan,
+      endSourceSpan,
+      name: nodeName,
+      attrs,
+      children,
+    }: Ast.Element,
     { nodeList, namespace, ...options }: VisitorContext,
   ) {
     const partialStartTag = nodeMapper(startSourceSpan, options)
@@ -136,9 +126,9 @@ const visitor: Visitor = {
 
     const selfClosingSolidus = parseSelfClosingSolidus(
       startTagText,
-      partialStartTag.startLine,
-      partialStartTag.startCol,
-      partialStartTag.startOffset,
+      partialStartTag.line,
+      partialStartTag.col,
+      partialStartTag.offset,
     )
 
     const isCustomElement = nodeName.includes('-')
@@ -151,14 +141,14 @@ const visitor: Visitor = {
       isFragment: false,
       isGhost: false,
       nodeName,
-      namespace,
+      namespace: namespace as NamespaceURI,
       attributes,
       childNodes,
       hasSpreadAttr: false,
-      pairNode: null,
-      selfClosingSolidus,
+      blockBehavior: null,
+      pairNodeUuid: null,
       tagOpenChar: '<',
-      tagCloseChar: startTagText === endTagText ? '/>' : '>',
+      tagCloseChar: (selfClosingSolidus.raw.trim() ? '/' : '') + '>',
     }
 
     visitAll(visitor, attrs, {
@@ -178,16 +168,17 @@ const visitor: Visitor = {
     let endTag: MLASTElementCloseTag | null = null
 
     if (startTagText !== endTagText && endTagText) {
-      startTag.pairNode = endTag = {
+      endTag = {
         ...nodeMapper(endSourceSpan!, options),
         type: 'endtag',
         depth: 0,
-        parentNode: null,
-        pairNode: startTag,
+        parentNodeUuid: null,
+        pairNodeUuid: startTag.uuid,
         nodeName,
         tagOpenChar: '</',
         tagCloseChar: '>',
       }
+      startTag.pairNodeUuid = endTag.uuid
     }
 
     nodeList.push(startTag)
@@ -197,7 +188,7 @@ const visitor: Visitor = {
     }
   },
   visitAttribute(
-    attribute: Attribute,
+    attribute: Ast.Attribute,
     { nodeList, ...options }: VisitorContext<MLASTAttr>,
   ) {
     const {
@@ -242,7 +233,7 @@ const visitor: Visitor = {
 
     nodeList.push(node)
   },
-  visitText(text: Text, { nodeList, ...options }: VisitorContext) {
+  visitText(text: Ast.Text, { nodeList, ...options }: VisitorContext) {
     const node: MLASTText = {
       ...nodeMapper(text, options),
       depth: 0,
@@ -251,7 +242,7 @@ const visitor: Visitor = {
     }
     nodeList.push(node)
   },
-  visitCdata(cdata: CDATA, { nodeList, ...options }: VisitorContext) {
+  visitCdata(cdata: Ast.CDATA, { nodeList, ...options }: VisitorContext) {
     // mark cdata as comment
     const node: MLASTComment = {
       ...nodeMapper(cdata, options),
@@ -262,7 +253,7 @@ const visitor: Visitor = {
     }
     nodeList.push(node)
   },
-  visitComment(comment: Comment, { nodeList, ...options }: VisitorContext) {
+  visitComment(comment: Ast.Comment, { nodeList, ...options }: VisitorContext) {
     const node: MLASTComment = {
       ...nodeMapper(comment, options),
       depth: 0,
@@ -272,7 +263,7 @@ const visitor: Visitor = {
     }
     nodeList.push(node)
   },
-  visitDocType(docType: DocType, { nodeList, ...options }: VisitorContext) {
+  visitDocType(docType: Ast.DocType, { nodeList, ...options }: VisitorContext) {
     const partialDocType = nodeMapper(docType, options)
     const matched = DOCTYPE_REGEXP.exec(partialDocType.raw)
     const node: MLASTDoctype = {
@@ -287,7 +278,7 @@ const visitor: Visitor = {
     nodeList.push(node)
   },
   /* istanbul ignore next */
-  visitExpansion(expansion: Expansion, _context: VisitorContext) {
+  visitExpansion(expansion: Ast.Expansion, _context: VisitorContext) {
     throw new Error(
       'unexpected expansion node: ' +
         // eslint-disable-next-line @typescript-eslint/no-base-to-string
@@ -295,7 +286,10 @@ const visitor: Visitor = {
     )
   },
   /* istanbul ignore next */
-  visitExpansionCase(expansionCase: ExpansionCase, _context: VisitorContext) {
+  visitExpansionCase(
+    expansionCase: Ast.ExpansionCase,
+    _context: VisitorContext,
+  ) {
     throw new Error(
       'unexpected expansionCase node: ' +
         // eslint-disable-next-line @typescript-eslint/no-base-to-string
@@ -311,9 +305,15 @@ const visitor: Visitor = {
   visitLetDeclaration() {
     // markuplint does not support angular block
   },
+  visitComponent() {
+    // markuplint does not support angular component
+  },
+  visitDirective() {
+    // markuplint does not support angular directive
+  },
 }
 
-export class AngularParser extends Parser<Node, State> {
+export class AngularParser extends Parser<Ast.Node> {
   override parse(text: string) {
     const { rootNodes, errors } = parse(text)
 

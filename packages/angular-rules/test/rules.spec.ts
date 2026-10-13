@@ -6,7 +6,7 @@ describe('order example 1', () => {
   const config = {
     rule: {
       value: true,
-      option: {
+      options: {
         order: [
           '*structural',
           '#variable',
@@ -14,8 +14,8 @@ describe('order example 1', () => {
           '[input]',
           '[(two-way)]',
           '(output)',
-        ],
-      } as Options,
+        ] satisfies Options['order'],
+      },
     },
   }
 
@@ -82,7 +82,7 @@ describe('order example 2', () => {
   const config = {
     rule: {
       value: true,
-      option: {
+      options: {
         order: [
           '(output)',
           '[(two-way)]',
@@ -90,8 +90,8 @@ describe('order example 2', () => {
           'attribute',
           '#variable',
           '*structural',
-        ],
-      } as Options,
+        ] satisfies Options['order'],
+      },
     },
   }
 
@@ -153,9 +153,13 @@ describe('partially supplied definitions', () => {
   const config = {
     rule: {
       value: true,
-      option: {
-        order: ['*structural', 'attribute', '(output)'],
-      } as Options,
+      options: {
+        order: [
+          '*structural',
+          'attribute',
+          '(output)',
+        ] satisfies Options['order'],
+      },
     },
   }
 
@@ -211,18 +215,17 @@ describe('partially supplied definitions', () => {
 
 describe('options validation', () => {
   it('throws an error when an order option is not an array', async () => {
-    const result = await mlRuleTest(attributeGroupOrder, '<div></div>', {
-      rule: {
-        value: true,
-        options: {
-          // @ts-expect-error -- testing
-          order: 'incorrect',
+    await expect(
+      mlRuleTest(attributeGroupOrder, '<div></div>', {
+        rule: {
+          value: true,
+          options: {
+            // @ts-expect-error -- testing
+            order: 'incorrect',
+          },
         },
-      },
-    })
-    expect(result.violations[0].message).toMatch(
-      /Error: The "order" option must be an array./,
-    )
+      }),
+    ).rejects.toThrow('The "order" option must be an array.')
   })
 
   it('throws an error when an incorrect order option is supplied', async () => {

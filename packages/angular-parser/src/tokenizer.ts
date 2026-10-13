@@ -2,24 +2,30 @@ import type { MLASTToken } from '@markuplint/ml-ast'
 import { getEndCol, getEndLine } from '@markuplint/parser-utils/location'
 import { v4 as uuid } from 'uuid'
 
+export interface Tokenization {
+  token: MLASTToken
+  endOffset: number
+  endLine: number
+  endCol: number
+}
+
 export function tokenizer(
   raw: string | null | undefined,
-  startLine: number,
-  startCol: number,
-  startOffset: number,
-): MLASTToken {
+  line: number,
+  col: number,
+  offset: number,
+): Tokenization {
   raw ??= ''
-  const endLine = getEndLine(raw, startLine)
-  const endCol = getEndCol(raw, startCol)
-  const endOffset = startOffset + raw.length
   return {
-    uuid: uuid(),
-    raw,
-    startOffset,
-    endOffset,
-    startLine,
-    endLine,
-    startCol,
-    endCol,
+    token: {
+      uuid: uuid(),
+      raw,
+      offset,
+      line,
+      col,
+    },
+    endLine: getEndLine(raw, line),
+    endCol: getEndCol(raw, col),
+    endOffset: offset + raw.length,
   }
 }

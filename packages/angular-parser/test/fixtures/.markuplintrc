@@ -3,8 +3,8 @@
     ".html$": "markuplint-angular-parser"
   },
   "rules": {
-    "attr-duplication": true,
+    "no-duplicate-attr": true,
     "case-sensitive-tag-name": true,
-    "deprecated-element": true
+    "no-obsolete-element": true
   }
 }

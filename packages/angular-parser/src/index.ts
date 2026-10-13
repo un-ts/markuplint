@@ -384,6 +384,8 @@ export class AngularParser extends Parser<Ast.Node> {
     const { rootNodes, errors } = parse(text, {
       tokenizeAngularBlocks: true,
       tokenizeAngularLetDeclaration: true,
+      // Angular allows `/* ... */` and `// ...` comments inside a start tag
+      allowStartTagComments: true,
     })
 
     const nodeList: MLASTNodeTreeItem[] = []

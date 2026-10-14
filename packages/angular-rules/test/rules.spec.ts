@@ -3,7 +3,7 @@ import { mlRuleTest } from 'markuplint'
 import { type Options, attributeGroupOrder } from 'markuplint-angular-rules'
 
 /** The rule is for Angular templates, so the tests that exercise the fix use our parser. */
-const angularParser = { '.*': 'markuplint-angular-parser' }
+const parser = { '.*': 'markuplint-angular-parser' }
 
 const fewAttributes = [
   '<br>',
@@ -197,7 +197,7 @@ describe('autofix', () => {
   // The Angular parser starts an attribute token at its name, so its tokens carry no
   // leading whitespace: the fix has to keep the gaps of the source instead
   const config = {
-    parser: angularParser,
+    parser,
     rule: { value: true, options: { order } },
   }
 
@@ -226,7 +226,7 @@ describe('autofix', () => {
       attributeGroupOrder,
       '<div data-b="2" data-a="1"></div>',
       {
-        parser: angularParser,
+        parser,
         rule: { value: true, options: { order, alphabetical: true } },
       },
       true,
@@ -240,7 +240,7 @@ describe('autofix', () => {
       attributeGroupOrder,
       html,
       {
-        parser: angularParser,
+        parser,
         rule: {
           value: true,
           options: { order: ['*structural', 'attribute', '(output)'] },
@@ -358,7 +358,7 @@ describe('alphabetical', () => {
       attributeGroupOrder,
       '<div [count]="2" *ngIf="true"></div>',
       {
-        parser: angularParser,
+        parser,
         rule: { value: true, options: { alphabetical: true } },
       },
       true,

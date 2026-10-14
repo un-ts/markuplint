@@ -35,9 +35,10 @@ const animationGroups: Options['order'] = [
 async function countViolations(
   order: Options['order'],
   html: string,
+  alphabetical = false,
 ): Promise<number> {
   const { violations } = await mlRuleTest(attributeGroupOrder, html, {
-    rule: { value: true, options: { order } },
+    rule: { value: true, options: { order, alphabetical } },
   })
   return violations.length
 }
@@ -293,6 +294,46 @@ describe('optional groups', () => {
   })
 })
 
+describe('alphabetical', () => {
+  const order: Options['order'] = [...animationGroups, '(output)']
+  // Without the `i18n` group, an `i18n-` attribute and its plain counterpart share the
+  // `attribute` group
+  const legacyOrder: Options['order'] = [
+    '*structural',
+    '#variable',
+    'attribute',
+    '[input]',
+    '[(two-way)]',
+    '(output)',
+  ]
+
+  it('sorts the attributes of a group by name', async () => {
+    expect(
+      await countViolations(order, '<div data-b="2" data-a="1"></div>', true),
+    ).toBe(1)
+    expect(
+      await countViolations(order, '<div data-a="1" data-b="2"></div>', true),
+    ).toBe(0)
+  })
+
+  it('sorts an `i18n-` attribute after its plain counterpart', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div i18n-title="@@t" title="T"></div>',
+        true,
+      ),
+    ).toBe(1)
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div title="T" i18n-title="@@t"></div>',
+        true,
+      ),
+    ).toBe(0)
+  })
+})
+
 describe('options validation', () => {
   it('throws an error when an order option is not an array', async () => {
     await expect(
@@ -306,6 +347,20 @@ describe('options validation', () => {
         },
       }),
     ).rejects.toThrow('The "order" option must be an array.')
+  })
+
+  it('throws an error when an alphabetical option is not a boolean', async () => {
+    await expect(
+      mlRuleTest(attributeGroupOrder, '<div></div>', {
+        rule: {
+          value: true,
+          options: {
+            // @ts-expect-error -- testing
+            alphabetical: 'incorrect',
+          },
+        },
+      }),
+    ).rejects.toThrow('The "alphabetical" option must be a boolean.')
   })
 
   it('throws an error when an incorrect order option is supplied', async () => {

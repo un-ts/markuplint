@@ -189,6 +189,19 @@ describe('parser', () => {
     ])
   })
 
+  test('spread attribute', () => {
+    const doc = cleanParse('<div a="1" {...props}></div>')
+    const element = doc.nodeList.find(
+      (node): node is MLASTElement => node.type === 'starttag',
+    )
+    expect(element?.attributes.map(attr => [attr.type, attr.nodeName])).toEqual(
+      [
+        ['attr', 'a'],
+        ['spread', '#spread'],
+      ],
+    )
+  })
+
   test('invalid binding names are not marked as dynamic', () => {
     const doc = cleanParse(/* HTML */ `
       <div

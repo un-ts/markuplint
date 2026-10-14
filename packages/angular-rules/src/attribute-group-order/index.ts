@@ -25,6 +25,25 @@ export const defaultOrder: AngularAttributeType[] = [
 
 export interface Options {
   order: AngularAttributeType[]
+  /**
+   * Sort the attributes of the same group alphabetically.
+   *
+   * @default false
+   */
+  alphabetical?: boolean
+}
+
+/** An attribute in source order with its resolved group. */
+interface AttributeEntry {
+  /** The bare name, e.g. `[@trigger]` or `i18n-title` */
+  name: string
+  /** The whole attribute, e.g. `[@trigger]="state"` */
+  raw: string
+  startOffset: number
+  endOffset: number
+  /** The whitespace that precedes the attribute in the source */
+  spacesBefore: string
+  type: AngularAttributeType
 }
 
 export default createRule<boolean, Options>({
@@ -32,47 +51,67 @@ export default createRule<boolean, Options>({
   defaultValue: true,
   defaultOptions: {
     order: defaultOrder,
+    alphabetical: false,
   },
   async verify(context) {
     await context.document.walkOn('Element', node => {
       validateOptions(node.rule.options)
-      const order = node.rule.options.order
-      const attributes = node.attributes
-      let lastFoundType: AngularAttributeType | null = null
-      for (const attribute of attributes) {
+      const { order, alphabetical = false } = node.rule.options
+
+      const entries = node.attributes.map<AttributeEntry>(attribute => {
         // The name token is the bare name (`[@trigger]`, `i18n-title`), while `raw` also
         // carries the `="value"` part
-        const attributeType = resolveType(
-          getAttributeType(attribute.nameNode?.raw),
-          order,
-        )
-
-        if (!lastFoundType || lastFoundType === attributeType) {
-          lastFoundType = attributeType
-          continue
+        const name = attribute.nameNode?.raw ?? ''
+        return {
+          name,
+          raw: attribute.raw,
+          startOffset: attribute.startOffset,
+          endOffset: attribute.endOffset,
+          spacesBefore: attribute.spacesBeforeName?.raw ?? '',
+          type: resolveType(getAttributeType(name), order),
         }
+      })
 
-        if (!order.includes(attributeType)) {
-          continue
-        }
-
-        const isOutOfOrder =
-          order.indexOf(attributeType) < order.indexOf(lastFoundType)
-        if (!isOutOfOrder) {
-          lastFoundType = attributeType
-          continue
-        }
-
-        context.report({
-          message: context.t(
-            'Attribute "{0}" is out of order. Expected order is {1}',
-            attribute.raw,
-            order.join(', '),
-          ),
-          scope: node,
-        })
-        break
+      const outOfOrder = findOutOfOrder(entries, order, alphabetical)
+      if (!outOfOrder) {
+        return
       }
+
+      const message = context.t(
+        'Attribute "{0}" is out of order. Expected order is {1}',
+        outOfOrder.raw,
+        order.join(', '),
+      )
+
+      const sorted = [...entries].sort(byOrder(order, alphabetical))
+      const isSorted = sorted.every((entry, index) => entry === entries[index])
+      // An attribute of a group that is not listed in `order` has no rank, so the
+      // attributes cannot be sorted as a whole
+      const isSortable = entries.every(entry => order.includes(entry.type))
+      if (isSorted || !isSortable) {
+        context.report({ message, scope: node })
+        return
+      }
+
+      const first = entries[0]
+      const last = entries.at(-1)!
+      const range = [first.startOffset, last.endOffset] as const
+      /**
+       * The whitespace of each position is kept and only the attribute text is moved, so
+       * that the indentation and the line breaks stay as they are.
+       */
+      const text = sorted
+        .map(
+          (entry, index) =>
+            (index === 0 ? '' : entries[index].spacesBefore) + entry.raw,
+        )
+        .join('')
+
+      context.report({
+        message,
+        scope: node,
+        fix: fixer => fixer.replaceRange(range, text),
+      })
     })
   },
 })
@@ -134,9 +173,79 @@ function resolveType(
   }
 }
 
+/** Returns the first attribute that breaks the expected order, if any. */
+function findOutOfOrder(
+  entries: readonly AttributeEntry[],
+  order: AngularAttributeType[],
+  alphabetical: boolean,
+): AttributeEntry | undefined {
+  let last: AttributeEntry | undefined
+  for (const entry of entries) {
+    if (!last) {
+      last = entry
+      continue
+    }
+
+    if (last.type === entry.type) {
+      if (alphabetical && compareNames(last.name, entry.name) > 0) {
+        return entry
+      }
+      last = entry
+      continue
+    }
+
+    // A group that is not listed in `order` is ignored, and does not become the
+    // reference for the following attributes either
+    if (!order.includes(entry.type)) {
+      continue
+    }
+
+    if (order.indexOf(entry.type) < order.indexOf(last.type)) {
+      return entry
+    }
+    last = entry
+  }
+  return undefined
+}
+
+/**
+ * Compares attributes of the same group by name.
+ *
+ * `i18n-title` is compared as `title`, and sorts after it, so that an attribute and its
+ * `i18n-` counterpart stay together.
+ */
+function compareNames(one: string, other: string): number {
+  const oneNormalized = one.replace(/^i18n-/, '')
+  const otherNormalized = other.replace(/^i18n-/, '')
+  if (oneNormalized === otherNormalized) {
+    return one.startsWith('i18n-') ? 1 : -1
+  }
+  return oneNormalized > otherNormalized ? 1 : -1
+}
+
+function byOrder(
+  order: AngularAttributeType[],
+  alphabetical: boolean,
+): (one: AttributeEntry, other: AttributeEntry) => number {
+  return (one, other) => {
+    const indexDifference = order.indexOf(one.type) - order.indexOf(other.type)
+    if (indexDifference !== 0 || !alphabetical) {
+      return indexDifference
+    }
+    return compareNames(one.name, other.name)
+  }
+}
+
 function validateOptions(options: Options): void {
   if (!Array.isArray(options.order)) {
     throw new TypeError('The "order" option must be an array.')
+  }
+
+  if (
+    options.alphabetical != null &&
+    typeof options.alphabetical !== 'boolean'
+  ) {
+    throw new TypeError('The "alphabetical" option must be a boolean.')
   }
 
   const order = options.order

@@ -6,9 +6,10 @@ const fewAttributes = [
   '<br>',
   '<div *ngIf="true"></div>',
   '<div [class.valid]="true"></div>',
-  '<div [class.valid]="true" [class.red]="false"></div>',
+  // Alphabetical-safe, so the cases with `alphabetical: true` can share this list
+  '<div [class.red]="false" [class.valid]="true"></div>',
   '<div data-foo="bar"></div>',
-  '<div data-foo="bar" data-col="2"></div>',
+  '<div data-col="2" data-foo="bar"></div>',
   '<div (click)="onClick()"></div>',
   '<div [(ngModel)]="foo"></div>',
 ]
@@ -16,6 +17,7 @@ const fewAttributes = [
 interface Case {
   name: string
   options: Options['order']
+  alphabetical?: boolean
   many: string[]
   incorrect: string[]
 }
@@ -139,14 +141,28 @@ const cases: Case[] = [
       '<div [@fadeIn]="state" [count]="2"></div>',
     ],
   },
+  {
+    name: 'alphabetical',
+    options: [...animationGroups, '(output)'],
+    alphabetical: true,
+    many: [
+      '<div *ngIf="true" #aRef data-bar="foo" data-col="2" [count]="2" [(ngModel)]="foo" @fadeIn="state" (click)="onClick()"></div>',
+      '<div i18n="@@id" i18n-title="@@title" title="Title"></div>',
+    ],
+    incorrect: [
+      '<div data-col="2" data-bar="foo"></div>',
+      '<div [count]="2" [class.valid]="true"></div>',
+      '<div title="Title" i18n-title="@@title"></div>',
+    ],
+  },
 ]
 
-for (const { name, options, many, incorrect } of cases) {
+for (const { name, options, many, incorrect, alphabetical } of cases) {
   describe(name, () => {
     const config = {
       rule: {
         value: true,
-        options: { order: options },
+        options: { order: options, alphabetical },
       },
     }
 
@@ -173,6 +189,58 @@ for (const { name, options, many, incorrect } of cases) {
     })
   })
 }
+
+describe('autofix', () => {
+  const order: Options['order'] = [...animationGroups, '(output)']
+  const config = { rule: { value: true, options: { order } } }
+
+  it('reorders the attributes', async () => {
+    const { fixedCode } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div [count]="2" *ngIf="true"></div>',
+      config,
+      true,
+    )
+    expect(fixedCode).toBe('<div *ngIf="true" [count]="2"></div>')
+  })
+
+  it('keeps the indentation of a multiline tag', async () => {
+    const { fixedCode } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div\n  [count]="2"\n  *ngIf="true"\n></div>',
+      config,
+      true,
+    )
+    expect(fixedCode).toBe('<div\n  *ngIf="true"\n  [count]="2"\n></div>')
+  })
+
+  it('sorts alphabetically when enabled', async () => {
+    const { fixedCode } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div data-b="2" data-a="1"></div>',
+      { rule: { value: true, options: { order, alphabetical: true } } },
+      true,
+    )
+    expect(fixedCode).toBe('<div data-a="1" data-b="2"></div>')
+  })
+
+  it('does not reorder when a group is not listed in `order`', async () => {
+    const html = '<div title="t" [count]="2" *ngIf="true"></div>'
+    const { fixedCode, violations } = await mlRuleTest(
+      attributeGroupOrder,
+      html,
+      {
+        rule: {
+          value: true,
+          options: { order: ['*structural', 'attribute', '(output)'] },
+        },
+      },
+      true,
+    )
+    expect(violations.length).toBe(1)
+    expect(fixedCode).toBe(html)
+  })
+})
 
 describe('optional groups', () => {
   // `[@animation]` refines `@animation`, so with it configured the bound form must no

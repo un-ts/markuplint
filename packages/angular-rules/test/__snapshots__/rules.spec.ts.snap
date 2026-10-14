@@ -1,5 +1,41 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`alphabetical > fails incorrect markup 1`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "data-bar="foo"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div data-col="2" data-bar="foo">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`alphabetical > fails incorrect markup 2`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[class.valid]="true"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div [count]="2" [class.valid]="true">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`alphabetical > fails incorrect markup 3`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "i18n-title="@@title"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div title="Title" i18n-title="@@title">",
+    "severity": "error",
+  },
+]
+`;
+
 exports[`animation and i18n > fails incorrect markup 1`] = `
 [
   {

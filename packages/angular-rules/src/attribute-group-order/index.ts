@@ -86,11 +86,9 @@ export default createRule<boolean, Options>({
       )
 
       const sorted = [...entries].sort(byOrder(order, alphabetical))
-      const isSorted = sorted.every((entry, index) => entry === entries[index])
       // An attribute of a group that is not listed in `order` has no rank, so the
       // attributes cannot be sorted as a whole
-      const isSortable = entries.every(entry => order.includes(entry.type))
-      if (isSorted || !isSortable) {
+      if (entries.some(entry => !order.includes(entry.type))) {
         context.report({ message, scope: node })
         return
       }
@@ -145,10 +143,16 @@ const ATTRIBUTE_TYPES: ReadonlyArray<
   ['i18n', name => /^i18n(?:-|$)/.test(name)],
 ]
 
-function getAttributeType(name: string | undefined): AngularAttributeType {
+/** Every group that can be configured, derived from the matchers above. */
+const ATTRIBUTE_GROUPS = new Set<AngularAttributeType>([
+  ...ATTRIBUTE_TYPES.map(([type]) => type),
+  // Matched by the default branch of `getAttributeType`
+  'attribute',
+])
+
+function getAttributeType(name: string): AngularAttributeType {
   return (
-    ATTRIBUTE_TYPES.find(([, matches]) => matches(name ?? ''))?.[0] ??
-    'attribute'
+    ATTRIBUTE_TYPES.find(([, matches]) => matches(name))?.[0] ?? 'attribute'
   )
 }
 
@@ -159,6 +163,16 @@ function getAttributeType(name: string | undefined): AngularAttributeType {
  * those groups existed therefore keep checking them (`[@trigger]` as `[input]`, and
  * `@trigger` and `i18n-*` as `attribute`).
  */
+const FALLBACK_TYPES: Partial<
+  Record<AngularAttributeType, AngularAttributeType[]>
+> = {
+  // `@animation` before `[@animation]` was introduced, and `[input]` before that
+  '[@animation]': ['@animation', '[input]'],
+  // `@trigger` and `i18n-*` were plain attributes
+  '@animation': ['attribute'],
+  i18n: ['attribute'],
+}
+
 function resolveType(
   type: AngularAttributeType,
   order: AngularAttributeType[],
@@ -167,20 +181,9 @@ function resolveType(
     return type
   }
 
-  switch (type) {
-    // `[@trigger]` was `[input]`, and `@animation` before `[@animation]` was introduced
-    case '[@animation]': {
-      return order.includes('@animation') ? '@animation' : '[input]'
-    }
-    // `@trigger` and `i18n-*` were plain attributes
-    case '@animation':
-    case 'i18n': {
-      return 'attribute'
-    }
-    default: {
-      return type
-    }
-  }
+  return (
+    FALLBACK_TYPES[type]?.find(fallback => order.includes(fallback)) ?? type
+  )
 }
 
 /** Returns the first attribute that breaks the expected order, if any. */
@@ -261,7 +264,7 @@ function validateOptions(options: Options): void {
   }
 
   for (const group of order) {
-    if (defaultOrder.includes(group)) {
+    if (ATTRIBUTE_GROUPS.has(group)) {
       continue
     }
 

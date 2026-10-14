@@ -80,6 +80,20 @@ const getRaw = (
  */
 const SLASH_PLACEHOLDER = '\uE000'
 
+const XHTML_NAMESPACE = 'http://www.w3.org/1999/xhtml'
+const SVG_NAMESPACE = 'http://www.w3.org/2000/svg'
+
+/** An `xmlns` attribute wins, then the SVG elements, then the inherited namespace. */
+const resolveNamespace = (
+  attrs: readonly Ast.Attribute[],
+  nodeName: string,
+  namespace: string | undefined,
+): string =>
+  attrs.find(attr => attr.name === 'xmlns')?.value ||
+  (nodeName === 'svg' || nodeName.startsWith('svg:')
+    ? SVG_NAMESPACE
+    : namespace || XHTML_NAMESPACE)
+
 const protectSlashes = (
   raw: string,
   keySpan: ParseSourceSpan | undefined,
@@ -180,13 +194,9 @@ export const visitor: Ast.Visitor = {
     const childNodes: MLASTChildNode[] = []
 
     // https://github.com/ikatyang/angular-html-parser/issues/22
-    nodeName = nodeName.startsWith(':') ? nodeName.slice(1) : nodeName
+    nodeName = nodeName.replace(/^:/, '')
 
-    namespace =
-      attrs.find(attr => attr.name === 'xmlns')?.value ||
-      (nodeName === 'svg' || nodeName.startsWith('svg:')
-        ? 'http://www.w3.org/2000/svg'
-        : namespace || 'http://www.w3.org/1999/xhtml')
+    namespace = resolveNamespace(attrs, nodeName, namespace)
 
     const selfClosingSolidus = parseSelfClosingSolidus(
       startTagText,

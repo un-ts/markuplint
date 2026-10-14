@@ -320,18 +320,6 @@ export const visitor: Ast.Visitor = {
       return
     }
 
-    // The protected slashes of the name are restored before the node is exposed
-    const node: Writable<MLASTHTMLAttr> = {
-      ...parsed,
-      raw: restoreSlashes(parsed.raw),
-      nodeName: restoreSlashes(parsed.nodeName),
-      name: { ...parsed.name, raw: restoreSlashes(parsed.name.raw) },
-    }
-
-    if (dynamicName || dynamicValue) {
-      node.isDynamicValue = true
-    }
-
     const potentialName = name
       /**
        * Remove leading `[attr.`
@@ -346,7 +334,15 @@ export const visitor: Ast.Visitor = {
       // remove leading `*`, `@`, `[]` and `()` wrapper
       .replaceAll(/[()*@[\]]/g, '')
 
-    node.potentialName = potentialName
+    // The protected slashes of the name are restored before the node is exposed
+    const node: MLASTHTMLAttr = {
+      ...parsed,
+      raw: restoreSlashes(parsed.raw),
+      nodeName: restoreSlashes(parsed.nodeName),
+      name: { ...parsed.name, raw: restoreSlashes(parsed.name.raw) },
+      potentialName,
+      ...((dynamicName || dynamicValue) && { isDynamicValue: true }),
+    }
 
     nodeList.push(node)
   },

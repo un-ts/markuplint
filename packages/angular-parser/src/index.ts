@@ -332,7 +332,7 @@ export const visitor: Ast.Visitor = {
       node.isDynamicValue = true
     }
 
-    node.potentialName = name
+    const potentialName = name
       /**
        * Remove leading `[attr.`
        *
@@ -345,6 +345,8 @@ export const visitor: Ast.Visitor = {
       .replace(/^\[attr\./, '')
       // remove leading `*`, `@`, `[]` and `()` wrapper
       .replaceAll(/[()*@[\]]/g, '')
+
+    node.potentialName = potentialName
 
     nodeList.push(node)
   },

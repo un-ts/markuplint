@@ -20,6 +20,26 @@ interface Case {
   incorrect: string[]
 }
 
+const animationGroups: Options['order'] = [
+  '*structural',
+  '#variable',
+  'i18n',
+  'attribute',
+  '[input]',
+  '[(two-way)]',
+  '@animation',
+]
+
+async function countViolations(
+  order: Options['order'],
+  html: string,
+): Promise<number> {
+  const { violations } = await mlRuleTest(attributeGroupOrder, html, {
+    rule: { value: true, options: { order } },
+  })
+  return violations.length
+}
+
 const cases: Case[] = [
   {
     name: 'order example 1',
@@ -101,6 +121,24 @@ const cases: Case[] = [
       '<div (click)="delete" disabled *ngIf="true""></div>',
     ],
   },
+  {
+    name: 'animation and i18n',
+    options: [...animationGroups, '(output)'],
+    many: [
+      '<div *ngIf="true" #myDiv i18n="@@id" data-bar="foo" [count]="2" [(ngModel)]="foo" @fadeIn="state" (click)="onClick()"></div>',
+      '<div i18n i18n-title="@@title" title="Title"></div>',
+      '<div [@fadeIn]="state" @fadeOut="state" (click)="onClick()"></div>',
+      '<div @fadeIn="state" (@fadeIn.done)="onDone()"></div>',
+      // `i18n.foo` is not an Angular i18n attribute, so it is a plain attribute
+      '<div title="Title" i18n.foo="@@id"></div>',
+    ],
+    incorrect: [
+      '<div @fadeIn="state" [count]="2"></div>',
+      '<div data-bar="foo" i18n="@@id"></div>',
+      '<div (click)="onClick()" @fadeIn="state"></div>',
+      '<div [@fadeIn]="state" [count]="2"></div>',
+    ],
+  },
 ]
 
 for (const { name, options, many, incorrect } of cases) {
@@ -135,6 +173,57 @@ for (const { name, options, many, incorrect } of cases) {
     })
   })
 }
+
+describe('optional groups', () => {
+  // `[@animation]` refines `@animation`, so with it configured the bound form must no
+  // longer share the group of the static form
+  const boundPair = '<div [@fadeOut]="state" @fadeIn="state"></div>'
+  // The order used before `@animation`, `[@animation]` and `i18n` existed
+  const legacyOrder: Options['order'] = [
+    '*structural',
+    '#variable',
+    'attribute',
+    '[input]',
+    '[(two-way)]',
+    '(output)',
+  ]
+
+  it('falls back to `@animation` when `[@animation]` is not configured', async () => {
+    expect(
+      await countViolations([...animationGroups, '(output)'], boundPair),
+    ).toBe(0)
+  })
+
+  it('is checked separately when `[@animation]` is configured', async () => {
+    expect(
+      await countViolations(
+        [...animationGroups, '[@animation]', '(output)'],
+        boundPair,
+      ),
+    ).toBe(1)
+  })
+
+  it('degrades `[@trigger]` to `[input]` for legacy orders', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div [@fadeIn]="state" title="t"></div>',
+      ),
+    ).toBe(1)
+  })
+
+  it('degrades `@trigger` and `i18n` to attributes for legacy orders', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div [count]="2" @fadeIn="state"></div>',
+      ),
+    ).toBe(1)
+    expect(
+      await countViolations(legacyOrder, '<div [count]="2" i18n="@@id"></div>'),
+    ).toBe(1)
+  })
+})
 
 describe('options validation', () => {
   it('throws an error when an order option is not an array', async () => {

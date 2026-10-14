@@ -1,5 +1,53 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`animation and i18n > fails incorrect markup 1`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[count]="2"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div @fadeIn="state" [count]="2">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`animation and i18n > fails incorrect markup 2`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "i18n="@@id"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div data-bar="foo" i18n="@@id">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`animation and i18n > fails incorrect markup 3`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "@fadeIn="state"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div (click)="onClick()" @fadeIn="state">",
+    "severity": "error",
+  },
+]
+`;
+
+exports[`animation and i18n > fails incorrect markup 4`] = `
+[
+  {
+    "col": 1,
+    "line": 1,
+    "message": "Attribute "[count]="2"" is out of order. Expected order is *structural, #variable, i18n, attribute, [input], [(two-way)], @animation, (output)",
+    "raw": "<div [@fadeIn]="state" [count]="2">",
+    "severity": "error",
+  },
+]
+`;
+
 exports[`order example 1 > fails incorrect markup 1`] = `
 [
   {

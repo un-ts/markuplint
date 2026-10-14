@@ -36,11 +36,6 @@ type LetDeclaration = Ast.LetDeclaration
 
 export interface BaseVisitorContext {
   parentNode: MLASTParentNode | null
-  /**
-   * The parser instance, so that the visitors can reuse the upstream `@markuplint/parser-utils`
-   * utilities (e.g. `visitAttr`) instead of maintaining their own copies.
-   */
-  parser: AngularParser
   text: string
 }
 
@@ -49,6 +44,11 @@ export interface VisitorContext<
 > extends BaseVisitorContext {
   nodeList: T[]
   namespace?: string
+  /**
+   * The parser instance, so that the visitors can reuse the upstream `@markuplint/parser-utils`
+   * utilities (e.g. `visitAttr`) instead of maintaining their own copies.
+   */
+  parser: AngularParser
 }
 
 const getSourceSpan = (
@@ -85,10 +85,10 @@ const protectSlashes = (
   keySpan: ParseSourceSpan | undefined,
 ): string => {
   const nameLength = keySpan ? keySpan.end.offset - keySpan.start.offset : 0
-  return (
-    raw.slice(0, nameLength).replaceAll('/', SLASH_PLACEHOLDER) +
-    raw.slice(nameLength)
-  )
+  const name = raw.slice(0, nameLength)
+  return name.includes('/')
+    ? name.replaceAll('/', SLASH_PLACEHOLDER) + raw.slice(nameLength)
+    : raw
 }
 
 const restoreSlashes = (text: string) => text.replaceAll(SLASH_PLACEHOLDER, '/')
@@ -316,7 +316,7 @@ export const visitor: Ast.Visitor = {
     })
 
     if (parsed.type === 'spread') {
-      nodeList.push(parsed)
+      nodeList.push({ ...parsed, raw: restoreSlashes(parsed.raw) })
       return
     }
 

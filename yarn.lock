@@ -8194,6 +8194,7 @@ __metadata:
   resolution: "markuplint-angular-rules@workspace:packages/angular-rules"
   dependencies:
     "@markuplint/ml-core": "npm:^5.0.0"
+    markuplint-angular-parser: "workspace:*"
   languageName: unknown
   linkType: soft
 

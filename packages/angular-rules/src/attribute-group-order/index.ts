@@ -41,8 +41,6 @@ interface AttributeEntry {
   raw: string
   startOffset: number
   endOffset: number
-  /** The whitespace that precedes the attribute in the source */
-  spacesBefore: string
   type: AngularAttributeType
 }
 
@@ -67,7 +65,6 @@ export default createRule<boolean, Options>({
           raw: attribute.raw,
           startOffset: attribute.startOffset,
           endOffset: attribute.endOffset,
-          spacesBefore: attribute.spacesBeforeName?.raw ?? '',
           type: resolveType(getAttributeType(name), order),
         }
       })
@@ -97,13 +94,21 @@ export default createRule<boolean, Options>({
       const last = entries.at(-1)!
       const range = [first.startOffset, last.endOffset] as const
       /**
-       * The whitespace of each position is kept and only the attribute text is moved, so
-       * that the indentation and the line breaks stay as they are.
+       * The gaps between the attributes are kept and only the attribute texts are moved, so
+       * that the indentation, the line breaks and any comment between them stay as they are.
+       *
+       * The gaps come from the source rather than from `spacesBeforeName`, which is empty for
+       * parsers that start an attribute token at its name, such as `markuplint-angular-parser`.
        */
+      const source = context.document.toString()
       const text = sorted
-        .map(
-          (entry, index) =>
-            (index === 0 ? '' : entries[index].spacesBefore) + entry.raw,
+        .map((target, index) =>
+          index === 0
+            ? target.raw
+            : source.slice(
+                entries[index - 1].endOffset,
+                entries[index].startOffset,
+              ) + target.raw,
         )
         .join('')
 

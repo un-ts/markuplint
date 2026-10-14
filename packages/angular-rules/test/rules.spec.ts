@@ -14,10 +14,8 @@ const fewAttributes = [
   '<div [(ngModel)]="foo"></div>',
 ]
 
-interface Case {
+interface Case extends Options {
   name: string
-  options: Options['order']
-  alphabetical?: boolean
   many: string[]
   incorrect: string[]
 }
@@ -46,7 +44,7 @@ async function countViolations(
 const cases: Case[] = [
   {
     name: 'order example 1',
-    options: [
+    order: [
       '*structural',
       '#variable',
       'attribute',
@@ -79,7 +77,7 @@ const cases: Case[] = [
   },
   {
     name: 'order example 2',
-    options: [
+    order: [
       '(output)',
       '[(two-way)]',
       '[input]',
@@ -108,7 +106,7 @@ const cases: Case[] = [
   },
   {
     name: 'partially supplied definitions',
-    options: ['*structural', 'attribute', '(output)'],
+    order: ['*structural', 'attribute', '(output)'],
     many: [
       '<div *ngIf="true" [class.valid]="true"></div>',
       '<div *ngIf="true" style="color: red;"></div>',
@@ -126,7 +124,7 @@ const cases: Case[] = [
   },
   {
     name: 'animation and i18n',
-    options: [...animationGroups, '(output)'],
+    order: [...animationGroups, '(output)'],
     many: [
       '<div *ngIf="true" #myDiv i18n="@@id" data-bar="foo" [count]="2" [(ngModel)]="foo" @fadeIn="state" (click)="onClick()"></div>',
       '<div i18n i18n-title="@@title" title="Title"></div>',
@@ -144,7 +142,7 @@ const cases: Case[] = [
   },
   {
     name: 'alphabetical',
-    options: [...animationGroups, '(output)'],
+    order: [...animationGroups, '(output)'],
     alphabetical: true,
     many: [
       '<div *ngIf="true" #aRef data-bar="foo" data-col="2" [count]="2" [(ngModel)]="foo" @fadeIn="state" (click)="onClick()"></div>',
@@ -158,12 +156,12 @@ const cases: Case[] = [
   },
 ]
 
-for (const { name, options, many, incorrect, alphabetical } of cases) {
+for (const { name, order, many, incorrect, alphabetical } of cases) {
   describe(name, () => {
     const config = {
       rule: {
         value: true,
-        options: { order: options, alphabetical },
+        options: { order, alphabetical },
       },
     }
 
@@ -193,7 +191,10 @@ for (const { name, options, many, incorrect, alphabetical } of cases) {
 
 describe('autofix', () => {
   const order: Options['order'] = [...animationGroups, '(output)']
-  const config = { rule: { value: true, options: { order } } }
+  // The Angular parser starts an attribute token at its name, so its tokens carry no
+  // leading whitespace: the fix has to keep the gaps of the source instead
+  const parser = { '.*': 'markuplint-angular-parser' }
+  const config = { parser, rule: { value: true, options: { order } } }
 
   it('reorders the attributes', async () => {
     const { fixedCode } = await mlRuleTest(
@@ -219,7 +220,7 @@ describe('autofix', () => {
     const { fixedCode } = await mlRuleTest(
       attributeGroupOrder,
       '<div data-b="2" data-a="1"></div>',
-      { rule: { value: true, options: { order, alphabetical: true } } },
+      { parser, rule: { value: true, options: { order, alphabetical: true } } },
       true,
     )
     expect(fixedCode).toBe('<div data-a="1" data-b="2"></div>')
@@ -231,6 +232,7 @@ describe('autofix', () => {
       attributeGroupOrder,
       html,
       {
+        parser,
         rule: {
           value: true,
           options: { order: ['*structural', 'attribute', '(output)'] },

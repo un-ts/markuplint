@@ -1,5 +1,5 @@
 import { parser } from '@markuplint/html-parser'
-import type { MLASTElement } from '@markuplint/ml-ast'
+import type { MLASTElement, MLASTHTMLAttr } from '@markuplint/ml-ast'
 import snapshotDiff from 'snapshot-diff'
 
 import { cleanParse } from './helper.js'
@@ -144,6 +144,75 @@ describe('parser', () => {
       .map(node => node.raw)
     expect(comments).toEqual(['/* block comment */', '// line comment'])
     expect(doc).toMatchSnapshot()
+  })
+
+  test('attribute metadata', () => {
+    const doc = cleanParse(/* HTML */ `
+      <div
+        #myRef
+        [class.valid]="true"
+        [class.md:flex]="true"
+        [class.w-1/2]="true"
+        [style.width.px]="10"
+        [style.--my-var]="'red'"
+        [attr.aria-label]="'label'"
+        [attr.xlink:href]="url"
+        [animate.fadeIn]="state"
+        (@fadeIn.done)="onDone()"
+        title="Hello {{ name }}"
+        data-foo="a{{ bar }}c"
+        plain="value"
+      ></div>
+    `)
+    const element = doc.nodeList.find(
+      (node): node is MLASTElement => node.type === 'starttag',
+    )
+    expect(
+      element?.attributes
+        .filter((attr): attr is MLASTHTMLAttr => attr.type === 'attr')
+        .map(attr => [attr.potentialName, attr.isDynamicValue, attr.value.raw]),
+    ).toEqual([
+      // `#` is deliberately kept: see `fix: potential name should not consider "#"` (#31)
+      ['#myRef', true, ''],
+      ['class.valid', true, 'true'],
+      ['class.md:flex', true, 'true'],
+      ['class.w-1/2', true, 'true'],
+      ['style.width.px', true, '10'],
+      ['style.--my-var', true, "'red'"],
+      ['aria-label', true, "'label'"],
+      ['xlink:href', true, 'url'],
+      ['animate.fadeIn', true, 'state'],
+      ['fadeIn.done', true, 'onDone()'],
+      ['title', true, 'Hello {{ name }}'],
+      ['data-foo', true, 'a{{ bar }}c'],
+      ['plain', undefined, 'value'],
+    ])
+  })
+
+  test('invalid binding names are not marked as dynamic', () => {
+    const doc = cleanParse(/* HTML */ `
+      <div
+        [class..x]="true"
+        [.x]="true"
+        [x.]="true"
+        [foo.bar]="true"
+        (..)="true"
+      ></div>
+    `)
+    const element = doc.nodeList.find(
+      (node): node is MLASTElement => node.type === 'starttag',
+    )
+    expect(
+      element?.attributes
+        .filter((attr): attr is MLASTHTMLAttr => attr.type === 'attr')
+        .map(attr => [attr.potentialName, attr.isDynamicValue]),
+    ).toEqual([
+      ['class..x', undefined],
+      ['.x', undefined],
+      ['x.', undefined],
+      ['foo.bar', undefined],
+      ['..', undefined],
+    ])
   })
 
   test('unreachable angular nodes stay ignored', () => {

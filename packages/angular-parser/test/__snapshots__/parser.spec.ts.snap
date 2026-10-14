@@ -941,7 +941,7 @@ exports[`parser > invalid tag 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": true,
+          "isDynamicValue": undefined,
           "line": 1,
           "name": {
             "col": 3,

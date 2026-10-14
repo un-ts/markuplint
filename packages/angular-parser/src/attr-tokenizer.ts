@@ -3,9 +3,17 @@ import type { MLASTHTMLAttr } from '@markuplint/ml-ast'
 
 import { tokenizer } from './tokenizer.js'
 
+/**
+ * `/` is allowed in the name: while brackets are open, the Angular lexer only ends an
+ * attribute name at a newline, which is what makes bindings such as `[class.w-1/2]`,
+ * `[style.--my-var]` and `[attr.xlink:href]` possible.
+ *
+ * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/ml_parser/lexer.ts#L1068-L1087
+ * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/ml_parser/lexer.ts#L1497-L1508
+ */
 const reAttrsInStartTag =
   // eslint-disable-next-line regexp/no-misleading-capturing-group, regexp/no-super-linear-backtracking, sonarjs/regex-complexity, sonarjs/super-linear-regex
-  /(\s*)([^\u0000-\u001F\u007F-\u009F "'>/=]+)(?:(\s*)(=)(\s*)(?:"([^"]*)"|'([^']*)'|(\S*)))?/
+  /(\s*)([^\u0000-\u001F\u007F-\u009F "'>=]+)(?:(\s*)(=)(\s*)(?:"([^"]*)"|'([^']*)'|(\S*)))?/
 
 export default function attrTokenizer(
   raw: string,

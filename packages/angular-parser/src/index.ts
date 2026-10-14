@@ -243,11 +243,39 @@ export const visitor: Ast.Visitor = {
 
     const dynamicName = // template reference or structural directive
       /^[#*]/.test(name) ||
-      // dynamic attribute or Angular Input
-      /^\[[^.[\]]+\]$/.test(name) ||
-      // event binding
-      /^\([^().]+\)$/.test(name)
-    const dynamicValue = /^\{\{.*\}\}$/.test(_value)
+      /**
+       * Two-way, property or animation binding.
+       *
+       * Angular's binding parser splits a property name on `.` and special-cases the
+       * `attr`, `class`, `style` and `animate` prefixes:
+       * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/template_parser/binding_parser.ts#L42-L46
+       * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/template_parser/binding_parser.ts#L571-L615
+       *
+       * `@trigger` and `[@trigger]` are the keyword form of the same parser:
+       * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/render3/r3_template_transform.ts#L40-L55
+       *
+       * A segment after those prefixes may contain any character that is not a separator
+       * or a wrapper, so that namespaced attributes (`[attr.xlink:href]`) and arbitrary
+       * class names (`[class.md:flex]`, `[class.w-1/2]`) are covered, while empty
+       * segments are still rejected.
+       *
+       * Invalid or unknown names such as `[class..x]`, `[]` or `[foo.bar]` are not
+       * matched, because this parser does not validate binding names the way
+       * Angular's binding parser and schema registry do.
+       */
+      /^\[(?:@?[\w$-]+|\([\w$-]+\)|(?:attr|class|style|animate)(?:\.[^\s.[\]]+)+)\]$/.test(
+        name,
+      ) ||
+      /**
+       * Event binding, including a target (`(window:resize)`) and animation callbacks
+       * (`(@fadeIn.done)`); the `[]`, `()` and `[()]` delimiters are detected in
+       * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/render3/r3_template_transform.ts#L853-L858
+       */
+      /^\(@?[\w$-]+(?::[\w$-]+)?(?:\.[\w$-]+)*\)$/.test(name)
+    // An interpolation may appear anywhere in the value, e.g. `title="Hello {{ name }}"`
+    const interpolationStart = _value.indexOf('{{')
+    const dynamicValue =
+      interpolationStart !== -1 && _value.includes('}}', interpolationStart + 2)
 
     const node: Writable<MLASTHTMLAttr> = attrTokenizer(
       getRaw(attribute, options.text),

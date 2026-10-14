@@ -86,9 +86,10 @@ const protectSlashes = (
 ): string => {
   const nameLength = keySpan ? keySpan.end.offset - keySpan.start.offset : 0
   const name = raw.slice(0, nameLength)
-  return name.includes('/')
-    ? name.replaceAll('/', SLASH_PLACEHOLDER) + raw.slice(nameLength)
-    : raw
+  if (!name.includes('/')) {
+    return raw
+  }
+  return name.replaceAll('/', SLASH_PLACEHOLDER) + raw.slice(nameLength)
 }
 
 const restoreSlashes = (text: string) => text.replaceAll(SLASH_PLACEHOLDER, '/')

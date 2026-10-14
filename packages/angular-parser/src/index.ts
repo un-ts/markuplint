@@ -320,27 +320,25 @@ export const visitor: Ast.Visitor = {
       return
     }
 
-    const potentialName = name
-      /**
-       * Remove leading `[attr.`
-       *
-       * @example
-       *   `<input [attr.type]="type" />`
-       *
-       *   Notice `<input attr.type="number" />` is not same as `<input type="number" />`,
-       *   what means `[]` wrapper is required
-       */
-      .replace(/^\[attr\./, '')
-      // remove leading `*`, `@`, `[]` and `()` wrapper
-      .replaceAll(/[()*@[\]]/g, '')
-
     // The protected slashes of the name are restored before the node is exposed
     const node: MLASTHTMLAttr = {
       ...parsed,
       raw: restoreSlashes(parsed.raw),
       nodeName: restoreSlashes(parsed.nodeName),
       name: { ...parsed.name, raw: restoreSlashes(parsed.name.raw) },
-      potentialName,
+      potentialName: name
+        /**
+         * Remove leading `[attr.`
+         *
+         * @example
+         *   `<input [attr.type]="type" />`
+         *
+         *   Notice `<input attr.type="number" />` is not same as `<input type="number" />`,
+         *   what means `[]` wrapper is required
+         */
+        .replace(/^\[attr\./, '')
+        // remove leading `*`, `@`, `[]` and `()` wrapper
+        .replaceAll(/[()*@[\]]/g, ''),
       ...((dynamicName || dynamicValue) && { isDynamicValue: true }),
     }
 

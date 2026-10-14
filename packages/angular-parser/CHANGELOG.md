@@ -1,5 +1,23 @@
 # markuplint-angular-parser
 
+## 4.0.1
+
+### Patch Changes
+
+- [#145](https://github.com/un-ts/markuplint/pull/145) [`a2233ff`](https://github.com/un-ts/markuplint/commit/a2233ffb267fc358762297abe83d23cb62e470c5) Thanks [@JounQin](https://github.com/JounQin)! - fix: mark the dotted, event and interpolated attribute values of Angular bindings as dynamic
+
+  - Dotted bindings are recognized for the prefixes Angular special-cases (`attr.`, `class.`, `style.` and `animate.`), so `[class.x]`, `[class.md:flex]`, `[class.w-1/2]`, `[style.width.px]`, `[style.--my-var]`, `[attr.aria-label]` and `[attr.xlink:href]` are marked as dynamic values. A segment after those prefixes may contain any character except a separator or a wrapper, so namespaced attributes and arbitrary class names are covered, while unknown or invalid names such as `[class..x]` or `[foo.bar]` deliberately stay unmarked: this parser does not validate binding names the way Angular's binding parser and schema registry do.
+  - Attribute names may contain `/`, so `[class.w-1/2]="true"` is no longer truncated into `[class.w-1`.
+  - Event bindings such as `(@fadeIn.done)` and `(window:resize)` are recognized.
+  - An attribute value that contains an interpolation anywhere (e.g. `title="Hello {{ name }}"`) is marked as a dynamic value.
+  - Attribute tokenization is delegated to `@markuplint/parser-utils`' `Parser#visitAttr` instead of a local copy, so `isDynamicValue` is only present on attributes that actually have a dynamic value.
+
+- [#144](https://github.com/un-ts/markuplint/pull/144) [`a02c723`](https://github.com/un-ts/markuplint/commit/a02c72335133ee15fb2486c2c005c71e9f4ab5dd) Thanks [@JounQin](https://github.com/JounQin)! - fix: parse comments inside Angular start tags
+
+  Angular allows `/* ... */` and `// ...` comments inside a start tag. They are now consumed instead of being reported as parse errors, and the attributes that follow them are kept instead of being dropped. The comments are also exposed as `#comment` nodes so that rules can inspect them.
+
+  This requires `angular-html-parser` 10.10.0 or later, which is the first version that accepts `allowStartTagComments`.
+
 ## 4.0.0
 
 ### Major Changes

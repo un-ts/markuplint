@@ -24,7 +24,12 @@ export const defaultOrder: AngularAttributeType[] = [
 ]
 
 export interface Options {
-  order: AngularAttributeType[]
+  /**
+   * Order of the attribute groups.
+   *
+   * @default defaultOrder
+   */
+  order?: AngularAttributeType[]
   /**
    * Sort the attributes of the same group alphabetically.
    *
@@ -54,7 +59,7 @@ export default createRule<boolean, Options>({
   async verify(context) {
     await context.document.walkOn('Element', node => {
       validateOptions(node.rule.options)
-      const { order, alphabetical = false } = node.rule.options
+      const { order = defaultOrder, alphabetical = false } = node.rule.options
 
       const entries = node.attributes.map<AttributeEntry>(attribute => {
         // The name token is the bare name (`[@trigger]`, `i18n-title`), while `raw` also
@@ -220,6 +225,10 @@ function findOutOfOrder(
  * `i18n-` counterpart stay together.
  */
 function compareNames(one: string, other: string): number {
+  if (one === other) {
+    return 0
+  }
+
   const oneNormalized = one.replace(/^i18n-/, '')
   const otherNormalized = other.replace(/^i18n-/, '')
   if (oneNormalized === otherNormalized) {
@@ -242,18 +251,15 @@ function byOrder(
 }
 
 function validateOptions(options: Options): void {
-  if (!Array.isArray(options.order)) {
+  const { order = defaultOrder, alphabetical } = options
+  if (!Array.isArray(order)) {
     throw new TypeError('The "order" option must be an array.')
   }
 
-  if (
-    options.alphabetical != null &&
-    typeof options.alphabetical !== 'boolean'
-  ) {
+  if (alphabetical != null && typeof alphabetical !== 'boolean') {
     throw new TypeError('The "alphabetical" option must be a boolean.')
   }
 
-  const order = options.order
   for (const group of order) {
     if (defaultOrder.includes(group)) {
       continue

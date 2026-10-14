@@ -334,6 +334,30 @@ describe('alphabetical', () => {
       ),
     ).toBe(0)
   })
+
+  it('does not report identical names', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div i18n-title="@@a" i18n-title="@@b"></div>',
+        true,
+      ),
+    ).toBe(0)
+  })
+
+  it('uses the default order when `order` is not configured', async () => {
+    const { fixedCode, violations } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div [count]="2" *ngIf="true"></div>',
+      {
+        parser: { '.*': 'markuplint-angular-parser' },
+        rule: { value: true, options: { alphabetical: true } },
+      },
+      true,
+    )
+    expect(violations.length).toBe(1)
+    expect(fixedCode).toBe('<div *ngIf="true" [count]="2"></div>')
+  })
 })
 
 describe('options validation', () => {

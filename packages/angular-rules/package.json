@@ -26,6 +26,9 @@
   "dependencies": {
     "@markuplint/ml-core": "^5.0.0"
   },
+  "devDependencies": {
+    "markuplint-angular-parser": "workspace:*"
+  },
   "publishConfig": {
     "access": "public"
   }

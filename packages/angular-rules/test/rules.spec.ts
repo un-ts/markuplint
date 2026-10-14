@@ -2,28 +2,52 @@ import { mlRuleTest } from 'markuplint'
 
 import { type Options, attributeGroupOrder } from 'markuplint-angular-rules'
 
+/** The rule is for Angular templates, so the tests that exercise the fix use our parser. */
+const parser = { '.*': 'markuplint-angular-parser' }
+
 const fewAttributes = [
   '<br>',
   '<div *ngIf="true"></div>',
   '<div [class.valid]="true"></div>',
-  '<div [class.valid]="true" [class.red]="false"></div>',
+  // Alphabetical-safe, so the cases with `alphabetical: true` can share this list
+  '<div [class.red]="false" [class.valid]="true"></div>',
   '<div data-foo="bar"></div>',
-  '<div data-foo="bar" data-col="2"></div>',
+  '<div data-col="2" data-foo="bar"></div>',
   '<div (click)="onClick()"></div>',
   '<div [(ngModel)]="foo"></div>',
 ]
 
-interface Case {
+interface Case extends Options {
   name: string
-  options: Options['order']
   many: string[]
   incorrect: string[]
+}
+
+const animationGroups: Options['order'] = [
+  '*structural',
+  '#variable',
+  'i18n',
+  'attribute',
+  '[input]',
+  '[(two-way)]',
+  '@animation',
+]
+
+async function countViolations(
+  order: Options['order'],
+  html: string,
+  alphabetical = false,
+): Promise<number> {
+  const { violations } = await mlRuleTest(attributeGroupOrder, html, {
+    rule: { value: true, options: { order, alphabetical } },
+  })
+  return violations.length
 }
 
 const cases: Case[] = [
   {
     name: 'order example 1',
-    options: [
+    order: [
       '*structural',
       '#variable',
       'attribute',
@@ -56,7 +80,7 @@ const cases: Case[] = [
   },
   {
     name: 'order example 2',
-    options: [
+    order: [
       '(output)',
       '[(two-way)]',
       '[input]',
@@ -85,7 +109,7 @@ const cases: Case[] = [
   },
   {
     name: 'partially supplied definitions',
-    options: ['*structural', 'attribute', '(output)'],
+    order: ['*structural', 'attribute', '(output)'],
     many: [
       '<div *ngIf="true" [class.valid]="true"></div>',
       '<div *ngIf="true" style="color: red;"></div>',
@@ -101,14 +125,46 @@ const cases: Case[] = [
       '<div (click)="delete" disabled *ngIf="true""></div>',
     ],
   },
+  {
+    name: 'animation and i18n',
+    order: [...animationGroups, '(output)'],
+    many: [
+      '<div *ngIf="true" #myDiv i18n="@@id" data-bar="foo" [count]="2" [(ngModel)]="foo" @fadeIn="state" (click)="onClick()"></div>',
+      '<div i18n i18n-title="@@title" title="Title"></div>',
+      '<div [@fadeIn]="state" @fadeOut="state" (click)="onClick()"></div>',
+      '<div @fadeIn="state" (@fadeIn.done)="onDone()"></div>',
+      // `i18n.foo` is not an Angular i18n attribute, so it is a plain attribute
+      '<div title="Title" i18n.foo="@@id"></div>',
+    ],
+    incorrect: [
+      '<div @fadeIn="state" [count]="2"></div>',
+      '<div data-bar="foo" i18n="@@id"></div>',
+      '<div (click)="onClick()" @fadeIn="state"></div>',
+      '<div [@fadeIn]="state" [count]="2"></div>',
+    ],
+  },
+  {
+    name: 'alphabetical',
+    order: [...animationGroups, '(output)'],
+    alphabetical: true,
+    many: [
+      '<div *ngIf="true" #aRef data-bar="foo" data-col="2" [count]="2" [(ngModel)]="foo" @fadeIn="state" (click)="onClick()"></div>',
+      '<div i18n="@@id" i18n-title="@@title" title="Title"></div>',
+    ],
+    incorrect: [
+      '<div data-col="2" data-bar="foo"></div>',
+      '<div [count]="2" [class.valid]="true"></div>',
+      '<div title="Title" i18n-title="@@title"></div>',
+    ],
+  },
 ]
 
-for (const { name, options, many, incorrect } of cases) {
+for (const { name, order, many, incorrect, alphabetical } of cases) {
   describe(name, () => {
     const config = {
       rule: {
         value: true,
-        options: { order: options },
+        options: { order, alphabetical },
       },
     }
 
@@ -136,6 +192,182 @@ for (const { name, options, many, incorrect } of cases) {
   })
 }
 
+describe('autofix', () => {
+  const order: Options['order'] = [...animationGroups, '(output)']
+  // The Angular parser starts an attribute token at its name, so its tokens carry no
+  // leading whitespace: the fix has to keep the gaps of the source instead
+  const config = {
+    parser,
+    rule: { value: true, options: { order } },
+  }
+
+  it('reorders the attributes', async () => {
+    const { fixedCode } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div [count]="2" *ngIf="true"></div>',
+      config,
+      true,
+    )
+    expect(fixedCode).toBe('<div *ngIf="true" [count]="2"></div>')
+  })
+
+  it('keeps the indentation of a multiline tag', async () => {
+    const { fixedCode } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div\n  [count]="2"\n  *ngIf="true"\n></div>',
+      config,
+      true,
+    )
+    expect(fixedCode).toBe('<div\n  *ngIf="true"\n  [count]="2"\n></div>')
+  })
+
+  it('sorts alphabetically when enabled', async () => {
+    const { fixedCode } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div data-b="2" data-a="1"></div>',
+      {
+        parser,
+        rule: { value: true, options: { order, alphabetical: true } },
+      },
+      true,
+    )
+    expect(fixedCode).toBe('<div data-a="1" data-b="2"></div>')
+  })
+
+  it('does not reorder when a group is not listed in `order`', async () => {
+    const html = '<div title="t" [count]="2" *ngIf="true"></div>'
+    const { fixedCode, violations } = await mlRuleTest(
+      attributeGroupOrder,
+      html,
+      {
+        parser,
+        rule: {
+          value: true,
+          options: { order: ['*structural', 'attribute', '(output)'] },
+        },
+      },
+      true,
+    )
+    expect(violations.length).toBe(1)
+    expect(fixedCode).toBe(html)
+  })
+})
+
+describe('optional groups', () => {
+  // `[@animation]` refines `@animation`, so with it configured the bound form must no
+  // longer share the group of the static form
+  const boundPair = '<div [@fadeOut]="state" @fadeIn="state"></div>'
+  // The order used before `@animation`, `[@animation]` and `i18n` existed
+  const legacyOrder: Options['order'] = [
+    '*structural',
+    '#variable',
+    'attribute',
+    '[input]',
+    '[(two-way)]',
+    '(output)',
+  ]
+
+  it('falls back to `@animation` when `[@animation]` is not configured', async () => {
+    expect(
+      await countViolations([...animationGroups, '(output)'], boundPair),
+    ).toBe(0)
+  })
+
+  it('is checked separately when `[@animation]` is configured', async () => {
+    expect(
+      await countViolations(
+        [...animationGroups, '[@animation]', '(output)'],
+        boundPair,
+      ),
+    ).toBe(1)
+  })
+
+  it('degrades `[@trigger]` to `[input]` for legacy orders', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div [@fadeIn]="state" title="t"></div>',
+      ),
+    ).toBe(1)
+  })
+
+  it('degrades `@trigger` and `i18n` to attributes for legacy orders', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div [count]="2" @fadeIn="state"></div>',
+      ),
+    ).toBe(1)
+    expect(
+      await countViolations(legacyOrder, '<div [count]="2" i18n="@@id"></div>'),
+    ).toBe(1)
+  })
+})
+
+describe('alphabetical', () => {
+  const order: Options['order'] = [...animationGroups, '(output)']
+  // Without the `i18n` group, an `i18n-` attribute and its plain counterpart share the
+  // `attribute` group
+  const legacyOrder: Options['order'] = [
+    '*structural',
+    '#variable',
+    'attribute',
+    '[input]',
+    '[(two-way)]',
+    '(output)',
+  ]
+
+  it('sorts the attributes of a group by name', async () => {
+    expect(
+      await countViolations(order, '<div data-b="2" data-a="1"></div>', true),
+    ).toBe(1)
+    expect(
+      await countViolations(order, '<div data-a="1" data-b="2"></div>', true),
+    ).toBe(0)
+  })
+
+  it('sorts an `i18n-` attribute after its plain counterpart', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div i18n-title="@@t" title="T"></div>',
+        true,
+      ),
+    ).toBe(1)
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div title="T" i18n-title="@@t"></div>',
+        true,
+      ),
+    ).toBe(0)
+  })
+
+  it('does not report identical names', async () => {
+    expect(
+      await countViolations(
+        legacyOrder,
+        '<div i18n-title="@@a" i18n-title="@@b"></div>',
+        true,
+      ),
+    ).toBe(0)
+  })
+
+  it('uses the default order when `order` is not configured', async () => {
+    const { fixedCode, violations } = await mlRuleTest(
+      attributeGroupOrder,
+      '<div [count]="2" *ngIf="true"></div>',
+      {
+        parser,
+        rule: { value: true, options: { alphabetical: true } },
+      },
+      true,
+    )
+    expect(violations.length).toBe(1)
+    expect(fixedCode).toBe('<div *ngIf="true" [count]="2"></div>')
+  })
+})
+
 describe('options validation', () => {
   it('throws an error when an order option is not an array', async () => {
     await expect(
@@ -149,6 +381,20 @@ describe('options validation', () => {
         },
       }),
     ).rejects.toThrow('The "order" option must be an array.')
+  })
+
+  it('throws an error when an alphabetical option is not a boolean', async () => {
+    await expect(
+      mlRuleTest(attributeGroupOrder, '<div></div>', {
+        rule: {
+          value: true,
+          options: {
+            // @ts-expect-error -- testing
+            alphabetical: 'incorrect',
+          },
+        },
+      }),
+    ).rejects.toThrow('The "alphabetical" option must be a boolean.')
   })
 
   it('throws an error when an incorrect order option is supplied', async () => {

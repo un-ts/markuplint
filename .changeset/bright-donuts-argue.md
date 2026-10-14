@@ -8,3 +8,4 @@ fix: mark the dotted, event and interpolated attribute values of Angular binding
 - Attribute names may contain `/`, so `[class.w-1/2]="true"` is no longer truncated into `[class.w-1`.
 - Event bindings such as `(@fadeIn.done)` and `(window:resize)` are recognized.
 - An attribute value that contains an interpolation anywhere (e.g. `title="Hello {{ name }}"`) is marked as a dynamic value.
+- Attribute tokenization is delegated to `@markuplint/parser-utils`' `Parser#visitAttr` instead of a local copy, so `isDynamicValue` is only present on attributes that actually have a dynamic value.

@@ -26,7 +26,6 @@ import {
 import type { Writable } from 'type-fest'
 import { v4 as uuid } from 'uuid'
 
-import attrTokenizer from './attr-tokenizer.js'
 import parseSelfClosingSolidus from './parse-self-closing-solidus.js'
 
 type Expansion = Ast.Expansion
@@ -37,6 +36,11 @@ type LetDeclaration = Ast.LetDeclaration
 
 export interface BaseVisitorContext {
   parentNode: MLASTParentNode | null
+  /**
+   * The parser instance, so that the visitors can reuse the upstream `@markuplint/parser-utils`
+   * utilities (e.g. `visitAttr`) instead of maintaining their own copies.
+   */
+  parser: AngularParser
   text: string
 }
 
@@ -64,6 +68,30 @@ const getRaw = (
   const { start, end } = getSourceSpan(nodeOrSourceSpan)
   return text.slice(start.offset, end.offset)
 }
+
+/**
+ * Angular's lexer only ends an attribute name at a newline while brackets are open, which is
+ * what makes bindings such as `[class.w-1/2]`, `[style.--my-var]` and `[attr.xlink:href]`
+ * possible:
+ * https://github.com/angular/angular/blob/e699fd72de588b98a10efefdd37e43ed1d3f2198/packages/compiler/src/ml_parser/lexer.ts#L1068-L1087
+ *
+ * The tokenizer of `@markuplint/parser-utils` follows the HTML attribute-name state and ends
+ * the name at `/`, so `/` inside the name is protected while tokenizing and restored after.
+ */
+const SLASH_PLACEHOLDER = '\uE000'
+
+const protectSlashes = (
+  raw: string,
+  keySpan: ParseSourceSpan | undefined,
+): string => {
+  const nameLength = keySpan ? keySpan.end.offset - keySpan.start.offset : 0
+  return (
+    raw.slice(0, nameLength).replaceAll('/', SLASH_PLACEHOLDER) +
+    raw.slice(nameLength)
+  )
+}
+
+const restoreSlashes = (text: string) => text.replaceAll(SLASH_PLACEHOLDER, '/')
 
 export interface NodeMapperOptions<
   T extends boolean = boolean,
@@ -191,6 +219,7 @@ export const visitor: Ast.Visitor = {
       nodeList: attributes,
       text,
       namespace,
+      parser: options.parser,
     })
 
     visitAll(visitor, comments, {
@@ -198,6 +227,7 @@ export const visitor: Ast.Visitor = {
       nodeList: childNodes,
       text,
       namespace,
+      parser: options.parser,
     })
 
     visitAll(visitor, children, {
@@ -205,6 +235,7 @@ export const visitor: Ast.Visitor = {
       nodeList: childNodes,
       text,
       namespace,
+      parser: options.parser,
     })
 
     let endTag: MLASTElementCloseTag | null = null
@@ -277,15 +308,31 @@ export const visitor: Ast.Visitor = {
     const dynamicValue =
       interpolationStart !== -1 && _value.includes('}}', interpolationStart + 2)
 
-    const node: Writable<MLASTHTMLAttr> = attrTokenizer(
-      getRaw(attribute, options.text),
-      start.line + 1,
-      start.col,
-      start.offset,
-      dynamicName || dynamicValue || undefined,
-    )
+    const parsed = options.parser.visitAttr({
+      raw: protectSlashes(getRaw(attribute, options.text), attribute.keySpan),
+      offset: start.offset,
+      line: start.line + 1,
+      col: start.col,
+    })
 
-    const potentialName = name
+    if (parsed.type === 'spread') {
+      nodeList.push(parsed)
+      return
+    }
+
+    // The protected slashes of the name are restored before the node is exposed
+    const node: Writable<MLASTHTMLAttr> = {
+      ...parsed,
+      raw: restoreSlashes(parsed.raw),
+      nodeName: restoreSlashes(parsed.nodeName),
+      name: { ...parsed.name, raw: restoreSlashes(parsed.name.raw) },
+    }
+
+    if (dynamicName || dynamicValue) {
+      node.isDynamicValue = true
+    }
+
+    node.potentialName = name
       /**
        * Remove leading `[attr.`
        *
@@ -298,8 +345,6 @@ export const visitor: Ast.Visitor = {
       .replace(/^\[attr\./, '')
       // remove leading `*`, `@`, `[]` and `()` wrapper
       .replaceAll(/[()*@[\]]/g, '')
-
-    node.potentialName = potentialName
 
     nodeList.push(node)
   },
@@ -396,6 +441,7 @@ export const visitor: Ast.Visitor = {
       nodeList: childNodes,
       text: options.text,
       namespace,
+      parser: options.parser,
     })
     nodeList.push(node)
   },
@@ -443,6 +489,7 @@ export class AngularParser extends Parser<Ast.Node> {
       parentNode: null,
       nodeList,
       text,
+      parser: this,
     })
 
     const document: Writable<MLASTDocument> = {

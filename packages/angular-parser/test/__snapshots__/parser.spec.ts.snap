@@ -941,7 +941,6 @@ exports[`parser > invalid tag 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 1,
           "name": {
             "col": 3,
@@ -1000,7 +999,6 @@ exports[`parser > invalid tag 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 1,
           "name": {
             "col": 21,
@@ -1059,7 +1057,6 @@ exports[`parser > invalid tag 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 1,
           "name": {
             "col": 39,
@@ -1118,7 +1115,6 @@ exports[`parser > invalid tag 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 1,
           "name": {
             "col": 49,
@@ -1283,7 +1279,6 @@ exports[`parser > parser.parse 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 9,
           "name": {
             "col": 14,
@@ -1507,7 +1502,6 @@ exports[`parser > parser.parse 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 14,
           "name": {
             "col": 14,
@@ -1657,7 +1651,6 @@ exports[`parser > parser.parse 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 18,
           "name": {
             "col": 14,
@@ -2054,7 +2047,6 @@ exports[`parser > parser.parse 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 29,
           "name": {
             "col": 17,
@@ -2345,7 +2337,6 @@ exports[`parser > start tag comments 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 2,
           "name": {
             "col": 31,
@@ -2454,7 +2445,6 @@ exports[`parser > start tag comments 1`] = `
             "raw": "=",
           },
           "isDuplicatable": false,
-          "isDynamicValue": undefined,
           "line": 5,
           "name": {
             "col": 8,

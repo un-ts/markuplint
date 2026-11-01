@@ -26,11 +26,11 @@
     "version": "changeset version && yarn --no-immutable"
   },
   "devDependencies": {
-    "@1stg/common-config": "^16.0.0",
+    "@1stg/common-config": "^17.0.0",
     "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.0",
     "@commitlint/cli": "^21.0.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.0.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@unts/patch-package": "^8.1.1",
     "@vitest/coverage-istanbul": "^5.0.0",

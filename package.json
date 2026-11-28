@@ -10,7 +10,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.18.1",
+  "packageManager": "yarn@4.19.0",
   "scripts": {
     "build": "tsc -b",
     "clean": "rimraf -g .type-coverage coverage '.*cache' 'packages/*/{lib,node_modules,*.tsbuildinfo}'",
@@ -26,11 +26,11 @@
     "version": "changeset version && yarn --no-immutable"
   },
   "devDependencies": {
-    "@1stg/common-config": "^16.0.0",
-    "@changesets/changelog-github": "^1.0.0",
+    "@1stg/common-config": "^17.0.0",
+    "@changesets/changelog-github": "^2.0.0",
     "@changesets/cli": "^3.0.0",
     "@commitlint/cli": "^21.0.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.0.0",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@unts/patch-package": "^8.1.1",
     "@vitest/coverage-istanbul": "^5.0.0",
@@ -42,11 +42,11 @@
     "simple-git-hooks": "^2.12.1",
     "snapshot-diff": "^0.10.0",
     "type-coverage": "^2.29.7",
-    "type-fest": "^5.0.0",
+    "type-fest": "^6.0.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vite": "^8.0.0",
     "vitest": "^5.0.4",
-    "yarn-berry-deduplicate": "^7.1.0"
+    "yarn-berry-deduplicate": "^8.0.0"
   },
   "resolutions": {
     "markuplint": "^5.0.0",
